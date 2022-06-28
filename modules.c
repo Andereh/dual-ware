@@ -4,6 +4,7 @@
 #include <math.h>
 #include "modules.h"
 
+int i;
 // Aqui van todas las definiciones de funciones
 
 // Funciones recurrentes, tendremos que repetir cosas 34 veces
@@ -26,14 +27,15 @@ bool hasAChar(char *strStart, char *strEnd) // Para validar que una
 
 bool wantToRepeat() // Para repetir el bucle
 {
-	char opt[10];
+	int opt;
 
+	printf("\n\n\t\tOPCIONES\n");
 	printf("\n\t1. Continuar\n");
 	printf("\tOtro. Volver al menu\n");
 	printf("\nOpcion: ");
-	fgets(opt, 10, stdin);
+	opt = validInt();
 
-	return opt[0] == '1';
+	return opt == 1;
 }
 
 int validInt() // Te retorna un int. 
@@ -58,7 +60,7 @@ int validInt() // Te retorna un int.
 
 void promedioNotas() // 01. Ronald
 {
-	int i, sumaTotal = 0, nNotas, puntaje, opt; // nNotas: cantidad de notas a evaluar
+	int sumaTotal = 0, nNotas, puntaje, opt; // nNotas: cantidad de notas a evaluar
 	float res; // resultado
 	char str[10];
 
@@ -66,21 +68,20 @@ void promedioNotas() // 01. Ronald
 	{
 		system("clear");
 		
-		printf("Modo: Promedio de notas\n\n");
-		printf("Notas a evaluar: "); nNotas = validInt();
+		printf("\n\t\tPROMEDIO DE NOTAS\n\n");
+		printf("Cantidad de notas a evaluar: "); nNotas = validInt();
 
 		while (nNotas <= 1)
 		{ 
-			printf("\nIngrese al menos 2 notas. Intente de nuevo\n");
-			printf("Notas a evaluar: ");
-			nNotas = validInt();
+			printf("\nIngrese al menos 2 notas\n");
+			printf("Notas a evaluar: "); nNotas = validInt();
 		}
 		
-		printf("Ingrese las notas\n\n");
+		printf("Ingrese los datos\n\n");
 
-		for (i = 0; i < nNotas; ++i) 
+		for (i = 1; i <= nNotas; ++i) 
 		{
-			printf("Nota #%d/%d: ", i + 1, nNotas);
+			printf("\tNota #%d/%d: ", i, nNotas);
 			puntaje = validInt();
 
 			sumaTotal += puntaje;
@@ -98,7 +99,7 @@ void promedioNotas() // 01. Ronald
 
 }
 
-void ecuacionCuadratica()
+void ecuacionCuadratica() // 03. Ronald 
 {
 	int a, b, c;
 	float resPos, resNeg;
@@ -107,11 +108,12 @@ void ecuacionCuadratica()
 	{
 
 	system("clear");
+	printf("\n\t\tECUACION CUADRATICA\n\n");
 
-	printf("Modo: ecuacion cuadratica\n\n");
-	printf("Valor de A: "); a = validInt();
-	printf("Valor de B: "); b = validInt();
-	printf("Valor de C: "); c = validInt();
+	printf("Introduzca los valores\n\n");
+	printf("\tValor de A: "); a = validInt();
+	printf("\tValor de B: "); b = validInt();
+	printf("\tValor de C: "); c = validInt();
 
 	resPos = (-b) + sqrt( fabs ( (pow(b, 2) - (4*a*c) ) ));
 	resNeg = (-b) - sqrt( fabs ( (pow(b, 2) - (4*a*c) ) ));
@@ -121,6 +123,75 @@ void ecuacionCuadratica()
 
 	printf("\nResultado (+): %f\n", resPos);
 	printf("Resultado (-): %f\n", resNeg);
+
+	} while (wantToRepeat());
+
+}
+
+void tresNumeros() // 05. Ronald
+{
+	int nums[3];
+	int mayor = 0, menor = 0, nPares = 0, aux;
+	int opt;
+	float prom = 0; // Promedio
+	
+	do {
+		system("clear");
+		
+		printf("\n\t\tOPERACIONES CON TRES NUMEROS\n");
+
+		printf("\nElija una opcion\n\n");
+
+		printf("\t1. Calcular el promedio\n");
+		printf("\t2. Encontrar el mayor\n");
+		printf("\t3. Encontrar el menor\n");
+		printf("\t4. Identificar cuantos pares e impares hay\n");
+		printf("\n\tOtro. Volver al menu\n");
+
+		printf("\nOpcion: ");
+		opt = validInt();
+
+		if (opt >= 1 && opt <= 4) printf("\nIngrese los valores\n\n");
+
+		switch (opt) {
+			case 1:
+				for (i = 1; i <= 3; ++i) {
+					printf("\tValor #%d: ", i);
+					prom += validInt();
+				}
+
+				prom /= 3;
+				printf("\nEl promedio es: %f\n", prom);
+				break;
+			case 2:
+				for (i = 1; i <= 3; ++i) {
+					printf("\tValor #%d: ", i);
+					aux = validInt();
+					if (aux > mayor) mayor = aux;
+				}
+
+				printf("\nEl mayor es: %d\n", mayor);
+				break;
+			case 3:
+				for (i = 1; i <= 3; ++i) {
+					printf("\tValor #%d: ", i);
+					aux = validInt();
+					if (aux < menor) menor = aux;
+				}
+
+				printf("\nEl mayor es: %d\n", menor);
+				break;
+			case 4:
+				for (i = 1; i <= 3; ++i) {
+					printf("\tValor #%d: ", i);
+					aux = validInt();
+
+					if (aux%2 == 0) nPares++;
+				}
+
+				printf("\nHay %d pares\n", nPares);
+				printf("Hay %d impares\n", 3 - nPares);
+		}
 
 	} while (wantToRepeat());
 
