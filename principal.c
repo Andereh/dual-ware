@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "modules.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
-	sayHello();
+	promedioNotas();
 	return 0;
 }
