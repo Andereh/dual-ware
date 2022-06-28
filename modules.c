@@ -14,12 +14,11 @@ bool hasAChar(char *strStart, char *strEnd) // Para validar que una
 											// cadena no tenga caracteres
 {
 	char *ptr = strStart;
-	
+	if (*ptr == '-') ptr++;
 	while (ptr <= strEnd && *ptr != '\0')
 	{
-		if (*ptr < 48 || *ptr > 57) return true;
-		ptr++;
-		if (*ptr == '\n') *ptr = '\0';
+		if ((*ptr < 48 || *ptr > 57)) return true;
+		if (*(++ptr) == '\n') *ptr = '\0';
 	}
 	
 	return false;
