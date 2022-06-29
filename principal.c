@@ -5,7 +5,6 @@
 int main(void)
 {
 	int opt;
-		printf("Bienvenido\n\n");
 
 	do 
 	{
@@ -15,10 +14,13 @@ int main(void)
 		printf("\n\t1. Promedio de notas");
 		printf("\n\t3. Ecuacion cuadratica");
 		printf("\n\t5. Operar con tres numeros");
+		printf("\n\t7. Operar con dos numeros");
 		printf("\n\n\tOtro. salir\n");
 
-		printf("\nOpcion: ");
-		do opt = validInt(); 
+		do {
+			printf("\nOpcion: ");
+			opt = validInt(); 
+		}
 		while (opt < 1);
 
 		switch (opt) {
@@ -31,9 +33,12 @@ int main(void)
 			case 5:
 				tresNumeros();
 				break;
+			case 7:
+				dosNumeros();
+				break;
 		}
 
-	} while (opt <= 5);
+	} while (opt <= 7);
 
 	return 0;
 }
