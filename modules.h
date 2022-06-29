@@ -14,5 +14,6 @@ void promedioNotas(); // 01. Ronald
 void ecuacionCuadratica(); // 03. Ronald
 void tresNumeros(); // 05. Ronald
 void dosNumeros(); // 07. Ronald
+void areaDeFiguras(); // 09. Ronald
 
 #endif 

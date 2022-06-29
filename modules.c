@@ -4,6 +4,8 @@
 #include <math.h>
 #include "modules.h"
 
+#define CLS system("clear")
+
 int i;
 // Aqui van todas las definiciones de funciones
 
@@ -97,7 +99,7 @@ void promedioNotas() // 01. Ronald
 
 	do 
 	{
-		system("clear");
+		CLS;
 		
 		printf("\n\t\tPROMEDIO DE NOTAS\n\n");
 		printf("Cantidad de notas a evaluar: "); nNotas = validInt();
@@ -138,7 +140,7 @@ void ecuacionCuadratica() // 03. Ronald
 	do 
 	{
 
-	system("clear");
+	CLS;
 	printf("\n\t\tECUACION CUADRATICA\n\n");
 
 	printf("Introduzca los valores\n\n");
@@ -167,9 +169,9 @@ void tresNumeros() // 05. Ronald
 	float prom = 0; // Promedio
 	
 	do {
-		system("clear");
+		CLS;
 		
-		printf("\n\t\tOPERACIONES CON TRES NUMEROS\n");
+		printf("\n\tOPERACIONES CON TRES NUMEROS\n");
 
 		printf("\nElija una opcion\n\n");
 
@@ -182,11 +184,14 @@ void tresNumeros() // 05. Ronald
 		printf("\nOpcion: ");
 		opt = validInt();
 
-		if (opt >= 1 && opt <= 4) printf("\nIngrese los valores\n\n");
-		else break;
+		if (opt < 1 || opt > 4) break;
+
+		CLS;
 
 		switch (opt) {
 			case 1:
+				printf("\n\tCALCULAR EL PROMEDIO\n");
+				printf("\nIngrese los valores\n\n");
 				for (i = 1; i <= 3; ++i) {
 					printf("\tValor #%d: ", i);
 					prom += validInt();
@@ -196,6 +201,7 @@ void tresNumeros() // 05. Ronald
 				printf("\nEl promedio es: %f\n", prom);
 				break;
 			case 2:
+				printf("\n\tENCONTRAR EL MAYOR\n");
 				for (i = 1; i <= 3; ++i) {
 					printf("\tValor #%d: ", i);
 					aux = validInt();
@@ -205,15 +211,17 @@ void tresNumeros() // 05. Ronald
 				printf("\nEl mayor es: %d\n", mayor);
 				break;
 			case 3:
+				printf("\n\tENCONTRAR EL MENOR\n");
 				for (i = 1; i <= 3; ++i) {
 					printf("\tValor #%d: ", i);
 					aux = validInt();
 					if (aux < menor) menor = aux;
 				}
 
-				printf("\nEl mayor es: %d\n", menor);
+				printf("\nEl menor es: %d\n", menor);
 				break;
 			case 4:
+				printf("\n\tDETERMINAR CUANTOS PARES E IMPARES HAY\n");
 				for (i = 1; i <= 3; ++i) {
 					printf("\tValor #%d: ", i);
 					aux = validInt();
@@ -236,10 +244,10 @@ void dosNumeros() // 07. Ronald
 
 	do 
 	{
-		system("clear");
-		printf("\n\t\tOPERACIONES CON DOS NUMEROS\n\n");
+		CLS;
+		printf("\n\tOPERACIONES CON DOS NUMEROS\n\n");
 
-		printf("Ingresara dos enteros y le mostraremos su suma, resta, "
+		printf("Ingresara dos enteros y le mostraremos su suma, \n   resta, "
 				"producto y cociente\n");
 
 		printf("\nIngrese los datos\n\n");
@@ -252,5 +260,62 @@ void dosNumeros() // 07. Ronald
 		printf("Cociente: %d / %d = %f\n", a, b, a / (float)b);
 
 	} while (wantToRepeat());
+}
 
+void areaDeFiguras()
+{
+	float base, altura, baseMayor, baseMenor, area;
+	int opt;
+
+	do 
+	{
+		CLS;
+		printf("\n\tCALCULAR EL AREA DE FIGURAS\n"
+				"\t     GEOMETRICAS\n");
+
+		printf("\n\nElija una de las siguientes opciones\n");
+		printf("\n\t1. Area de un rectangulo\n");
+		printf("\t2. Area de un triangulo\n");
+		printf("\t3. Area de un trapecio\n");
+		printf("\n\tOtro. Salir\n\n");
+
+		printf("Opcion: ");
+		opt = validInt();
+
+		if (opt < 1 || opt > 3) break;
+
+		CLS;
+		switch (opt) {
+			case 1:
+				printf("\n\t\"CALCULAR AREA DE UN RECTANGULO\"\n");
+				printf("Ingrese los datos\n");
+				printf("\n\tBase: "); base = validFloat();
+				printf("\tAltura: "); altura = validFloat();
+
+				area = base * altura;
+
+				printf("\nArea: %f", area);
+				break;
+
+			case 2:
+				printf("\n\t\"CALCULAR AREA DE UN TRIANGULO\"\n");
+				printf("\n\tBase: "); base = validFloat();
+				printf("\tAltura: "); altura = validFloat();
+
+				area = (base * altura) / 2;
+
+				printf("\nArea: %f", area);
+				break;
+			case 3:
+				printf("\n\t\"CALCULAR AREA DE UN TRAPECIO\"\n");
+				printf("\n\tBase menor: "); baseMenor = validFloat();
+				printf("\tBase mayor: "); baseMayor = validFloat();
+				printf("\tAltura: "); altura = validFloat();
+
+				area = ((baseMenor + baseMayor) * altura) / 2;
+
+				printf("\nArea: %f", area);
+				break;
+		}
+	} while (wantToRepeat());
 }

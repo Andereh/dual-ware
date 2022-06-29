@@ -15,6 +15,7 @@ int main(void)
 		printf("\n\t3. Ecuacion cuadratica");
 		printf("\n\t5. Operar con tres numeros");
 		printf("\n\t7. Operar con dos numeros");
+		printf("\n\t9. Area de figuras geometricas");
 		printf("\n\n\tOtro. salir\n");
 
 		do {
@@ -36,9 +37,14 @@ int main(void)
 			case 7:
 				dosNumeros();
 				break;
+			case 9:
+				areaDeFiguras();
+				break;
+			default:
+				printf("Aun no definimos esa funcion\n");
 		}
 
-	} while (opt <= 7);
+	} while (opt <= 9);
 
 	return 0;
 }
