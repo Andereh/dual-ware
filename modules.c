@@ -23,7 +23,21 @@ bool hasAChar(char *strStart, char *strEnd) // Para validar que una
 	
 	return false;
 }
-
+// Funcio
+bool hasACharf(char *strStart, char *strEnd) // Para validar que una 
+											// cadena no tenga caracteres
+{
+	char *ptr = strStart;
+	if (*ptr == '-') ptr++;
+	while (ptr <= strEnd && *ptr != '\0')
+	{
+		if (*ptr == '.') ptr++;
+		if ((*ptr < 48 || *ptr > 57)) return true;
+		if (*(++ptr) == '\n') *ptr = '\0';
+	}
+	
+	return false;
+}
 bool wantToRepeat() // Para repetir el bucle
 {
 	int opt;
@@ -47,6 +61,24 @@ int validInt() // Te retorna un int.
 	fgets(str, 10, stdin);
 
 	while (hasAChar(str, str + 10))
+	{
+		printf("Caracteres detectados. Intente de nuevo: ");
+		fgets(str, 10, stdin);
+	}
+
+	return (int)strtol(str, NULL, 10);
+}
+
+int validFloat() // Te retorna un int. 
+			   // La uso para no validar cada 
+			   // que necesitamos ingresar algo
+{
+	char str[10];
+	int num, i;
+
+	fgets(str, 10, stdin);
+
+	while (hasACharf(str, str + 10))
 	{
 		printf("Caracteres detectados. Intente de nuevo: ");
 		fgets(str, 10, stdin);
@@ -151,6 +183,7 @@ void tresNumeros() // 05. Ronald
 		opt = validInt();
 
 		if (opt >= 1 && opt <= 4) printf("\nIngrese los valores\n\n");
+		else break;
 
 		switch (opt) {
 			case 1:
@@ -191,6 +224,32 @@ void tresNumeros() // 05. Ronald
 				printf("\nHay %d pares\n", nPares);
 				printf("Hay %d impares\n", 3 - nPares);
 		}
+
+	} while (wantToRepeat());
+
+}
+
+
+void dosNumeros() // 07. Ronald
+{
+	int a, b;
+
+	do 
+	{
+		system("clear");
+		printf("\n\t\tOPERACIONES CON DOS NUMEROS\n\n");
+
+		printf("Ingresara dos enteros y le mostraremos su suma, resta, "
+				"producto y cociente\n");
+
+		printf("\nIngrese los datos\n\n");
+		printf("\tValor #1: "); a = validInt();
+		printf("\tValor #2: "); b = validInt();
+
+		printf("\n    Suma: %d + %d = %d\n", a, b, a + b);
+		printf("   Resta: %d - %d = %d\n", a, b, a - b);
+		printf("Producto: %d * %d = %d\n", a, b, a * b);
+		printf("Cociente: %d / %d = %f\n", a, b, a / (float)b);
 
 	} while (wantToRepeat());
 
