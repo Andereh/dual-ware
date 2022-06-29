@@ -71,7 +71,7 @@ int validInt() // Te retorna un int.
 	return (int)strtol(str, NULL, 10);
 }
 
-int validFloat() // Te retorna un int. 
+float validFloat() // Te retorna un int. 
 			   // La uso para no validar cada 
 			   // que necesitamos ingresar algo
 {
@@ -86,14 +86,14 @@ int validFloat() // Te retorna un int.
 		fgets(str, 10, stdin);
 	}
 
-	return (int)strtol(str, NULL, 10);
+	return (float)strtod(str, NULL);
 }
 
 // Fin de las funciones recurrentes
 
 void promedioNotas() // 01. Ronald
 {
-	int sumaTotal = 0, nNotas, puntaje, opt; // nNotas: cantidad de notas a evaluar
+	int sumaTotal, nNotas, puntaje, opt; // nNotas: cantidad de notas a evaluar
 	float res; // resultado
 	char str[10];
 
@@ -101,6 +101,7 @@ void promedioNotas() // 01. Ronald
 	{
 		CLS;
 		
+		sumaTotal = 0;
 		printf("\n\t\tPROMEDIO DE NOTAS\n\n");
 		printf("Cantidad de notas a evaluar: "); nNotas = validInt();
 
@@ -170,6 +171,7 @@ void tresNumeros() // 05. Ronald
 	
 	do {
 		CLS;
+		prom = 0;
 		
 		printf("\n\tOPERACIONES CON TRES NUMEROS\n");
 
@@ -262,7 +264,7 @@ void dosNumeros() // 07. Ronald
 	} while (wantToRepeat());
 }
 
-void areaDeFiguras()
+void areaDeFiguras() // 09. Ronald
 {
 	float base, altura, baseMayor, baseMenor, area;
 	int opt;
@@ -273,7 +275,7 @@ void areaDeFiguras()
 		printf("\n\tCALCULAR EL AREA DE FIGURAS\n"
 				"\t     GEOMETRICAS\n");
 
-		printf("\n\nElija una de las siguientes opciones\n");
+		printf("\n\nElija una de las siguientes opciones calcular\n");
 		printf("\n\t1. Area de un rectangulo\n");
 		printf("\t2. Area de un triangulo\n");
 		printf("\t3. Area de un trapecio\n");
@@ -319,3 +321,38 @@ void areaDeFiguras()
 		}
 	} while (wantToRepeat());
 }
+
+void sumaParesImpares()
+{
+	int sumPares, sumImpares, n;
+
+	do 
+	{
+		sumPares = 0;
+		sumImpares = 0;
+
+		CLS;
+		printf("\n\tSUMA DE PARES E IMPARES\n");
+
+		printf("\nIngresara un entero n y le mostraremos la suma de\n    "
+				"los numeros pares e impares inferiores a n\n");
+
+
+		printf("\n\nIngrese n: "); n = validInt();
+
+		while (n < 1) {
+			printf("No admitimos numeros negativos. Intente de nuevo\n");
+			printf("\n\nIngrese n: "); n = validInt();
+		}
+
+		for (i = 0; i < n; ++i) {
+			if (i%2 == 0)   sumPares += i;
+			else		  sumImpares += i;
+		}
+
+		printf("\n\tLa suma de los pares es: %d\n", sumPares);
+		printf("\tLa suma de los impares es: %d\n", sumImpares);
+
+	} while (wantToRepeat());
+}
+

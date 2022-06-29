@@ -16,6 +16,7 @@ int main(void)
 		printf("\n\t5. Operar con tres numeros");
 		printf("\n\t7. Operar con dos numeros");
 		printf("\n\t9. Area de figuras geometricas");
+		printf("\n\t11. Suma de pares e impares");
 		printf("\n\n\tOtro. salir\n");
 
 		do {
@@ -39,6 +40,9 @@ int main(void)
 				break;
 			case 9:
 				areaDeFiguras();
+				break;
+			case 11:
+				sumaParesImpares();
 				break;
 			default:
 				printf("Aun no definimos esa funcion\n");
