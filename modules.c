@@ -5,6 +5,7 @@
 #include "modules.h"
 
 #define CLS system("clear")
+#define PI 3.141596f
 
 int i;
 // Aqui van todas las definiciones de funciones
@@ -643,3 +644,337 @@ void sumaImpares()
 		printf("\n\nLa suma es: %d\n", suma);
 	} while (wantToRepeat());
 }
+
+// Ejercicios de Jose
+
+//2. Determinar un numero Real
+void realNum(){
+	float n;
+
+ 	do{
+
+		CLS;
+		printf("\n\tDeterminar Numero Real");
+		printf("\n\n Ingresar numero: ");
+		n = validInt();
+
+		if (n < 0) 
+			printf("\n%.2f: Es negativo",n);
+		else if (n > 0)
+			printf("\n%.2f: Es positivo",n);
+		else 
+			printf("\n%.2f: Es Cero",n);
+
+ 	} while (wantToRepeat());
+
+}
+//4. Determinar el salario de un empleado de una compañía con base en el salario básico
+void salario(){
+	do{
+		float salario = 0; int categ = 0;
+		
+		CLS;
+		printf("\n\tDeterminar el salario de un empleado de una compañía con base en el salario básico\n");
+		printf("\nIngrese monto del salario basico: ");salario = validFloat();
+		
+		do{
+			printf("\nIngrese la categoria a la que pertenece el empleado 1-4: ");
+			categ = validInt();
+			if (categ < 1 || categ > 4) printf("\nSolo hay 4 categorias Intente de nuevo");
+		}while(categ < 1 || categ > 4);
+
+		if(categ == 1) {
+
+			salario += (salario*0.15) - (salario*0.04);
+			printf("\nSalario Neto: %.2f",salario);
+
+		} else if (categ == 2){
+
+			salario += (salario*0.13) - (salario*0.03);
+			printf("\nSalario Neto: %.2f",salario);
+
+		} else if (categ == 3){
+
+			salario += (salario*0.12) - (salario*0.02);
+			printf("\nSalario Neto: %.2f",salario);
+
+		} else {
+
+			salario += (salario*0.095);
+			printf("\nSalario Neto: %.2f",salario);
+		}
+		printf("\nPertenece a la categoria: %d",categ);
+
+	}while(wantToRepeat());
+}
+//6. Calcular ley de ohm (v = R*I). Permite elijir si calcular,(V)Voltaje,(R)resistencia,(I)corriente
+void leyOHM(){
+	do{
+		float V = 0,R=0,I=0,result=0; int opt = 0;
+		CLS;
+		printf("\n\tCalcular Ley de OHM\n");
+		printf("\n\tElija que desea calcular");
+		printf("\n\t1: Voltaje");
+		printf("\n\t2: Resistencia");
+		printf("\n\t3: Corriente");
+
+		do{
+			printf("\n\tIngresar: "); opt = validFloat();
+			if (opt < 1 || opt > 3) printf("\nIngrese valores validos");
+		}while(opt < 1 || opt > 3);
+
+		if (opt == 1){
+			printf("\nIngrese el valor de la Resistencia: ");R = validFloat();
+			printf("\nIngrese el valor de la Corriente: "); I = validFloat();
+			V = R*I;
+			printf("\nVoltaje: %.2f",V);
+ 		} else if (opt == 2){
+ 			printf("\nIngrese el valor del Voltaje: ");V = validFloat();
+			printf("\nIngrese el valor de la Corriente: "); I = validFloat();
+			R = V/I;
+			printf("\nResistencia: %.2f",R);
+		} else {
+			printf("\nIngrese el valor del Voltaje: ");V = validFloat();
+			printf("\nIngrese el valor de la Resistencia: "); R = validFloat();
+			I = V/R;
+			printf("\nCorriente: %.2f",I);
+		}
+
+	}while(wantToRepeat());
+}
+//8. Area y longitud de un circulo
+void circulo(){
+	do{
+		
+		float r, area = 0, l = 0,r2; //r = radio; a = Area; l = longitud;
+		
+
+		CLS;
+		printf("\n\tCalcular area y longitud de un circulo");
+		printf("\nIngrese el radio del circulo: ");
+
+		r = validFloat();
+		area = PI * (r*r);
+		l = 2*PI*r;
+
+		printf("\nArea: %.4f",area);
+		printf("\nLongitud: %.4f",l);
+
+	} while (wantToRepeat());
+	
+}
+//10. Hallar la suma y el promedio de los primeros 20 numeros enteros mayores a 0
+void sumaProm20(){
+	do{
+
+		float prom=0,suma=0;
+		CLS;
+		printf("\n\tHallar la suma y el promedio de los primeros 20 numeros enteros mayores a 0");
+		i = 1;
+		printf("\n\n");
+		do{
+
+			suma += i;
+			i++;
+
+		}while(i <= 20);
+		
+		prom = suma/20;
+		printf("\nSuma: %.0f",suma);
+		printf("\nPromedio: %.1f",prom);
+
+	}while (wantToRepeat());
+}
+//12. Calcular el cuadrado y el cubo de los 15 primeros números mayores que cero
+void cuadradoCubo(){
+	do{	
+		i = 1;
+		int cuadrado=0,cubo=0;
+		CLS;
+		printf("\n\tCuadrado y el cubo de los 15 primeros numeros mayores que cero\n");
+		printf("\n");system("pause");
+		while(i <= 15){
+			cuadrado = pow(i,2);
+			cubo = pow(i,3);
+			printf("\n\nCuadrado %d: %d",i,cuadrado);
+			printf("\n   Cubo  %d: %d",i,cubo);
+			i++;
+		}
+	}while(wantToRepeat());
+}
+//14 Menú de bocadillos
+void menucomia(){
+	do{
+		int jamon=0,queso=0,patatas=0,refresco=0,cerveza=0;
+		int total = 0;
+		CLS;
+		printf("\n\tMenu de bocadillos");
+		printf("\n\n Ingrese en la cantidad de bocadillos que consumio segun el orden a continuacion");
+		printf("\n\t1: Bocadillo de jamon ($250): ");jamon = validInt();
+		printf("\n\t2: Bocadillo de queso ($200): ");queso = validInt();
+		printf("\n\t3: Patatas fritas     ($100): ");patatas = validInt();
+		printf("\n\t4: Refresco           ($175): ");refresco = validInt();
+		printf("\n\t5: Cerveza            ($125): ");cerveza = validInt();
+		jamon *= 250; queso *= 200; patatas *= 100; refresco *= 175; cerveza*= 125;
+
+		total = jamon+queso+patatas+refresco+cerveza;
+		
+		printf("\nTotal a pagar: %d$",total);
+
+	}while (wantToRepeat());
+}
+//16. Convertidor de Centigrados a Farenheit y viceversa
+void convertor(){
+	do{
+		float F=0,C=0; int opt;
+		CLS;
+		printf("\n\tConvertidor de Centigrados a Farenheit y viceversa");
+		printf("\n\t1: Centigrados a Farenheit");
+		printf("\n\t2: Farenheit a Centigrados");
+		do{
+			printf("\n\tIngresar: "); opt = validInt();
+			if(opt < 1 || opt > 2) printf("\nIngrese una opcion valida");
+		}while(opt < 1 || opt > 2);
+
+		switch(opt){
+			case 1:	
+				printf("\nIngrese los grados Centigrados: "); C = validFloat();	
+				F = (C*1.8)+32;
+				printf("\nFarenheit: %.2f",F);
+				break;
+			case 2:
+				printf("\nIngrese los grados Farenheit: "); F = validFloat();	
+				C = (F-32)/1.8;
+				printf("\nCentigrados: %.2f",C);
+		}
+
+	}while(wantToRepeat());
+}
+//18. Determinar los numeros multiplos 3, desde 1 hasta n
+void multiplos3(){
+	int nF = 0, suma = 0;
+	
+	do{
+		CLS;
+		printf("\n\tDeterminar los numeros multiplos de 3, desde 1 hasta n\n");
+		printf("\nIngrese el limite del rango: "); nF = validInt();
+
+		if (nF < 1){
+			printf("\nValor invalido, el rango comienza desde 1, no puede terminar en %d",nF);
+		} else {
+
+			for (i = 1; i <= nF; i++) {
+
+				if ((i%3) == 0){
+					suma += i;
+				}
+			}
+
+			printf("\nSuma de los numeros multiplos de 3 es: %d",suma);		
+		}
+
+	}while(wantToRepeat());
+		
+}
+//20. Calcular el promedio de n numeros
+void promedioN(){
+
+	float n,suma;//cN = cantidad de numeros; suma = suma de todos los numeros;
+	int cN;
+
+	do{
+		cN = 0;n = 0; suma = 0;
+
+		CLS;
+		printf("\n\tPromedio de n cantidad de numeros");
+		printf("\n\nIngrese la cantidad de numeros: "); cN = validInt();
+	
+		for (i = 1; i <= cN; i++){
+		
+			printf("\nNumero %d/%d: ",i,cN);n = validFloat();
+			suma += n;
+		}
+	
+		n = suma/cN;
+		printf("\nEl resultado es: %.2f",n);
+
+	}while(wantToRepeat());
+}
+//24. Mostrar todos los numeros pares entre 1-100
+void numerospar100(){
+
+	do{	
+		CLS;
+		printf("\n\tMostrar todos los numeros pares entre 1-100");
+		i = 1;
+		printf("\n\n");system("pause");
+		do{
+
+			if (i%2 == 0) {
+				printf("\nNum: %d",i);
+			}
+			i++;
+
+		}while(i <= 100);
+
+	}while (wantToRepeat());
+}
+//26. Determinar si un numero es menor que 10 o mayor que 100 o si esta entre 10 y 100
+void numero1_100(){
+
+	int n;
+	do{
+		CLS;
+		printf("\n\tDeterminar si un numeros es menor a 10, mayor a 100, o si esta entre 10-100");
+		printf("\nIngrese un numero: ");n = validInt();
+
+		if (n < 10) printf("\nEl numero es menor de 10");
+		else if (n >= 10 && n <= 100) printf("\nEl numero esta entre 10 y 100");
+		else printf("\n El numero es mayor que 100");
+		printf("\nNumero: %d",n);
+
+	}while(wantToRepeat());
+	
+}
+//28. Determinar si un voltaje es alto, bajo o medio
+void voltaje(){
+	do{
+		int V;
+		CLS;
+		printf("\n\tDeterminar si un voltaje es alto, bajo o medio");
+		printf("\nIngrese el voltaje: "); V = validInt();
+
+		if (V < 0) printf("\nValor invalido");
+		else if (V >= 0 && V <= 110) printf("\nVoltaje Bajo");
+		else if (V >= 110 && V <= 120) printf("\nVoltaje Medio");
+		else printf("\nVoltaje Alto");
+
+	}while(wantToRepeat());
+}
+//30. Calcular el minimo de un vector de 10 numeros, y mostrar su posicion
+void minimoVector(){
+
+	float array[10], menor = 0,pos = 0;
+	do{
+		CLS;
+		printf("\n\tCalcular minimo de un vector de 10 numeros y mostrar su posicion\n");
+
+		for (i = 0; i < 10; i++){
+		printf("\nIngresar numero %d: ",i+1); array[i] = validFloat(); 
+	} 
+
+	menor = array[0];
+	for (i = 1;i <= 9;i++){
+		if (array[i]<menor){
+			menor = array[i];
+			pos = i;//Definir en que posicion del vector está el menor
+		}
+	}
+
+	printf("\nValor menor: %.2f",menor);
+	printf("\nEn posicion: %.0f",pos);
+
+	}while(wantToRepeat());
+
+}
+	

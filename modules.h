@@ -28,4 +28,18 @@ void invertirCapital();		// 27. Ronald 556
 void pulsaciones();			// 29. Ronald
 void sumaImpares();			// 31. Ronald
 
+void realNum();        //  2.  Jose 
+void salario();       //   4.  Jose
+void leyOHM();       //	   6.  Jose
+void circulo();     //     8.  Jose
+void sumaProm20(); //      10. Jose
+void cuadradoCubo();//     12. Jose
+void menucomia();  //      14. Jose
+void convertor(); //       16. Jose
+void multiplos3();//       18. Jose
+void promedioN();//        20. Jose
+void numerospar100();//    24. Jose
+void numero1_100();//      26. Jose
+void voltaje();   //       28. Jose
+void minimoVector();//     30. Jose
 #endif 
