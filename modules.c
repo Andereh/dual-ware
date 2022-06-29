@@ -86,7 +86,7 @@ float validFloat() // Te retorna un int.
 		fgets(str, 10, stdin);
 	}
 
-	return (float)strtod(str, NULL);
+	return strtof(str, NULL);
 }
 
 // Fin de las funciones recurrentes
@@ -322,7 +322,7 @@ void areaDeFiguras() // 09. Ronald
 	} while (wantToRepeat());
 }
 
-void sumaParesImpares()
+void sumaParesImpares() // 11. Ronald
 {
 	int sumPares, sumImpares, n;
 
@@ -356,3 +356,290 @@ void sumaParesImpares()
 	} while (wantToRepeat());
 }
 
+void sieteNumeros() // 12 + 1. Ronald
+{
+	int nums[7], nPares;
+
+	do 
+	{
+		CLS;
+
+		nPares = 0;
+
+		printf("\n\tSIETE NUMEROS\n");
+
+		printf("\nDigite siete numeros y le diremos cuantos pares hay\n\n");
+
+		printf("Ingrese los datos\n\n");
+
+		for (i = 0; i < 7; ++i) {
+			printf("\tNumero #%d/7: ", i+1);
+			nums[i] = validInt();
+
+			while (nums[i] < 1) {
+				printf("\n\tDebe ser mayor que cero\n");
+				printf("\tNumero #%d/7: ", i+1);
+				nums[i] = validInt();
+			}
+
+			if (nums[i]%2 == 2) nPares++;
+		}
+		
+		printf("\nIngreso %d pares\n", nPares);
+		printf("\nNumeros ingresados: ");
+		printf("%d", nums[0]);
+		for (i = 1; i < 7; ++i) {
+			printf("-%d", nums[i]);	
+		}
+
+	} while (wantToRepeat());
+}
+
+void paresEntre20y40()
+{
+	do 
+	{
+		CLS;
+		printf("\n\tVER LOS PARES ENTRE 20 Y 40\n");
+
+		printf("\nLos pares entre 20 y 40 son: \n");
+		printf("\n\t20");
+		for (i = 22; i <= 40; i += 2) {
+			printf("-%d", i);
+		}
+
+	} while (wantToRepeat());
+}
+
+void multiplosDe5()
+{
+	int n, suma;
+
+	do 
+	{
+		suma = 0;
+		CLS;
+		printf("\n\tSUMAR LOS NUMEROS MULTIPLOS DE 5\n"
+				"\t      MENORES QUE N\n");
+
+		printf("\nIngrese n: "); n = validInt();
+
+		while (n < 1) {
+			printf("Debe ser un numero positivo\n");
+			printf("\nIngrese n: "); n = validInt();
+		}
+
+		for (i = 5; i <= n; i += 5) {
+			suma += i;
+		}
+
+		printf("\nLa suma de los muliplos de 5 menores que n es: %d", suma);
+
+	} while (wantToRepeat()) ;
+}
+
+void hacerUnaFactura()
+{
+	float precio, iva = .16f, precioFinal;
+
+	do 
+	{
+		CLS;
+		printf("\n\tHACER UNA FACTURA\n");
+		printf("\nIngrese el valor del producto a comprar: ");
+		precio = validFloat();
+
+		while (precio < 1)
+		{
+			printf("No puedes tener una factura negativa\n\n");
+			printf("Ingrese el valor del producto a comprar: ");
+			precio = validFloat();
+		}
+
+		printf("\n\tPrecio: %f\n", precio);
+		printf("\t   Iva: %f\n", precio * iva);
+
+		if (precio > 200000) 
+		{
+			printf("     Descuento: %f\n", precio * .05);
+			precio *= .95;
+		}
+		precioFinal = precio * (1 + iva);
+
+		printf("  Precio final: %f\n", precioFinal);
+
+	} while (wantToRepeat());
+}
+
+void resistencias()
+{
+	float voltios, resist, sumResist, corriente;
+	int nResist;
+
+	do 
+	{
+		sumResist = 0;
+
+		CLS;
+		printf("\n\tCALCULAR LA CORRIENTE SEGUN N RESISTENCIAS\n");
+
+		printf("\nIngrese los datos\n");
+
+		printf("\n\tVoltaje : ");
+		voltios = validFloat();
+		printf("\nNumero de resistencias en serie: ");
+		nResist = validInt();
+
+		printf("\n");
+		for (i = 0; i < nResist; ++i) {
+			printf("\tValor de la resistencia %d/%d: ", i+1, nResist);
+			resist = validFloat();
+
+			sumResist += resist;
+		}
+
+		corriente = voltios / sumResist;
+
+		printf("\nLa corriente que alimenta el circuito es de: %f "
+			   "amperios\n",
+			   corriente);
+        } while (wantToRepeat());
+}
+
+void facturaDeLuz()
+{
+	float Kwh, factura;
+
+	do 
+	{
+		CLS;
+
+		printf("\n\tCALCULAR LA FACTURA DE LUZ\n");
+
+		printf("\nIngrese los datos\n");
+
+		printf("\n\tKwH consumidos: ");
+		Kwh = validFloat();
+
+		
+		while (Kwh < 0) {
+			printf("No puede tener una factura negativa\n");
+			printf("\n\tKwH consumidos: ");
+			Kwh = validFloat();
+		}
+
+		if (Kwh < 40) factura = Kwh * 180;
+		else if (Kwh < 80) factura = Kwh * 185;
+		else factura = Kwh * 189;
+
+		printf("\nEl total a pagar es: %f\n", factura);
+	} while (wantToRepeat());
+}
+
+void numerosInvertidos() // 25. Ronald
+{
+	do 
+	{
+		CLS;
+		printf("\n\tNUMEROS INVERTIDOS\n");
+		printf("\n\nLos numeros del 30 al 1 son: ");
+		printf("\n\n\t30");
+		for (i = 29; i > 0; --i) {
+			if (i%10 == 0) printf("\n\t");
+			else printf("-");
+			if (i < 10) printf("0");
+			printf("%d", i);
+		}
+	} while (wantToRepeat());
+}
+
+void invertirCapital()
+{
+	float capital;
+	do 
+	{
+		CLS;
+		printf("\n\tCALCULAR UNA INVERSION\n");
+		printf("\nLuego de una ganacia del %s mensual calcular el "
+			   "beneficio luego de 12 meses\n", "2%");
+
+		printf("\n\tIngrese el capital: ");
+		capital = validFloat();
+
+		while (capital < 0)
+		{
+			printf("No puedes tener un capital negativo\n");
+			printf("\n\tIngrese el capital: ");
+			capital = validFloat();
+		}
+
+		for (i = 0; i < 12; ++i) {
+			capital *= 1.02;
+		}
+
+		printf("\nObtendra %f al final de la inversion\n", capital);
+	} while (wantToRepeat());
+	
+}
+
+void pulsaciones()
+{
+	int edad;
+	float pulsaciones;
+
+	do 
+	{
+		CLS;
+		printf("\n\tCALCULAR LAS PULSASIONES DE UNA PERSONA\n");
+		printf("\nCalcular el numero de pulsaciones de una persona por "
+			   "cada 10sg de ejercicio\n");
+
+		printf("\nIngrese su edad: ");
+		edad = validInt();
+
+		while (edad < 1) {
+			printf("No puedes tener una edad = 0\n");
+			printf("\nIngrese su edad: ");
+			edad = validInt();
+		}
+
+		pulsaciones = (220 - edad) / 10.0;
+
+		printf("Deberia tener %f pulsaciones por minuto\n", pulsaciones);
+
+	} while (wantToRepeat());
+}
+
+void sumaImpares()
+{
+	int suma, m;
+
+	do 
+	{
+		CLS;
+
+
+		printf("\n\tSUMA DE NUMEROS IMPARES MENORES QUE M\n");
+		printf("\nIngrese el valor de m: ");
+		m = validInt();
+
+		while (m < 1) 
+		{
+			printf("Debe ser un valor mayor que 0");
+			printf("\nIngrese el valor de m: ");
+			m = validInt();
+		}
+
+		suma = 0;
+		for (i = 1; i <= m; i += 2) {
+			if (i%10 == 1) printf("\n\t");
+			else printf("-");;
+			if (i < 10) printf("0");
+			printf("%d", i);
+			suma += i;
+		}
+
+
+		printf("\n\nLa suma es: %d\n", suma);
+	} while (wantToRepeat());
+}
