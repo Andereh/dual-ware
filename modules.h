@@ -38,8 +38,9 @@ void menucomia();  //      14. Jose
 void convertor(); //       16. Jose
 void multiplos3();//       18. Jose
 void promedioN();//        20. Jose
+void voltaje();   //       22. Jose
 void numerospar100();//    24. Jose
 void numero1_100();//      26. Jose
-void voltaje();   //       28. Jose
+				   //	   28. X
 void minimoVector();//     30. Jose
 #endif 
