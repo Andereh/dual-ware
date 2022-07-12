@@ -32,17 +32,18 @@ int main(void)
         printf("\n\t19. Hacer una factura");
         printf("\n\t20. Calcular el promedio de n numeros");
         printf("\n\t21. Medir corriente");
-        printf("\n\t28. Determinar si un voltaje es alto, bajo o medio");
+        printf("\n\t22. Calcular corriente");
         printf("\n\t23. Hacer factura de luz");
         printf("\n\t24. Mostrar todos los numeros pares entre 1-100");
         printf("\n\t25. Numeros decrecientes desde el 30");
         printf("\n\t26. Determinar el rango de un numero ");
         printf("\n\t27. Hacer una inversion");
-        printf("\n\t28. Aun en construccion");
+        printf("\n\t28. Hospital");
         printf("\n\t29. Medir pulsaciones");
-        printf("\n\t30. Calcular el minimo de un vector de 10 numeros, y mostrar su posicion ");
+        printf("\n\t30. Calcular el minimo de un vector de 10 numeros, y "
+               "mostrar su posicion ");
         printf("\n\t31. Suma de impares menores que m");
-        printf("\n\t32. Aun en construccion");
+        printf("\n\t32. Suma de los numeros pares, impares y naturales");
 
         printf("\n\n\tOtro. salir\n");
 
@@ -114,10 +115,9 @@ int main(void)
         case 21:
             resistencias();
             break;
-            // Falta
-            //
-            //
-            //
+        case 22:
+            voltaje();
+            break;
         case 23:
             facturaDeLuz();
             break;
@@ -134,7 +134,7 @@ int main(void)
             invertirCapital();
             break;
         case 28:
-            voltaje();
+            hospital();
             break;
         case 29:
             pulsaciones();
@@ -145,6 +145,8 @@ int main(void)
         case 31:
             sumaImpares();
             break;
+        case 32:
+            sumaCIP();
         }
 
     } while (opt >= 1 && opt <= 32);
@@ -152,14 +154,14 @@ int main(void)
     printf("Gracias por visitarnos :3\n");
 
     /******************************************************************************
-	* File:             principal.c
-	*
-	* Authors:          Ronald Hernandez y Jose Flores  
-	* Created:          06/29/22 
-	*
-	* Description:      Primera evaluacion. Trimestre 2.
-	*					Estamos orgullosos de nosotros mismos
-	*****************************************************************************/
+     * File:             principal.c
+     *
+     * Authors:          Ronald Hernandez y Jose Flores
+     * Created:          06/29/22
+     *
+     * Description:      Primera evaluacion. Trimestre 2.
+     *					Estamos orgullosos de nosotros mismos
+     *****************************************************************************/
 
     return 0;
 }

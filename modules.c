@@ -9,7 +9,8 @@
 
 int i;
 // Aqui van todas las definiciones de funciones
-
+float aaaaaaa=2;
+int a = 2;
 // Funciones recurrentes, tendremos que repetir cosas 34 veces
 // asi que no cae mal unas funciones para evitar eso
 
@@ -66,7 +67,7 @@ int validInt() // Te retorna un int.
                // que necesitamos ingresar algo
 {
     char str[10];
-    int num, i;
+    int  num, i;
 
     fgets(str, 10, stdin);
 
@@ -82,7 +83,7 @@ int validInt() // Te retorna un int.
 float validFloat() // Te retorna un float
 {
     char str[10];
-    int num, i;
+    int  num, i;
 
     fgets(str, 10, stdin);
 
@@ -101,7 +102,7 @@ void promedioNotas() // 01. Ronald
 {
     int sumaTotal, nNotas, puntaje, opt; // nNotas: cantidad de notas a evaluar
     float res;                           // resultado
-    char str[10];
+    char  str[10];
 
     do
     {
@@ -145,7 +146,7 @@ void promedioNotas() // 01. Ronald
 
 void ecuacionCuadratica() // 03. Ronald
 {
-    int a, b, c;
+    int   a, b, c;
     float resPos, resNeg;
 
     do
@@ -176,9 +177,9 @@ void ecuacionCuadratica() // 03. Ronald
 
 void tresNumeros() // 05. Ronald
 {
-    int nums[3];
-    int mayor = 0, menor = 0, nPares = 0, aux;
-    int opt;
+    int   nums[3];
+    int   mayor = 0, menor = 0, nPares = 0, aux;
+    int   opt;
     float prom = 0; // Promedio
 
     do
@@ -289,7 +290,7 @@ void dosNumeros() // 07. Ronald
 void areaDeFiguras() // 09. Ronald
 {
     float base, altura, baseMayor, baseMenor, area;
-    int opt;
+    int   opt;
 
     do
     {
@@ -359,7 +360,7 @@ void sumaParesImpares() // 11. Ronald
 
     do
     {
-        sumPares = 0;
+        sumPares   = 0;
         sumImpares = 0;
 
         CLS;
@@ -401,11 +402,9 @@ void sieteNumeros() // 12 + 1. Ronald
         CLS;
 
         nPares = 0;
-
         printf("\n\tSIETE NUMEROS\n");
 
         printf("\nDigite siete numeros y le diremos cuantos pares hay\n\n");
-
         printf("Ingrese los datos\n\n");
 
         for (i = 0; i < 7; ++i)
@@ -444,7 +443,7 @@ void paresEntre20y40()
         printf("\n\tVER LOS PARES ENTRE 20 Y 40\n");
 
         printf("\nLos pares entre 20 y 40 son: \n");
-        suma = 20;
+        suma     = 20;
         producto = 20;
 
         printf("\n\t20");
@@ -529,7 +528,7 @@ void hacerUnaFactura()
 void resistencias()
 {
     float voltios, resist, sumResist, corriente;
-    int nResist;
+    int   nResist;
 
     do
     {
@@ -648,7 +647,7 @@ void invertirCapital()
 
 void pulsaciones()
 {
-    int edad;
+    int   edad;
     float pulsaciones;
 
     do
@@ -743,17 +742,19 @@ void salario()
     do
     {
         float salario = 0;
-        int categ = 0;
+        int   categ   = 0;
 
         CLS;
-        printf("\n\tDeterminar el salario de un empleado de una compañía con base "
-               "en el salario básico\n");
+        printf(
+            "\n\tDeterminar el salario de un empleado de una compañía con base "
+            "en el salario básico\n");
         printf("\nIngrese monto del salario basico: ");
         salario = validFloat();
 
         do
         {
-            printf("\nIngrese la categoria a la que pertenece el empleado 1-4: ");
+            printf(
+                "\nIngrese la categoria a la que pertenece el empleado 1-4: ");
             categ = validInt();
             if (categ < 1 || categ > 4)
                 printf("\nSolo hay 4 categorias Intente de nuevo");
@@ -761,7 +762,6 @@ void salario()
 
         if (categ == 1)
         {
-
             salario += (salario * 0.15) - (salario * 0.04);
             printf("\nSalario Neto: %.2f", salario);
         }
@@ -794,7 +794,7 @@ void leyOHM()
     do
     {
         float V = 0, R = 0, I = 0, result = 0;
-        int opt = 0;
+        int   opt = 0;
         CLS;
         printf("\n\tCalcular Ley de OHM\n");
         printf("\n\tElija que desea calcular");
@@ -852,9 +852,9 @@ void circulo()
         printf("\n\tCalcular area y longitud de un circulo");
         printf("\nIngrese el radio del circulo: ");
 
-        r = validFloat();
+        r    = validFloat();
         area = PI * (r * r);
-        l = 2 * PI * r;
+        l    = 2 * PI * r;
 
         printf("\nArea: %.4f", area);
         printf("\nLongitud: %.4f", l);
@@ -894,17 +894,17 @@ void cuadradoCubo()
 {
     do
     {
-        i = 1;
+        i            = 1;
         int cuadrado = 0, cubo = 0;
         CLS;
-        printf(
-            "\n\tCuadrado y el cubo de los 15 primeros numeros mayores que cero\n");
+        printf("\n\tCuadrado y el cubo de los 15 primeros numeros mayores que "
+               "cero\n");
         printf("\n");
         system("pause");
         while (i <= 15)
         {
             cuadrado = pow(i, 2);
-            cubo = pow(i, 3);
+            cubo     = pow(i, 3);
             printf("\n\nCuadrado %d: %d", i, cuadrado);
             printf("\n   Cubo  %d: %d", i, cubo);
             i++;
@@ -920,8 +920,9 @@ void menucomia()
         int total = 0;
         CLS;
         printf("\n\tMenu de bocadillos");
-        printf("\n\n Ingrese en la cantidad de bocadillos que consumio segun el "
-               "orden a continuacion");
+        printf(
+            "\n\n Ingrese en la cantidad de bocadillos que consumio segun el "
+            "orden a continuacion");
         printf("\n\t1: Bocadillo de jamon ($250): ");
         jamon = validInt();
         printf("\n\t2: Bocadillo de queso ($200): ");
@@ -950,7 +951,7 @@ void convertor()
     do
     {
         float F = 0, C = 0;
-        int opt;
+        int   opt;
         CLS;
         printf("\n\tConvertidor de Centigrados a Farenheit y viceversa");
         printf("\n\t1: Centigrados a Farenheit");
@@ -994,7 +995,8 @@ void multiplos3()
 
         if (nF < 1)
         {
-            printf("\nValor invalido, el rango comienza desde 1, no puede terminar "
+            printf("\nValor invalido, el rango comienza desde 1, no puede "
+                   "terminar "
                    "en %d",
                    nF);
         }
@@ -1019,13 +1021,14 @@ void multiplos3()
 void promedioN()
 {
 
-    float n, suma; // cN = cantidad de numeros; suma = suma de todos los numeros;
+    float n,
+        suma; // cN = cantidad de numeros; suma = suma de todos los numeros;
     int cN;
 
     do
     {
-        cN = 0;
-        n = 0;
+        cN   = 0;
+        n    = 0;
         suma = 0;
 
         CLS;
@@ -1079,7 +1082,8 @@ void numero1_100()
     do
     {
         CLS;
-        printf("\n\tDeterminar si un numeros es menor a 10, mayor a 100, o si esta "
+        printf("\n\tDeterminar si un numeros es menor a 10, mayor a 100, o si "
+               "esta "
                "entre 10-100");
         printf("\nIngrese un numero: ");
         n = validInt();
@@ -1139,7 +1143,7 @@ void minimoVector()
             if (array[i] < menor)
             {
                 menor = array[i];
-                pos = i; // Definir en que posicion del vector está el menor
+                pos   = i; // Definir en que posicion del vector está el menor
             }
         }
 
@@ -1148,3 +1152,51 @@ void minimoVector()
 
     } while (wantToRepeat());
 }
+
+
+//28. Presupuesto Anual de hospital
+void hospital(){
+	do{
+		CLS;
+		float pA=0,g=0,t=0,p=0;
+		printf("\n\tPresupuesto Anual de hospital\n");
+		printf("\n Ingrese el Presupuesto: "); pA = validFloat();
+		g = pA*0.40; t = pA*0.35; p = pA*0.25;
+
+		printf("\n\tArea de Ginecologia: %.2f (40%%)",g);
+		printf("\n\tArea de Traumatologia: %.2f (35%%)",t);
+		printf("\n\tArea de Pediatria: %.2f (25%%)",p);
+
+	}while(wantToRepeat());
+}
+
+
+/*32 Digite un número entero y calcule con la  sentencia for:
+• la suma  de los primeros números consecutivos
+• la suma de pares consecutivos
+• la suma de impares consecutivos  */
+void sumaCIP(){
+	do{
+		CLS;
+		int n=0,suma=0,sumaI=0,sumaP=0;
+		printf("\n\n\tCalcular\n");
+		printf("\n\tla suma  de los primeros numeros consecutivos");
+		printf("\n\tla suma de pares consecutivos");
+		printf("\n\tla suma de impares consecutivos\n");
+
+		printf("\nIngrese un numero: "); n = validInt();
+
+		for (i = 1; i<=n;i++){
+			suma+=i;
+
+			if (i%2 == 0) sumaP+= i;
+			else sumaI += i;
+		}
+
+		printf("\n\n Suma: %d",suma);
+		printf("\n Suma de pares: %d",sumaP);
+		printf("\n Suma de impares: %d",sumaI);
+
+	}while(wantToRepeat());
+}
+
