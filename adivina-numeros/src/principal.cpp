@@ -1,32 +1,88 @@
 #include "modules.h"
 #include <iostream>
-
-#define green "\x1b[0;32;49m"
-#define normal "\x1b[0m"
-#define white "\x1b[0;39;47m"
+#include <math.h>
+#include <ncurses.h>
 
 int main(int argc, char* argv[])
 {
     int arr[nElementos][nFilas];
     int i;
-    int selecc[nFilas] = {1, 3, 2};
-    int cursorPos;
+    int selecc[nFilas];
+    int cursorPos = 1;
+    int opt;
+    int resp = 0;
 
-    for (i = 0; i < nFilas; ++i)
+    for (i = 0; i < nFilas; i++)
     {
-
-        rellenarFila(arr[i], i + 1);
-        imprimirFila(arr[i]);
-
-        if (hasRepeatedNum(selecc, selecc + 3, i))
-            printf("%s X %s", green, normal);
-
-        printf("\n");
-        imprimirSeparador(3 + 2);
-        printf("\n");
+        selecc[i] = 0;
     }
 
-    getc();
+    initscr();
+
+    do
+    {
+        clear();
+        printw("\n\n\n");
+        for (i = 0; i < nFilas; ++i)
+        {
+            rellenarFila(arr[i], i + 1);
+            imprimirFila(arr[i]);
+
+            if (selecc[i] == 1)
+                printw(" X");
+
+            if (i == cursorPos)
+            {
+                attron(A_BOLD);
+                printw(" <");
+                attroff(A_BOLD);
+            }
+
+            // printw("\n");
+            // imprimirSeparador(3 + 2);
+            printw("\n");
+        }
+
+        if (opt == 'q')
+        {
+            for (i = 0; i < nFilas; ++i)
+            {
+                if (selecc[i] == 1)
+                    resp += pow(2, i);
+            }
+            printw("Estas pensando en el %d", resp);
+            resp = 0;
+        }
+
+        opt = getch();
+
+        if (cursorPos < 0)
+            cursorPos = nFilas - 1;
+        if (cursorPos > nFilas - 1)
+            cursorPos = 0;
+
+        switch (opt)
+        {
+        case 'w':
+            cursorPos--;
+            break;
+        case 's':
+            cursorPos++;
+            break;
+        }
+
+        refresh();
+        if (opt == 'a' || opt == 'd')
+        {
+            if (selecc[cursorPos] == 1)
+                selecc[cursorPos] = 0;
+            else
+                selecc[cursorPos] = 1;
+        }
+
+    } while (opt != '1');
+
+    endwin();
 
     // for (i = 0; i < (max + 1) / 2; ++i)
     //{

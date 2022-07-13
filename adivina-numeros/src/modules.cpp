@@ -1,10 +1,7 @@
 #include "modules.h"
 #include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <ncurses.h>
 #include <string>
-
-void sayHello() { printf("Hello\n"); }
 
 void imprimirConRelleno(int n)
 {
@@ -14,9 +11,9 @@ void imprimirConRelleno(int n)
 
     for (i = 0; i < (spaces - numLen); ++i)
     {
-        printf(" ");
+        printw(" ");
     }
-    printf("%d |", n);
+    printw("%d |", n);
 }
 
 void imprimirSeparador(int spaces)
@@ -26,7 +23,7 @@ void imprimirSeparador(int spaces)
     {
         for (j = 0; j < spaces; ++j)
         {
-            printf("-");
+            printw("-");
         }
     }
 }
@@ -44,10 +41,10 @@ void imprimirFila(int* arr)
 void rellenarFila(int* arr, int nFila)
 {
     int i;
+    int num = 1;
     if (nFila == 1)
     {
-        int num = 1;
-        for (i = 0; num <= max; ++i)
+        for (i = 0; i < nElementos; ++i)
         {
             *(arr + i) = num;
             num += 2;
@@ -56,9 +53,9 @@ void rellenarFila(int* arr, int nFila)
     else
     {
         int firstElement = pow(2, nFila - 1);
-        int num          = firstElement;
         int recent       = firstElement;
         int i;
+        num = firstElement;
 
         *(arr) = num;
 
@@ -75,7 +72,6 @@ void rellenarFila(int* arr, int nFila)
         }
     }
 }
-
 
 bool hasRepeatedNum(int* ptr, int* end, int n)
 {
