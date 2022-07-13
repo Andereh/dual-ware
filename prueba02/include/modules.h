@@ -1,3 +1,3 @@
 #define _MODULES_H
 
-void sayHello();
+void exec_func(int index);

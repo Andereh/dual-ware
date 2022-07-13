@@ -26,17 +26,22 @@ int main(int argc, char* argv[])
         for (i = 0; i < nFilas; ++i)
         {
             rellenarFila(arr[i], i + 1);
-            imprimirFila(arr[i]);
-
-            if (selecc[i] == 1)
-                printw(" X");
 
             if (i == cursorPos)
             {
                 attron(A_BOLD);
-                printw(" <");
+                printw(" >");
                 attroff(A_BOLD);
             }
+            else
+                printw("  ");
+
+            if (selecc[i] == 1)
+                printw(" X");
+            else
+                printw("  ");
+
+            imprimirFila(arr[i]);
 
             // printw("\n");
             // imprimirSeparador(3 + 2);
@@ -50,7 +55,7 @@ int main(int argc, char* argv[])
                 if (selecc[i] == 1)
                     resp += pow(2, i);
             }
-            printw("Estas pensando en el %d", resp);
+            printw("\n\nEstas pensando en el %d", resp);
             resp = 0;
         }
 

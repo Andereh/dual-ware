@@ -1,6 +1,6 @@
 debug:
-	@g++ src/*.c -I include -o bin/debug/arrays
+	@g++ src/*.cpp -I include -o bin/debug/arrays -lncurses -Wall
 	@./bin/debug/arrays
 release:
-	@g++ principal.c modules.c -o bin/release/arrays
+	@g++ src/*.cpp -I include -o bin/release/arrays -lncurses
 	@./bin/release/arrays
