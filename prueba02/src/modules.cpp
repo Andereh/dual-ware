@@ -1,26 +1,8 @@
 #include "modules.h"
+#include "utils.h"
 #include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-void matriz5x5();
-
-bool hasAChar(char* strStart, char* strEnd) // Para validar que una
-                                            // cadena no tenga caracteres
-{
-    char* ptr = strStart;
-    if (*ptr == '-')
-        ptr++;
-    while (ptr <= strEnd && *ptr != '\0')
-    {
-        if ((*ptr < 48 || *ptr > 57))
-            return true;
-        if (*(++ptr) == '\n')
-            *ptr = '\0';
-    }
-
-    return false;
-}
 
 void exec_func(int index)
 {
@@ -37,11 +19,12 @@ void exec_func(int index)
 void matriz5x5()
 {
     bool running = true;
-    int  opt;
-    int  elements[5][5];
     int  i, j;
-    char str[10];
-    int  len = 3;
+    int  len = 2;
+    int  elements[len][len];
+    int  rowsArray[len];
+    int  colsArray[len];
+    int  num;
     do
     {
         clear();
@@ -55,23 +38,28 @@ void matriz5x5()
             {
 
                 printw("Valor [%d][%d]: ", i, j);
-                attron(A_BOLD);
-                getstr(str);
-                attroff(A_BOLD);
+                num = validInt();
 
-                while (hasAChar(str, str + 10))
+                while (num < 1 || num > 9)
                 {
-                    printw("No puedes ingresar caracteres. Intenta de nuevo\n");
+                    printw("\nDebe ser un numero entre 1 y 9\n");
                     printw("Valor [%d][%d]: ", i, j);
-                    attron(A_BOLD);
-                    getstr(str);
-                    attroff(A_BOLD);
+                    num = validInt();
                 }
 
-                elements[i][j] = strtol(str, NULL, 10);
+                elements[i][j] = num;
             }
             printw("\n");
         }
+
+        for (i = 0; i < len; ++i)
+        {
+            rowsArray[i] = sumRows(&elements[0][0], len, i);
+            colsArray[i] = sumCols(&elements[0][0], len, i);
+            printw("%d ", rowsArray[i]);
+        }
+
+        getch();
 
     } while (running);
 }
