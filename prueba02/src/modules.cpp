@@ -20,46 +20,61 @@ void matriz5x5()
 {
     bool running = true;
     int  i, j;
-    int  len = 2;
+    int  len = 3;
     int  elements[len][len];
     int  rowsArray[len];
     int  colsArray[len];
     int  num;
-    do
+    clear();
+    echo();
+    printw("\n\n\tFuncion 01\n\n");
+    printw("Entrada: matriz 5x5\n");
+    printw("Salida: suma de las filas y columnas de la matriz\n\n");
+    printw("Rellena la matriz\n\n");
+
+    for (i = 0; i < len; ++i)
     {
-        clear();
-        echo();
-        printw("\n\nFuncion 01\n");
-        printw("Te vamos a dar un array de 5x5 que tendras que rellenar\n");
-
-        for (i = 0; i < len; ++i)
+        for (j = 0; j < len; ++j)
         {
-            for (j = 0; j < len; ++j)
+
+            printw("\tValor [%d][%d]: ", i, j);
+            num = validInt();
+
+            while (num < 1 || num > 9)
             {
-
-                printw("Valor [%d][%d]: ", i, j);
+                printw("\nDebe ser un numero entre 1 y 9\n");
+                printw("\tValor [%d][%d]: ", i, j);
                 num = validInt();
-
-                while (num < 1 || num > 9)
-                {
-                    printw("\nDebe ser un numero entre 1 y 9\n");
-                    printw("Valor [%d][%d]: ", i, j);
-                    num = validInt();
-                }
-
-                elements[i][j] = num;
             }
-            printw("\n");
+
+            elements[i][j] = num;
         }
+        printw("\n");
+    }
 
-        for (i = 0; i < len; ++i)
-        {
-            rowsArray[i] = sumRows(&elements[0][0], len, i);
-            colsArray[i] = sumCols(&elements[0][0], len, i);
-            printw("%d ", rowsArray[i]);
-        }
+    for (i = 0; i < len; ++i)
+    {
+        rowsArray[i] = sumRows(elements[0], len, i);
+        colsArray[i] = sumCols(elements[0], len, i);
+    }
 
-        getch();
+    printw("\nSuma de las filas\n\n\t");
 
-    } while (running);
+    for (i = 0; i < len; ++i)
+    {
+        if (i != len - 1)
+            printw("%d, ", rowsArray[i]);
+        else
+            printw("%d\n", rowsArray[i]);
+    }
+
+    printw("\nSuma de las Columnas\n\n\t");
+
+    for (i = 0; i < len; ++i)
+    {
+        if (i != len - 1)
+            printw("%d, ", colsArray[i]);
+        else
+            printw("%d\n", colsArray[i]);
+    }
 }

@@ -1,4 +1,5 @@
 #include "modules.h"
+#include "utils.h"
 #include <ncurses.h>
 #include <stdio.h>
 
@@ -17,7 +18,9 @@ int main(int argc, char* argv[])
     start_color();
 
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
+    box(stdscr, '-', '+');
     noecho();
+    curs_set(0);
     do
     {
         clear();
@@ -29,16 +32,15 @@ int main(int argc, char* argv[])
             if (i == cursorPos)
             {
                 attron(A_BOLD);
-                printw(" > ");
+                printw("   > ");
                 attroff(A_BOLD);
                 attron(COLOR_PAIR(01111111));
-                printw("   %s\n", options[i]);
+                printw("%s\n", options[i]);
                 attroff(COLOR_PAIR(01111111));
             }
             else
             {
-                printw("   ");
-                printw("   %s\n", options[i]);
+                printw("     %s\n", options[i]);
             }
         }
         opt = getch();
@@ -55,9 +57,18 @@ int main(int argc, char* argv[])
             if (cursorPos == nElements - 1)
                 running = false;
             else
-                exec_func(cursorPos);
+            {
+                do
+                {
+                    curs_set(1); // Hace visible el cursor
+                    exec_func(cursorPos);
+                    curs_set(0); // Oculta el cursor
+                } while (wantToRepeat());
+            }
 
             break;
+
+            refresh();
         }
 
         if (cursorPos < 0)

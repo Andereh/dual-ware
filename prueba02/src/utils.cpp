@@ -23,7 +23,6 @@ int validInt() // Te retorna un int.
                // que necesitamos ingresar algo
 {
     char str[10];
-    int  num, i;
 
     getstr(str);
 
@@ -58,4 +57,66 @@ int sumCols(int* arr, int len, int rowPos)
     }
 
     return sum;
+}
+
+bool wantToRepeat()
+{
+    char options[][32] = {"Continuar", "Salir"};
+    int  nElements     = sizeof(options) / sizeof(options[0]);
+    int  cursorPos     = 0;
+    int  opt           = 0;
+    int  i;
+    int  sizeX, sizeY;
+
+    getmaxyx(stdscr, sizeX, sizeY);
+    WINDOW* selecWin = newwin(4, 19, sizeX - 5, sizeY - 20);
+
+    do
+    {
+        wclear(selecWin);
+        refresh();
+        wprintw(selecWin, "\n");
+
+        for (i = 0; i < nElements; i++)
+        {
+            if (i == cursorPos)
+            {
+                attron(A_BOLD);
+                wprintw(selecWin, "  > ");
+                attroff(A_BOLD);
+                attron(COLOR_PAIR(01111111));
+                wprintw(selecWin, "%s\n", options[i]);
+                attroff(COLOR_PAIR(01111111));
+            }
+            else
+            {
+                wprintw(selecWin, "    ");
+                wprintw(selecWin, "%s\n", options[i]);
+            }
+        }
+
+        box(selecWin, '|', '-');
+
+        touchwin(selecWin);
+        wrefresh(selecWin);
+        opt = getch();
+
+        switch (opt)
+        {
+        case KEY_DOWN:
+            cursorPos++;
+            break;
+        case KEY_UP:
+            cursorPos--;
+            break;
+        case '\n':
+            delwin(selecWin);
+            return cursorPos != nElements - 1;
+        }
+
+        if (cursorPos < 0)
+            cursorPos = nElements - 1;
+        if (cursorPos >= nElements)
+            cursorPos = 0;
+    } while (true);
 }
