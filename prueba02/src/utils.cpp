@@ -47,16 +47,16 @@ int sumRows(int* arr, int len, int colPos)
     return sum;
 }
 
-int sumCols(int* arr, int len, int rowPos)
+int producCols(int* arr, int len, int rowPos)
 {
-    int sum = 0;
+    int produc = 1;
     int i;
     for (i = 0; i < len; ++i)
     {
-        sum += *((arr + i * len) + rowPos);
+        produc *= *((arr + i * len) + rowPos);
     }
 
-    return sum;
+    return produc;
 }
 
 bool wantToRepeat()
@@ -119,4 +119,146 @@ bool wantToRepeat()
         if (cursorPos >= nElements)
             cursorPos = 0;
     } while (true);
+}
+
+void printRow(int* start, int* end)
+{
+    int* ptr = start;
+
+    while (ptr < end)
+    {
+        printw(" %d", *ptr);
+        if (ptr < end - 1)
+            printw(" |");
+        ptr++;
+    }
+    printw(" |\n");
+}
+
+void printMatrix(int* arr, int len)
+{
+    int i, j, a;
+    int num = 1;
+    for (i = 0; i < len; ++i)
+    {
+        for (j = 0; j < len; ++j)
+        {
+            do
+            {
+
+                for (a = 0; a < i; ++a)
+                {
+                    printRow(arr + a * len, arr + a * len + len);
+                }
+                if (j > 0)
+                    printRow(arr + a * len, arr + a * len + j);
+
+                printw("\n");
+                if (num < 1 || num > 9)
+                    printw("Debe ser un numero entre 1 y 9");
+
+                printw("\n\tValor [%d][%d]: ", i, j);
+                num = validInt();
+
+                clear();
+                refresh();
+            } while (num < 1 || num > 9);
+            *(arr + i * len + j) = num;
+        }
+    }
+}
+
+bool hasRepeated(int* arr, int* find, int len)
+{
+    int i, j;
+
+    for (i = 0; i < len; ++i)
+    {
+        for (j = 0; j < len; ++j)
+        {
+            if (*(arr + i * len + j) == *find && (arr + i * len + j) != find)
+                return true;
+        }
+    }
+
+    return false;
+}
+
+void getRow(int* arr, int* finalArray, int len)
+{
+    int i;
+    for (i = 0; i < len; ++i)
+    {
+        *(finalArray + i) = *(arr + i);
+    }
+}
+
+void getColumn(int* arr, int* finalArray, int len)
+{
+    int i;
+    for (i = 0; i < len; ++i)
+    {
+        *(finalArray + i) = *(arr + i * len);
+    }
+}
+
+int sumArr(int* arr, int* end)
+{
+    int* i;
+    int  sum = 0;
+    for (i = arr; i < end; ++i)
+    {
+        sum += *i;
+    }
+    return sum;
+}
+
+int multArr(int* arr, int* end)
+{
+    int* i;
+    int  res = 1;
+    for (i = arr; i < end; ++i)
+    {
+        res *= *i;
+    }
+    return res;
+}
+
+int getMax(int* arr, int* end)
+{
+    int  max = 0;
+    int* i;
+
+    for (i = arr; i < end; ++i)
+    {
+        if (*i > max)
+            max = *i;
+    }
+
+    return max;
+}
+
+int getMin(int* arr, int* end)
+{
+    int  min = *arr;
+    int* i;
+
+    for (i = arr; i < end; ++i)
+    {
+        if (*i < min)
+            min = *i;
+    }
+
+    return min;
+}
+
+void printSeparated(int* arr, int* end)
+{
+    int* i;
+    for (i = arr; i < end; ++i)
+    {
+        printw("%d", *i);
+        if (i < end - 1)
+            printw(", ");
+    }
 }

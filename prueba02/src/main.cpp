@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
     int  i;
     int  opt;
     bool running       = true;
-    char options[][32] = {"Matriz de 5x5", "Jairo", "Decir hola a rome",
+    char options[][32] = {"Matriz de 5x5", "Diagonales", "Decir hola a rome",
                           "Salir"};
     int  nElements     = sizeof(options) / sizeof(options[0]);
 
