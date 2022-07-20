@@ -1,6 +1,7 @@
 #include "utils.h"
 #include <ncurses.h>
 #include <stdlib.h>
+#include <string>
 
 bool hasAChar(char* strStart, char* strEnd) // Para validar que una
                                             // cadena no tenga caracteres
@@ -168,19 +169,30 @@ void printMatrix(int* arr, int len)
     }
 }
 
-bool hasRepeated(int* arr, int* find, int len)
+bool hasRepeated(int* arr, int find, int len)
 {
-    int i, j;
+    int i;
+    int timesRepeated = 0;
 
     for (i = 0; i < len; ++i)
     {
-        for (j = 0; j < len; ++j)
-        {
-            if (*(arr + i * len + j) == *find && (arr + i * len + j) != find)
-                return true;
-        }
+        if (*(arr + i) == find)
+            timesRepeated++;
+        if (timesRepeated > 1)
+            return true;
     }
 
+    return false;
+}
+
+bool appearInArr(int* arr, int find, int len)
+{
+    int i;
+    for (i = 0; i < len; ++i)
+    {
+        if (*(arr + i) == find)
+            return true;
+    }
     return false;
 }
 
@@ -261,4 +273,43 @@ void printSeparated(int* arr, int* end)
         if (i < end - 1)
             printw(", ");
     }
+}
+
+void getNoRepeatedNums(int* arr, int* arrToCopy, int* varToSaveResult, int len)
+{
+    int i, count = 0;
+    for (i = 0; i < len; ++i)
+    {
+        if (!hasRepeated(arr, arr[i], len))
+            if (!appearInArr(arrToCopy, arr[i], len))
+            {
+                arrToCopy[count] = arr[i];
+                count++;
+            }
+    }
+    *varToSaveResult = count;
+}
+
+// retorna cuantos espacios hay hasta encontrar un 0
+int getLen(int* arr, int max)
+{
+    int i = 0;
+    printw("\n*(arr + i): %d\n", *(arr + i));
+    while ((*(arr + i) < 1 || *(arr + i) > 9) && i < max)
+        i++;
+
+    return i;
+}
+
+void printSpaced(int n)
+{
+    int textWidth   = 3;
+    int spaceAmount = textWidth - std::to_string(n).length();
+    int i;
+
+    for (i = 0; i < spaceAmount; ++i)
+    {
+        printw(" ");
+    }
+    printw("%d", n);
 }
