@@ -1,6 +1,8 @@
-#Cadenas
+# Cadenas
 
-###Cosas por hacer
-    1. Eliminar funciones provenientes de '''windows.h'''
-    2. Reorganizar algunas lineas
-    3. Agregar legibilidad
+Programa para una evaluacion, nada mas que agregar
+
+## Cosas por hacer
+- [ ] Eliminar funciones provenientes de `windows.h`
+- [ ] Reorganizar algunas lineas
+- [ ] Agregar legibilidad
