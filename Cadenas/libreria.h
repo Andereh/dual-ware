@@ -1,16 +1,14 @@
-#include <stdio.h>
 #include <stdbool.h>
-
+#include <stdio.h>
 
 #ifndef LIBRERIA_H
 #define LIBRERIA_H
 
-//acá van las declaraciones
+// acá van las declaraciones
 
-int validInt();
-bool hasAChar(char *strStart, char *strEnd);
+int  validInt();
+bool hasAChar(char* strStart, char* strEnd);
 bool wantToRepeat();
-
 
 void highOrLow();
 void highOrLowLastNames();
@@ -22,22 +20,22 @@ void minToMax();
 void MaxToMin();
 bool session();
 void separar();
-void pNMPMA(char x[100],char y[100],char z[100], char v[100]);
-void firstLetterUP(char x[100],char y[100],char z[100], char v[100]);
-void sameSurName(char x[100],char y[100],char z[100], char v[100]);
+void pNMPMA(char x[100], char y[100], char z[100], char v[100]);
+void firstLetterUP(char x[100], char y[100], char z[100], char v[100]);
+void sameSurName(char x[100], char y[100], char z[100], char v[100]);
 void pNMCASP();
-int numberOfWords(char x[100]);
-int numberOf4VocalWords(char x[100]);
-int numberOfVocalRepeatWords();
+int  numberOfWords(char x[100]);
+int  numberOf4VocalWords(char x[100]);
+int  numberOfVocalRepeatWords();
 void vocalInString(char x[100]);
 void divideAndConcatenateVocalsREVER(char x[100]);
-int WordStartsWithVowel(char x[100]);
+int  WordStartsWithVowel(char x[100]);
 void showWordStartsWithVowel(char x[100]);
 void twoVocalWords(char x[100]);
 void consonantsInString(char x[100]);
-void vocalesAsteriscos(char x[100],char y[100]);
+void vocalesAsteriscos(char x[100], char y[100]);
 
-//Programas
+// Programas
 
 void program1();
 void program2();
