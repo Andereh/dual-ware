@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "libreria.h"
-#include <windows.h>
-#define cls system("cls")
+/*#include <windows.h> fuck u windows*/
+#define cls system("clear")
 
 
 

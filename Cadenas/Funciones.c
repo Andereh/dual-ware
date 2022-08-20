@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "libreria.h"
-#include <windows.h>
+/*#include <windows.h> merwebo maldito windows*/
 #define cls system("cls")
 
 	int cont = 0,i;
