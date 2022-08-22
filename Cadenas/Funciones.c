@@ -4,7 +4,7 @@
 #include <string.h>
 /*#include <windows.h> merwebo maldito windows*/
 
-int  cont = 0, i;
+int  contador = 0, i;
 char init1[100], init2[100];
 char user[] = {"Burga"}, password[] = {"sexo"};
 char firstName1[400], firstLastName1[400], secondName1[400],
@@ -82,10 +82,10 @@ bool session()
         // Comparar los datos ingresados con los datos almacenados
         // Si son diferentes se cancela el inicio de sesion
         if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0) &&
-            cont < 3)
+            contador < 3)
         {
 
-            if (cont < 3)
+            if (contador < 3)
             {
 
                 printf("\n\n Usuario y Clave incorrecta ");
@@ -93,34 +93,34 @@ bool session()
                 system("pause");
             }
 
-            cont++;
+            contador++;
         }
-        else if ((strcmp(init1, user) != 0) && cont < 3)
+        else if ((strcmp(init1, user) != 0) && contador < 3)
         {
 
-            if (cont < 3)
+            if (contador < 3)
             {
                 printf("\n\n Usuario incorrecto ");
                 printf("\n\n");
                 system("pause");
             }
-            cont++;
+            contador++;
         }
-        else if ((strcmp(init2, password) != 0) && cont < 3)
+        else if ((strcmp(init2, password) != 0) && contador < 3)
         {
 
-            if (cont < 3)
+            if (contador < 3)
             {
                 printf("\n\n Clave incorrecta ");
                 printf("\n\n");
                 system("pause");
             }
-            cont++;
+            contador++;
         }
     } while ((strcmp(init1, user) != 0 || strcmp(init2, password) != 0) &&
-             cont < 3);
+             contador < 3);
 
-    if (cont > 2)
+    if (contador > 2)
     {
         return false;
     }
@@ -406,7 +406,7 @@ void MaxToMin(char x[100])
 
 // Mostrar el primer nombre en mayusculas de la persona con el segundo nombre
 // mayor alfabeticamente
-void pNMPMA(char x[100], char y[100], char z[100], char v[100])
+void mostrarNombreMayusculas(char x[100], char y[100], char z[100], char v[100])
 {
 
     // x Primer nombre de persona 1
@@ -449,11 +449,15 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     if (strcmp(x, y) > 0)
     {
 
+        //almacenar la primera letra del primer apellido
         letter[0] = x[0];
         l[0]      = x[0];
+        //almacenar la primera letra del segundo apellido
         letter[1] = z[0];
         strupr(letter);
-        strcpy(helper1, strtok(x, l));
+        //separar el apellido de la primera letra
+        // ejemplo Jose ==> ose                    
+        strcpy(helper1, strtok(x, l));   
         l[0] = z[0];
         strcpy(helper2, strtok(z, l));
         printf("\n\t Apellidos: %c%s %c%s\n\n", letter[0], helper1, letter[1],
@@ -467,10 +471,14 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     }
     else
     {
+        //almacenar la primera letra del primer apellido
         letter[0] = y[0];
         l[0]      = y[0];
+        //almacenar la primera letra del segundo apellido
         letter[1] = v[0];
         strupr(letter);
+        //separar el apellido de la primera letra
+        // ejemplo Jose ==> ose
         strcpy(helper1, strtok(y, l));
         l[0] = v[0];
         strcpy(helper2, strtok(v, l));
@@ -480,7 +488,7 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
 }
 
 // Determinar si hay algun apellido igual entre las dos personas
-void sameSurName(char x[100], char y[100], char z[100], char v[100])
+void apellidosIguales(char x[100], char y[100], char z[100], char v[100])
 {
 
     // x Primer apellido de persona 1
@@ -534,7 +542,7 @@ void sameSurName(char x[100], char y[100], char z[100], char v[100])
 
 // Concatenar los 2 apellidos de la segunda persona con el apellido menor de la
 // primera persona
-void pNMCASP()
+void concatenarDosApellidos()
 {
 
     char aux[100];
