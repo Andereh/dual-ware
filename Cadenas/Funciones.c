@@ -258,12 +258,10 @@ void minToMaxV(char x[100])
 
         if (vocal >= 1)
         {
-            strupr(aux);
             printf("%c", aux[i]);
         }
         else
         {
-            strlwr(aux);
             printf("%c", x[i]);
         }
         vocal = 0;
@@ -302,12 +300,10 @@ void minToMax(char x[100])
 
         if (vocal < 1)
         {
-            strupr(aux);
             printf("%c", aux[i]);
         }
         else
         {
-            strlwr(aux);
             printf("%c", x[i]);
         }
         vocal = 0;
@@ -322,7 +318,6 @@ void MaxToMinV(char x[100])
     char a;
     char aux[100];
     strcpy(aux, x);
-    strupr(aux);
 
     for (i = 0; i <= strlen(x); i++)
     {
@@ -347,12 +342,10 @@ void MaxToMinV(char x[100])
 
         if (vocal == 0)
         {
-            strlwr(aux);
             printf("%c", aux[i]);
         }
         else
         {
-            strupr(aux);
             printf("%c", aux[i]);
         }
         vocal = 0;
@@ -367,7 +360,6 @@ void MaxToMin(char x[100])
     char a;
     char aux[100];
     strcpy(aux, x);
-    strupr(aux);
 
     for (i = 0; i <= strlen(x); i++)
     {
@@ -392,12 +384,10 @@ void MaxToMin(char x[100])
 
         if (vocal == 0)
         {
-            strlwr(aux);
             printf("%c", aux[i]);
         }
         else
         {
-            strupr(aux);
             printf("%c", aux[i]);
         }
         vocal = 0;
@@ -417,13 +407,11 @@ void pNMPMA(char x[100], char y[100], char z[100], char v[100])
     if (strcmp(z, v) > 0)
     {
 
-        strupr(x);
         printf("\n\t Nombre: %s \n\n", x);
     }
     else if (strcmp(z, v) < 0)
     {
 
-        strupr(y);
         printf("\n\t Nombre: %s \n\n", y);
     }
     else
@@ -452,7 +440,6 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
         letter[0] = x[0];
         l[0]      = x[0];
         letter[1] = z[0];
-        strupr(letter);
         strcpy(helper1, strtok(x, l));
         l[0] = z[0];
         strcpy(helper2, strtok(z, l));
@@ -470,7 +457,6 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
         letter[0] = y[0];
         l[0]      = y[0];
         letter[1] = v[0];
-        strupr(letter);
         strcpy(helper1, strtok(y, l));
         l[0] = v[0];
         strcpy(helper2, strtok(v, l));
@@ -588,7 +574,6 @@ int numberOf4VocalWords(char x[100])
 {
 
     int a = 0, e = 0, I = 0, o = 0, u = 0, suma = 0;
-    strlwr(x);
     int   c           = 0;
     char  limitador[] = {" "};
     char* token       = strtok(x, limitador);
@@ -649,7 +634,6 @@ int numberOfVocalRepeatWords(char x[100])
     int  c           = 0;
     char limitador[] = {" "}, aux2[100];
     strcpy(aux2, x);
-    strlwr(aux2);
     char* token = strtok(aux2, limitador);
 
     if (token != NULL)
@@ -702,7 +686,6 @@ void vocalInString(char x[100])
 {
 
     int vocal = 0;
-    strlwr(x);
     for (i = 0; i <= strlen(x); i++)
     {
 
@@ -833,7 +816,6 @@ int WordStartsWithVowel(char x[100])
 {
 
     int vocal = 0, c = 0;
-    strlwr(x);
     char  limitador[] = {" "};
     char* token       = strtok(x, limitador);
 
@@ -926,7 +908,6 @@ void consonantsInString(char x[100])
 {
 
     int vocal = 0;
-    strlwr(x);
     for (i = 0; i <= strlen(x); i++)
     {
 
