@@ -11,7 +11,7 @@
 char word[400], word2[400];
 int  opt, program;
 
-// funciones deuso recurrente
+// funciones de uso recurrente
 void printProgram() { printf("\n Programa %d\n\n\n", program); }
 
 int main(int argc, char const* argv[])
@@ -600,7 +600,7 @@ void program4()
                 printProgram();
                 printf("\n\t Primer nombre en mayuscula de la persona que "
                        "tenga el segundo nombre mayor alfabeticamente\n\n");
-                pNMPMA(firstName1, firstName2, secondName1, secondName2);
+                mostrarNombreMayusculas(firstName1, firstName2, secondName1, secondName2);
                 break;
 
             case 2:
@@ -624,7 +624,7 @@ void program4()
                 printProgram();
                 printf("\n\t Determinar si algun apellido de las dos personas "
                        "es igual\n\n");
-                sameSurName(firstLastName1, firstLastName2, secondLastName1,
+                apellidosIguales(firstLastName1, firstLastName2, secondLastName1,
                             secondLastName2);
                 break;
 
@@ -636,7 +636,7 @@ void program4()
                        "con los apellidos de la segunda persona\n");
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s\n", copyPerson2);
-                pNMCASP(firstLastName1, firstLastName2);
+                concatenarDosApellidos(firstLastName1, firstLastName2);
                 printf("\n\n");
                 break;
             case 5:
