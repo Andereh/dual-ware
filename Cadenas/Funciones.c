@@ -6,7 +6,7 @@
 
 int  contador = 0, i;
 char init1[100], init2[100];
-char user[] = {"Burga"}, password[] = {"sexo"};
+char user[] = {"Burga\n"}, password[] = {"sexo\n"};
 char firstName1[400], firstLastName1[400], secondName1[400],
     secondLastName1[400];
 char firstName2[400], firstLastName2[400], secondName2[400],
@@ -31,7 +31,6 @@ bool hasAChar(char* strStart, char* strEnd) // Para validar que una
 
 bool wantToRepeat() // Para repetir el bucle
 {
-
     int opt;
 
     printf("\n\n\t\tOPCIONES\n");
@@ -81,53 +80,29 @@ bool session()
 
         // Comparar los datos ingresados con los datos almacenados
         // Si son diferentes se cancela el inicio de sesion
-        if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0) &&
-            contador < 3)
+        if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0))
         {
-
             if (contador < 3)
-            {
-
-                printf("\n\n Usuario y Clave incorrecta ");
-                printf("\n\n");
-                system("pause");
-            }
-
-            contador++;
+                printf("\n\n Usuario y Clave incorrecta\n\n");
         }
         else if ((strcmp(init1, user) != 0) && contador < 3)
         {
-
             if (contador < 3)
-            {
-                printf("\n\n Usuario incorrecto ");
-                printf("\n\n");
-                system("pause");
-            }
-            contador++;
+                printf("\n\n Usuario incorrecto\n\n ");
         }
         else if ((strcmp(init2, password) != 0) && contador < 3)
         {
-
             if (contador < 3)
-            {
-                printf("\n\n Clave incorrecta ");
-                printf("\n\n");
-                system("pause");
-            }
-            contador++;
+                printf("\n\n Clave incorrecta\n\n");
         }
-    } while ((strcmp(init1, user) != 0 || strcmp(init2, password) != 0) &&
-             contador < 3);
 
-    if (contador > 2)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+        system("pause");
+        contador++;
+
+    } while ((strcmp(init1, user) != 0 || strcmp(init2, password) != 0) &&
+             contador <= 3);
+
+    return contador <= 3;
 }
 
 // Determinar la cadena mayor y menor alfabeticamente
@@ -442,14 +417,11 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
         l[0]      = x[0];
         //almacenar la primera letra del segundo apellido
         letter[1] = z[0];
-<<<<<<< HEAD
         strcpy(helper1, strtok(x, l));
-=======
-        strupr(letter);
+         // strupr
         //separar el apellido de la primera letra
         // ejemplo Jose ==> ose                    
         strcpy(helper1, strtok(x, l));   
->>>>>>> f7928b4882239b07c4d77bf0a48821acb1d5e960
         l[0] = z[0];
         strcpy(helper2, strtok(z, l));
         printf("\n\t Apellidos: %c%s %c%s\n\n", letter[0], helper1, letter[1],
@@ -468,12 +440,8 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
         l[0]      = y[0];
         //almacenar la primera letra del segundo apellido
         letter[1] = v[0];
-<<<<<<< HEAD
-=======
-        strupr(letter);
         //separar el apellido de la primera letra
         // ejemplo Jose ==> ose
->>>>>>> f7928b4882239b07c4d77bf0a48821acb1d5e960
         strcpy(helper1, strtok(y, l));
         l[0] = v[0];
         strcpy(helper2, strtok(v, l));
