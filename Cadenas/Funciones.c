@@ -205,42 +205,22 @@ void highOrLowLastNames(char x[100], char y[100])
 void minToMaxV(char x[100])
 {
 
-    int  vocal = 0;
-    char a;
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i <= strlen(x); i++)
+    for (i = 0; i < strlen(aux); i++)
     {
-
-        switch (x[i])
+        switch (aux[i])
         {
         case 'a':
-            vocal++;
-            break;
         case 'e':
-            vocal++;
-            break;
         case 'i':
-            vocal++;
-            break;
         case 'o':
-            vocal++;
-            break;
         case 'u':
-            vocal++;
+            aux[i] -= 32;
         }
-
-        if (vocal >= 1)
-        {
-            printf("%c", aux[i]);
-        }
-        else
-        {
-            printf("%c", x[i]);
-        }
-        vocal = 0;
     }
+    printf("%s\n", aux);
 }
 
 // de minisculas a  mayusculas solo consonantes
@@ -252,121 +232,68 @@ void minToMax(char x[100])
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i <= strlen(x); i++)
+    for (i = 0; i < strlen(aux) - 1; i++)
     {
-
-        switch (x[i])
+        switch (aux[i])
         {
         case 'a':
-            vocal++;
-            break;
         case 'e':
-            vocal++;
-            break;
         case 'i':
-            vocal++;
-            break;
         case 'o':
-            vocal++;
-            break;
         case 'u':
-            vocal++;
+            break;
+        default:
+            aux[i] -= 32;
         }
-
-        if (vocal < 1)
-        {
-            printf("%c", aux[i]);
-        }
-        else
-        {
-            printf("%c", x[i]);
-        }
-        vocal = 0;
     }
+    printf("%s\n", aux);
 }
 
 // de mayusculas a minisculas solo vocales
 void MaxToMinV(char x[100])
 {
 
-    int  vocal = 0;
-    char a;
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i <= strlen(x); i++)
+    for (i = 0; i < strlen(aux) - 1; i++)
     {
-
-        switch (x[i])
+        switch (aux[i])
         {
-        case 'a':
-            vocal++;
-            break;
-        case 'e':
-            vocal++;
-            break;
-        case 'i':
-            vocal++;
-            break;
-        case 'o':
-            vocal++;
-            break;
-        case 'u':
-            vocal++;
+        case 'A':
+        case 'E':
+        case 'I':
+        case 'O':
+        case 'U':
+            aux[i] += 32;
         }
-
-        if (vocal == 0)
-        {
-            printf("%c", aux[i]);
-        }
-        else
-        {
-            printf("%c", aux[i]);
-        }
-        vocal = 0;
     }
+    printf("%s\n", aux);
 }
 
 // de mayusculas a minisculas solo consonantes
-void MaxToMin(char x[100])
+void MaxToMin(char x[100]) // revisada y aprobada
 {
 
-    int  vocal = 0;
-    char a;
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i <= strlen(x); i++)
+    for (i = 0; i < strlen(aux) - 1; i++)
     {
 
-        switch (x[i])
+        switch (aux[i])
         {
         case 'a':
-            vocal++;
-            break;
         case 'e':
-            vocal++;
-            break;
         case 'i':
-            vocal++;
-            break;
         case 'o':
-            vocal++;
-            break;
         case 'u':
-            vocal++;
+            break;
+        default:
+            aux[i] -= 32;
         }
-
-        if (vocal == 0)
-        {
-            printf("%c", aux[i]);
-        }
-        else
-        {
-            printf("%c", aux[i]);
-        }
-        vocal = 0;
     }
+    printf("%s\n", aux);
 }
 
 // Mostrar el primer nombre en mayusculas de la persona con el segundo nombre
@@ -412,16 +339,16 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     if (strcmp(x, y) > 0)
     {
 
-        //almacenar la primera letra del primer apellido
+        // almacenar la primera letra del primer apellido
         letter[0] = x[0];
         l[0]      = x[0];
-        //almacenar la primera letra del segundo apellido
+        // almacenar la primera letra del segundo apellido
         letter[1] = z[0];
         strcpy(helper1, strtok(x, l));
-         // strupr
-        //separar el apellido de la primera letra
-        // ejemplo Jose ==> ose                    
-        strcpy(helper1, strtok(x, l));   
+        // strupr
+        // separar el apellido de la primera letra
+        // ejemplo Jose ==> ose
+        strcpy(helper1, strtok(x, l));
         l[0] = z[0];
         strcpy(helper2, strtok(z, l));
         printf("\n\t Apellidos: %c%s %c%s\n\n", letter[0], helper1, letter[1],
@@ -435,12 +362,12 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     }
     else
     {
-        //almacenar la primera letra del primer apellido
+        // almacenar la primera letra del primer apellido
         letter[0] = y[0];
         l[0]      = y[0];
-        //almacenar la primera letra del segundo apellido
+        // almacenar la primera letra del segundo apellido
         letter[1] = v[0];
-        //separar el apellido de la primera letra
+        // separar el apellido de la primera letra
         // ejemplo Jose ==> ose
         strcpy(helper1, strtok(y, l));
         l[0] = v[0];
@@ -558,7 +485,7 @@ int numberOfWords(char x[100])
 int numberOf4VocalWords(char x[100])
 {
 
-    int a = 0, e = 0, I = 0, o = 0, u = 0, suma = 0;
+    int   a = 0, e = 0, I = 0, o = 0, u = 0, suma = 0;
     int   c           = 0;
     char  limitador[] = {" "};
     char* token       = strtok(x, limitador);
@@ -800,7 +727,7 @@ void showWordStartsWithVowel(char x[100])
 int WordStartsWithVowel(char x[100])
 {
 
-    int vocal = 0, c = 0;
+    int   vocal = 0, c = 0;
     char  limitador[] = {" "};
     char* token       = strtok(x, limitador);
 

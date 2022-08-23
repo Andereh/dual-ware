@@ -14,10 +14,10 @@ void highOrLow();
 void highOrLowLastNames();
 void highOrLowNames();
 void printUser();
-void minToMaxV();
-void MaxToMinV();
-void minToMax();
-void MaxToMin();
+void minToMaxV(char[100]); // hacia falta colocar el argumento
+void MaxToMinV(char[100]);
+void minToMax(char[100]);
+void MaxToMin(char[100]);
 bool session();
 void separar();
 void concatenarDosApellidos();
