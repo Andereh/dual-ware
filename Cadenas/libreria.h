@@ -14,13 +14,13 @@ void highOrLow();
 void highOrLowLastNames();
 void highOrLowNames();
 void printUser();
-void minToMaxV();
-void MaxToMinV();
-void minToMax();
-void MaxToMin();
+void minToMaxV(char[100]); // hacia falta colocar el argumento
+void MaxToMinV(char[100]);
+void minToMax(char[100]);
+void MaxToMin(char[100]);
 bool session();
 void separar();
-void concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100]);
+void concatenarDosApellidos();
 void firstLetterUP(char x[100], char y[100], char z[100], char v[100]);
 void apellidosIguales(char x[100], char y[100], char z[100], char v[100]);
 void mostrarNombreMayusculas();
