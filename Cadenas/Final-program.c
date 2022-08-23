@@ -178,7 +178,8 @@ void program1()
 
                 // Mostrar las cadenas concatenadas
             case 4:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Cadenas concatenadas: %s", aux);
@@ -186,7 +187,8 @@ void program1()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Cadena concatenada invertida: %s", aux);
@@ -319,7 +321,8 @@ void program2()
                 break;
 
             case 4:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Apellidos de la segunda persona concatenado con "
@@ -339,7 +342,8 @@ void program2()
                 printf("\n\n\t Concatenado: %s", aux);
                 break;
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Primeros nombres de las personas concatenados e "
@@ -479,7 +483,8 @@ void program3()
                 break;
 
             case 4:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Apellidos de la primera persona concatenados con "
@@ -499,7 +504,8 @@ void program3()
                 printf("\n\n\t Concatenado: %s", aux);
                 break;
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Segundos nombres de las personas concatenados e "
@@ -600,7 +606,8 @@ void program4()
                 printProgram();
                 printf("\n\t Primer nombre en mayuscula de la persona que "
                        "tenga el segundo nombre mayor alfabeticamente\n\n");
-                mostrarNombreMayusculas(firstName1, firstName2, secondName1, secondName2);
+                mostrarNombreMayusculas(firstName1, firstName2, secondName1,
+                                        secondName2);
                 break;
 
             case 2:
@@ -624,12 +631,13 @@ void program4()
                 printProgram();
                 printf("\n\t Determinar si algun apellido de las dos personas "
                        "es igual\n\n");
-                apellidosIguales(firstLastName1, firstLastName2, secondLastName1,
-                            secondLastName2);
+                apellidosIguales(firstLastName1, firstLastName2,
+                                 secondLastName1, secondLastName2);
                 break;
 
             case 4:
-                printf("\n cargando..."); system("clear");
+                printf("\n cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Apellido menor de la primera persona concatenado "
@@ -640,7 +648,8 @@ void program4()
                 printf("\n\n");
                 break;
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Segundos apellidos de las personas concatenados e "
@@ -750,7 +759,8 @@ void program5()
 
                 // Mostrar las cadenas concatenadas
             case 4:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Vocales contenidas en la primera cadena ");
@@ -760,7 +770,8 @@ void program5()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Vocales en la primera Cadena concatenada "
@@ -857,7 +868,8 @@ void program6()
 
                 // Mostrar las cadenas concatenadas
             case 4:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf("\n\t Consonantes contenidas en la primera cadena ");
@@ -867,7 +879,8 @@ void program6()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-                printf("\n Cargando..."); system("clear");
+                printf("\n Cargando...");
+                system("clear");
                 printUser();
                 printProgram();
                 printf(
