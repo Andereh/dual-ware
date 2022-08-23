@@ -20,7 +20,7 @@ void minToMax();
 void MaxToMin();
 bool session();
 void separar();
-void concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100]);
+void concatenarDosApellidos();
 void firstLetterUP(char x[100], char y[100], char z[100], char v[100]);
 void apellidosIguales(char x[100], char y[100], char z[100], char v[100]);
 void mostrarNombreMayusculas();
