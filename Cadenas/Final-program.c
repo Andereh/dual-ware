@@ -636,7 +636,7 @@ void program4()
                        "con los apellidos de la segunda persona\n");
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s\n", copyPerson2);
-                concatenarDosApellidos(firstLastName1, firstLastName2);
+                concatenarDosApellidos();
                 printf("\n\n");
                 break;
             case 5:
