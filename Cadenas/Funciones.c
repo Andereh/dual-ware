@@ -819,68 +819,36 @@ void twoVocalWords(char x[100])
 void consonantsInString(char x[100])
 {
 
-    int vocal = 0;
-    for (i = 0; i <= strlen(x); i++)
+    for (i = 0; i < strlen(x); i++)
     {
-
         switch (x[i])
         {
         case 'a':
-            vocal++;
-            break;
         case 'e':
-            vocal++;
-            break;
         case 'i':
-            vocal++;
-            break;
         case 'o':
-            vocal++;
-            break;
         case 'u':
-            vocal++;
-        }
-
-        if (vocal <= 0)
-        {
             printf("%c", x[i]);
         }
-        vocal = 0;
     }
 }
 
 // Convertir las vocales en asteriscos
-void vocalesAsteriscos(char x[100], char y[100])
+void vocalesAsteriscos(char x[100])
 {
-
-    int vocal = 0;
+    char y[100];
     strcpy(y, x);
-    for (i = 0; i < strlen(x); i++)
+    for (i = 0; i < strlen(y); i++)
     {
-
-        switch (x[i])
+        switch (y[i])
         {
         case 'a':
-            vocal++;
-            break;
         case 'e':
-            vocal++;
-            break;
         case 'i':
-            vocal++;
-            break;
         case 'o':
-            vocal++;
-            break;
         case 'u':
-            vocal++;
-        }
-
-        if (vocal >= 1)
-        {
             y[i] = '*';
         }
-        vocal = 0;
     }
 
     printf("%s ", y);

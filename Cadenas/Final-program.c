@@ -827,19 +827,17 @@ void program6()
                         "\n Solo hay opciones entre 1-5 intenta de nuevo\n\n");
                     system("pause");
                 }
-                system("clear");
-                printUser();
-                printProgram();
+
             } while (opt < 1 || opt > 5);
+            printf("\n\nCargando...");
+            system("clear");
+            printUser();
+            printProgram();
 
             switch (opt)
             {
             case 1:
 
-                printf("\n\nCargando...");
-                system("clear");
-                printUser();
-                printProgram();
                 printf("\n\t Palabras que empiezan con una vocal\n\n");
                 c = WordStartsWithVowel(word) + WordStartsWithVowel(word2);
                 printf("\n\t Numero: %d", c);
@@ -847,31 +845,18 @@ void program6()
 
             case 2:
 
-                printf("\n\nCargando...");
-                system("clear");
-                printUser();
-                printProgram();
                 printf("\n\t Palabras con 2 vocales en la segunda cadena: ");
                 twoVocalWords(word2);
                 break;
 
             case 3:
 
-                printf("\n\nCargando...");
-                system("clear");
-                printUser();
-                printProgram();
                 printf("\n\t Palabras que inician con una vocal en la primera "
                        "cadena \n");
                 showWordStartsWithVowel(word);
                 break;
-
                 // Mostrar las cadenas concatenadas
             case 4:
-                printf("\n Cargando...");
-                system("clear");
-                printUser();
-                printProgram();
                 printf("\n\t Consonantes contenidas en la primera cadena ");
                 printf("\n\t Consonantes: ");
                 consonantsInString(word);
@@ -879,15 +864,10 @@ void program6()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-                printf("\n Cargando...");
-                system("clear");
-                printUser();
-                printProgram();
-                printf(
-                    "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
-                vocalesAsteriscos(word, aux);
+                printf( "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
+                vocalesAsteriscos(word);
                 printf(" ");
-                vocalesAsteriscos(word2, aux);
+                vocalesAsteriscos(word2);
             }
 
         } while (wantToRepeat());
