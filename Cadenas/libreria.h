@@ -28,12 +28,14 @@ int  numberOfWords(char x[100]);
 int  numberOf4VocalWords(char x[100]);
 int  numberOfVocalRepeatWords();
 void vocalInString(char x[100]);
-void divideAndConcatenateVocalsREVER(char x[100]);
+void vocalRever(char x[100]);
 int  WordStartsWithVowel(char x[100]);
 void showWordStartsWithVowel(char x[100]);
 void twoVocalWords(char x[100]);
 void consonantsInString(char x[100]);
 void vocalesAsteriscos(char x[100]);
+void bigger(char x[100],char y[100]);
+void minor(char x[100], char y[100]);
 
 // Programas
 

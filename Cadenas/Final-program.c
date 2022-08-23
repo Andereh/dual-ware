@@ -153,7 +153,9 @@ void program1()
                 system("clear");
                 printUser();
                 printProgram();
-                highOrLow(word, word2);
+                printf("\n\t Cadena mayor y menor alfabeticament\n");
+                printf("\n\t Cadena mayor: "); bigger(word,word2);
+                printf("\n\t Cadena menor: "); minor(word,word2);
                 break;
 
             case 2:
@@ -178,12 +180,9 @@ void program1()
 
                 // Mostrar las cadenas concatenadas
             case 4:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Cadenas concatenadas: %s", aux);
@@ -191,12 +190,9 @@ void program1()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Cadena concatenada invertida: %s", aux);
@@ -226,9 +222,9 @@ void program2()
         printUser();
         printProgram();
         printf("\n Ingrese los nombres y apellidos de dos personas\n");
-        printf("\n\t\t1: Ingrese su(s) nombre(s) y apellido(s): ");
+        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese su(s) nombre(s) y  apellido(s): ");
+        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
 
         // Copiar los nombres completos ya que luego seran separados
@@ -286,14 +282,11 @@ void program2()
                 system("clear");
                 printUser();
                 printProgram();
-                printf("\n\t  Persona con el primer apellido Alfabeticamente "
-                       "mayor");
-                printf("\n\t  Y Persona con el segundo nombre menor "
-                       "Alfabeticamente \n\n");
-                printf("\n\t Primer apellido de ambas personas: \n");
-                highOrLowLastNames(firstLastName1, firstLastName2);
-                printf("\n\t Segundo nombre de ambas personas: \n");
-                highOrLowNames(secondName1, secondName2);
+                printf("\n\t Persona con el primer apellido mayor alfabeticamente\n");
+                printf("\n\t Primer apellido mayor: "); bigger(firstLastName1,firstLastName2);
+                printf("\n\n\t Persona con el segundo nombre menor alfabeticamente\n");
+                printf("\n\t Segundo nombre menor: \0"); minor(secondName1,secondName2);
+                //highOrLowNames(secondName1, secondName2);
                 break;
 
             case 2:
@@ -329,12 +322,9 @@ void program2()
                 break;
 
             case 4:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Apellidos de la segunda persona concatenado con "
@@ -354,12 +344,9 @@ void program2()
                 printf("\n\n\t Concatenado: %s", aux);
                 break;
             case 5:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Primeros nombres de las personas concatenados e "
@@ -402,9 +389,9 @@ void program3()
         printUser();
         printProgram();
         printf("\n Ingrese los nombres y apellidos de dos personas\n");
-        printf("\n\t\t1: Ingrese su(s) nombre(s) y apellido(s): ");
+        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese su(s) nombre(s) y  apellido(s): ");
+        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
 
         // Copiar los nombres completos ya que luego seran separados
@@ -461,10 +448,8 @@ void program3()
                 printUser();
                 printProgram();
                 printf("\n\t  Mayor alfabeticamente\n\n");
-                printf("\n\t Primer nombre de ambas personas: \n");
-                highOrLowNames(firstName1, firstName2);
-                printf("\n\t Segundo nombre de ambas personas: \n");
-                highOrLowNames(secondName1, secondName2);
+                printf("\n\t Primer nombre de ambas personas: "); bigger(firstName1, firstName2);
+                printf("\n\n\t Segundo nombre de ambas personas: "); bigger(secondName1, secondName2);
                 break;
 
             case 2:
@@ -502,12 +487,9 @@ void program3()
                 break;
 
             case 4:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Apellidos de la primera persona concatenados con "
@@ -527,12 +509,9 @@ void program3()
                 printf("\n\n\t Concatenado: %s", aux);
                 break;
             case 5:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Segundos nombres de las personas concatenados e "
@@ -572,9 +551,9 @@ void program4()
         printUser();
         printProgram();
         printf("\n Ingrese los nombres y apellidos de dos personas\n");
-        printf("\n\t\t1: Ingrese su(s) nombre(s) y apellido(s): ");
+        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese su(s) nombre(s) y  apellido(s): ");
+        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
 
         // Copiar los nombres completos ya que luego seran separados
@@ -606,7 +585,7 @@ void program4()
                        "personas es igual");
                 printf("\n\t 4: Apellido menor de la primera persona "
                        "concatenado con los apellidos de la segunda persona");
-                printf("\n\t 5: Segundos nombres de las personas concatenados "
+                printf("\n\t 5: Segundos apellidos de las personas concatenados "
                        "e invertidos");
                 printf("\n\n\t Ingresar: ");
                 opt = validInt();
@@ -663,33 +642,26 @@ void program4()
                 break;
 
             case 4:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
+
                 printUser();
                 printProgram();
                 printf("\n\t Apellido menor de la primera persona concatenado "
                        "con los apellidos de la segunda persona\n");
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s\n", copyPerson2);
-<<<<<<< HEAD
+
                 concatenarDosApellidos(firstLastName1, firstLastName2, secondLastName1,
                             secondLastName2);
                 printf("\n\n");
                 break;
+
             case 5:
-                printf("\n Cargando..."); system("clear");
-=======
-                concatenarDosApellidos();
-                printf("\n\n");
-                break;
-            case 5:
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Segundos apellidos de las personas concatenados e "
@@ -799,12 +771,9 @@ void program5()
 
                 // Mostrar las cadenas concatenadas
             case 4:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Vocales contenidas en la primera cadena ");
@@ -814,17 +783,14 @@ void program5()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-<<<<<<< HEAD
-                printf("\n Cargando..."); system("clear");
-=======
+
                 printf("\n Cargando...");
                 system("clear");
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printUser();
                 printProgram();
                 printf("\n\t Vocales en la primera Cadena concatenada "
-                       "invertida: \nvocales: ");
-                divideAndConcatenateVocalsREVER(word);
+                       "invertida: \n\tvocales: ");
+                vocalRever(word);printf("\n\n");
             }
 
         } while (wantToRepeat());
@@ -836,7 +802,7 @@ void program6()
 {
 
     char aux[100];
-    int  c = 0;
+    int  suma = 0;
 
     do
     {
@@ -887,8 +853,8 @@ void program6()
             case 1:
 
                 printf("\n\t Palabras que empiezan con una vocal\n\n");
-                c = WordStartsWithVowel(word) + WordStartsWithVowel(word2);
-                printf("\n\t Numero: %d", c);
+                suma = WordStartsWithVowel(word) + WordStartsWithVowel(word2);
+                printf("\n\t Numero: %d", suma);
                 break;
 
             case 2:
@@ -905,12 +871,10 @@ void program6()
                 break;
                 // Mostrar las cadenas concatenadas
             case 4:
-<<<<<<< HEAD
+
                 printf("\n Cargando..."); system("clear");
                 printUser();
                 printProgram();
-=======
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printf("\n\t Consonantes contenidas en la primera cadena ");
                 printf("\n\t Consonantes: ");
                 consonantsInString(word);
@@ -918,12 +882,10 @@ void program6()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-<<<<<<< HEAD
+            
                 printf("\n Cargando..."); system("clear");
                 printUser();
                 printProgram();
-=======
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
                 printf(
                     "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
                 vocalesAsteriscos(word);

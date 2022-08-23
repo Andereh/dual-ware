@@ -31,11 +31,7 @@ bool hasAChar(char* strStart, char* strEnd) // Para validar que una
 
 bool wantToRepeat() // Para repetir el bucle
 {
-<<<<<<< HEAD
 
-=======
-    int opt;
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
 
     printf("\n\n\t\tOPCIONES\n");
     printf("\n\t1. De nuevo con la misma cadena\n");
@@ -72,46 +68,37 @@ bool session()
 {
 
 
-    char copy[100],copy2[100];
     do
     {
         system("clear");
         printf("\n\t\t\t\t INICIAR SESION ");
         printf("\n\n\n \t\t\t\t Usuario: ");
-        fgets(init1, 100, stdin); strcpy(copy,strtok(init1,"\n"));
+        fgets(init1, 100, stdin);
         printf("\n\t\t\t\t Clave: ");
-        fgets(init2, 100, stdin);strcpy(copy2,strtok(init2,"\n"));
+        fgets(init2, 100, stdin); 
 
         printf("\n Validando datos...");
 
         // Comparar los datos ingresados con los datos almacenados
         // Si son diferentes se cancela el inicio de sesion
-<<<<<<< HEAD
-        if ((strcmp(copy, user) != 0 && strcmp(copy2, password) != 0) &&
-            contador < 3)
-=======
         if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0))
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
+
         {
             if (contador < 3)
                 printf("\n\n Usuario y Clave incorrecta\n\n");
         }
-        else if ((strcmp(copy, user) != 0) && contador < 3)
+
+        else if ((strcmp(init1, user) != 0) && contador < 3)
         {
             if (contador < 3)
                 printf("\n\n Usuario incorrecto\n\n ");
         }
-        else if ((strcmp(copy2, password) != 0) && contador < 3)
+        else if ((strcmp(init2, password) != 0) && contador < 3)
         {
             if (contador < 3)
                 printf("\n\n Clave incorrecta\n\n");
         }
-<<<<<<< HEAD
-    } while ((strcmp(copy, user) != 0 || strcmp(copy2, password) != 0) &&
-             contador < 3);
-=======
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
-
+        printf("\n");
         system("pause");
         contador++;
 
@@ -121,30 +108,41 @@ bool session()
     return contador <= 3;
 }
 
-// Determinar la cadena mayor y menor alfabeticamente
-void highOrLow(char x[100], char y[100])
-{
 
-    if (strcmp(x, y) == 0)
+
+void bigger(char x[100],char y[100])
+{
+    if(strcmp(x,y) == 0)
     {
-        printf("\n\t Ambas cadenas son iguales");
-        printf("\n\t Cadena 1 ingresada: %s", x);
-        printf("\n\t Cadena 2 ingresada: %s\n\n", y);
+        printf("\n\t Ambos son iguales alfabeticamente");
     }
-    else if (strcmp(x, y) < 0)
+    else if (strcmp(x,y) > 0)
+    {   
+        printf(" %s",x);
+    }
+    else 
     {
-        printf("\n\t La segunda cadena ingresada es mayor Alfabeticamente");
-        printf("\n\t Cadena ingresada: %s\n\n", y);
-        printf("\n\t La primera cadena ingresada es menor Alfabeticamente");
-        printf("\n\t Cadena ingresada: %s\n\n", x);
+        printf(" %s",y);
     }
-    else
+
+}
+
+void minor(char x[100], char y[100])
+
+{
+    if(strcmp(x,y) == 0)
     {
-        printf("\n\t La primera cadena ingresada es mayor Alfabeticamente");
-        printf("\n\t Cadena ingresada: %s\n\n", x);
-        printf("\n\t La segunda cadena ingresada es menor Alfabeticamente");
-        printf("\n\t Cadena ingresada: %s\n\n", y);
+        printf("\n\t Ambos son iguales alfabeticamente");
     }
+    else if (strcmp(x,y) > 0)
+    {   
+        printf(" %s",y);
+    }
+    else 
+    {
+        printf(" %s",x);
+    }
+
 }
 
 // separar la cadena por nombre y apellido
@@ -163,59 +161,7 @@ void separar(char x[100], char y[100], char z[100], char a[100], char o[100])
     strcpy(a, strtok(NULL, limitador));
 }
 
-// Los mismo que lo anterior (pero para nombres de personas como lo determina el
-// programa)
-void highOrLowNames(char x[100], char y[100])
-{
 
-    if (strcmp(x, y) == 0)
-    {
-        printf("\n\t Ambos son iguales Alfabeticamente");
-        printf("\n\t Nombre 1 ingresada: %s", x);
-        printf("\n\t Nombre 2 ingresada: %s\n\n", y);
-    }
-    else if (strcmp(x, y) < 0)
-    {
-        printf("\n\t Nombre de persona 2 ingresado es mayor Alfabeticamente");
-        printf("\n\t Nombre ingresado: %s\n\n", y);
-        printf("\n\t Nombre de persona 1 ingresado es menor Alfabeticamente");
-        printf("\n\t Nombre ingresado: %s\n\n", x);
-    }
-    else
-    {
-        printf("\n\t Nombre de persona 1 ingresado es mayor Alfabeticamente");
-        printf("\n\t Nombre ingresado: %s\n\n", x);
-        printf("\n\t Nombre de persona 2 ingresado es menor Alfabeticamente");
-        printf("\n\t Nombre ingresado: %s\n\n", y);
-    }
-}
-
-// Los mismo que lo anterior (pero para apellidos de personas como lo determina
-// el programa)
-void highOrLowLastNames(char x[100], char y[100])
-{
-
-    if (strcmp(x, y) == 0)
-    {
-        printf("\n\t Ambos son iguales Alfabeticamente");
-        printf("\n\t Cadena 1 ingresada: %s", x);
-        printf("\n\t Cadena 2 ingresada: %s\n\n", y);
-    }
-    else if (strcmp(x, y) < 0)
-    {
-        printf("\n\t Apellido de persona 2 ingresado es mayor Alfabeticamente");
-        printf("\n\t Apellido ingresado: %s\n\n", y);
-        printf("\n\t Apellido de persona 1 ingresado es menor Alfabeticamente");
-        printf("\n\t Apellido ingresado: %s\n\n", x);
-    }
-    else
-    {
-        printf("\n\t Apellido de persona 1 ingresado es mayor Alfabeticamente");
-        printf("\n\t Apellido ingresado: %s\n\n", x);
-        printf("\n\t Apellido de persona 2 ingresado es menor Alfabeticamente");
-        printf("\n\t Apellido ingresado: %s\n\n", y);
-    }
-}
 
 // de minisculas a mayusculas solo vocales
 void minToMaxV(char x[100])
@@ -645,45 +591,31 @@ void vocalInString(char x[100])
 
 // Separar las vocales de una cadena,concatenarlas y revertirlas
 
-void divideAndConcatenateVocalsREVER(char x[100])
+void vocalRever(char x[100])
 {
 
     int v = 0, vocal = 0, a = 0;
 
     char aux[100];
 
-    for (i = 0; i < strlen(x); i++)
+    for (i = strlen(x); i >= 0; i--)
     {
 
         switch (x[i])
         {
-        case 'a':
-            vocal++;
-            break;
-        case 'e':
-            vocal++;
-            break;
-        case 'i':
-            vocal++;
-            break;
-        case 'o':
-            vocal++;
-            break;
-        case 'u':
-            vocal++;
-            break;
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u': vocal++;
         }
 
         if (vocal >= 1)
         {
-            aux[v] = x[i];
-            v++;
-            a++;
+            printf(" %c",x[i]);
         }
         vocal = 0;
     }
-    for (i = a; i >= -1; i--)
-        printf("%c", aux[i]);
 }
 
 // Mostrar palabras que inician con una vocal
@@ -852,21 +784,14 @@ void consonantsInString(char x[100])
 // Convertir las vocales en asteriscos
 void vocalesAsteriscos(char x[100])
 {
-<<<<<<< HEAD
-
     int vocal = 0;
-    char auxiliar[100];
-    strcpy(auxiliar, x);
-    for (i = 0; i < strlen(x); i++)
-=======
     char y[100];
     strcpy(y, x);
     for (i = 0; i < strlen(y); i++)
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
+
     {
         switch (y[i])
         {
-<<<<<<< HEAD
             case 'a':
             case 'e':
             case 'i':
@@ -874,19 +799,6 @@ void vocalesAsteriscos(char x[100])
             case 'u': vocal++;
         }
 
-        if (vocal >= 1)
-        {
-            auxiliar[i] = '*';
-=======
-        case 'a':
-        case 'e':
-        case 'i':
-        case 'o':
-        case 'u':
-            y[i] = '*';
->>>>>>> a2b55bee257a906fdff57b880c84ce4ba522dd93
-        }
+        printf("%s ",y);
     }
-
-    printf("%s ", auxiliar);
 }
