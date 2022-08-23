@@ -356,7 +356,10 @@ void program2()
 
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s", copyPerson2);
-                printf("\n\n\t Concatenado: %s", aux);
+                printf("\n\n\t Concatenado: ");
+
+                for (int i = strlen(aux) - 1; i >= 0; i--)
+                    printf("%c", aux[i]);
             }
 
         } while (wantToRepeat());
@@ -864,7 +867,8 @@ void program6()
 
                 // Mostrar las cadenas concatenadas invertidas
             case 5:
-                printf( "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
+                printf(
+                    "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
                 vocalesAsteriscos(word);
                 printf(" ");
                 vocalesAsteriscos(word2);

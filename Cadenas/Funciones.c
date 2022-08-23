@@ -220,7 +220,7 @@ void minToMaxV(char x[100])
             aux[i] -= 32;
         }
     }
-    printf("%s\n", aux);
+    printf("%s", aux);
 }
 
 // de minisculas a  mayusculas solo consonantes
