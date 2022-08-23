@@ -4,7 +4,7 @@
 #include <string.h>
 /*#include <windows.h> merwebo maldito windows*/
 
-int  contador = 0, i;
+int  contador = 0, i,opt;
 char init1[100], init2[100];
 char user[] = {"Burga"}, password[] = {"sexo"};
 char firstName1[400], firstLastName1[400], secondName1[400],
@@ -32,7 +32,6 @@ bool hasAChar(char* strStart, char* strEnd) // Para validar que una
 bool wantToRepeat() // Para repetir el bucle
 {
 
-    int opt;
 
     printf("\n\n\t\tOPCIONES\n");
     printf("\n\t1. De nuevo con la misma cadena\n");
@@ -68,20 +67,22 @@ void printUser() { printf("\n Usuario: %s", init1); }
 bool session()
 {
 
+
+    char copy[100],copy2[100];
     do
     {
         system("clear");
         printf("\n\t\t\t\t INICIAR SESION ");
         printf("\n\n\n \t\t\t\t Usuario: ");
-        fgets(init1, 10, stdin);
+        fgets(init1, 100, stdin); strcpy(copy,strtok(init1,"\n"));
         printf("\n\t\t\t\t Clave: ");
-        fgets(init2, 10, stdin);
+        fgets(init2, 100, stdin);strcpy(copy2,strtok(init2,"\n"));
 
         printf("\n Validando datos...");
 
         // Comparar los datos ingresados con los datos almacenados
         // Si son diferentes se cancela el inicio de sesion
-        if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0) &&
+        if ((strcmp(copy, user) != 0 && strcmp(copy2, password) != 0) &&
             contador < 3)
         {
 
@@ -95,7 +96,7 @@ bool session()
 
             contador++;
         }
-        else if ((strcmp(init1, user) != 0) && contador < 3)
+        else if ((strcmp(copy, user) != 0) && contador < 3)
         {
 
             if (contador < 3)
@@ -106,7 +107,7 @@ bool session()
             }
             contador++;
         }
-        else if ((strcmp(init2, password) != 0) && contador < 3)
+        else if ((strcmp(copy2, password) != 0) && contador < 3)
         {
 
             if (contador < 3)
@@ -117,7 +118,7 @@ bool session()
             }
             contador++;
         }
-    } while ((strcmp(init1, user) != 0 || strcmp(init2, password) != 0) &&
+    } while ((strcmp(copy, user) != 0 || strcmp(copy2, password) != 0) &&
              contador < 3);
 
     if (contador > 2)
@@ -542,29 +543,29 @@ void apellidosIguales(char x[100], char y[100], char z[100], char v[100])
 
 // Concatenar los 2 apellidos de la segunda persona con el apellido menor de la
 // primera persona
-void concatenarDosApellidos()
+void concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100])
 {
 
     char aux[100];
 
-    if (strcmp(firstLastName1, secondLastName1) < 0)
+    if (strcmp(x, y) < 0)
     {
 
-        strcpy(aux, firstLastName1);
+        strcpy(aux, x);
         strcat(aux, " ");
-        strcat(aux, firstLastName2);
+        strcat(aux, z);
         strcat(aux, " ");
-        strcat(aux, secondLastName2);
+        strcat(aux, v);
 
         printf("\n\t Concatenado: %s", aux);
     }
     else
     {
-        strcpy(aux, secondLastName1);
+        strcpy(aux, y);
         strcat(aux, " ");
-        strcat(aux, firstLastName2);
+        strcat(aux, z);
         strcat(aux, " ");
-        strcat(aux, secondLastName2);
+        strcat(aux, v);
 
         printf("\n\t Concatenado: %s", aux);
     }
@@ -965,38 +966,30 @@ void consonantsInString(char x[100])
 }
 
 // Convertir las vocales en asteriscos
-void vocalesAsteriscos(char x[100], char y[100])
+void vocalesAsteriscos(char x[100])
 {
 
     int vocal = 0;
-    strcpy(y, x);
+    char auxiliar[100];
+    strcpy(auxiliar, x);
     for (i = 0; i < strlen(x); i++)
     {
 
         switch (x[i])
         {
-        case 'a':
-            vocal++;
-            break;
-        case 'e':
-            vocal++;
-            break;
-        case 'i':
-            vocal++;
-            break;
-        case 'o':
-            vocal++;
-            break;
-        case 'u':
-            vocal++;
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u': vocal++;
         }
 
         if (vocal >= 1)
         {
-            y[i] = '*';
+            auxiliar[i] = '*';
         }
         vocal = 0;
     }
 
-    printf("%s ", y);
+    printf("%s ", auxiliar);
 }

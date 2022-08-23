@@ -1,0 +1,265 @@
+[1mdiff --git a/Cadenas/Final-program.c b/Cadenas/Final-program.c[m
+[1mindex 5be9550..84f9271 100644[m
+[1m--- a/Cadenas/Final-program.c[m
+[1m+++ b/Cadenas/Final-program.c[m
+[36m@@ -9,14 +9,14 @@[m
+ // Variables de uso global[m
+ [m
+ char word[400], word2[400];[m
+[31m-int  opt, program;[m
+[32m+[m[32mint  program;[m[41m[m
+ [m
+ // funciones de uso recurrente[m
+ void printProgram() { printf("\n Programa %d\n\n\n", program); }[m
+ [m
+ int main(int argc, char const* argv[])[m
+ {[m
+[31m-[m
+[32m+[m[32m    int opt;[m[41m[m
+     system("color 0B");[m
+ [m
+     if (!session())[m
+[36m@@ -81,7 +81,7 @@[m [mint main(int argc, char const* argv[])[m
+             // Si ingresa cualquier numero menor que 8 (excepto 1-2)[m
+             // Cambiara su valor para salir del programa[m
+             // ESTO SOLO SE EJECUTA AL FINALIZAR CADA FUNCION CORRESPONDIENTE[m
+[31m-            if (opt < 1 || opt > 2)[m
+[32m+[m[32m            if (opt < 1 || opt > 3)[m[41m[m
+                 opt = 10;[m
+ [m
+         } while (opt <= 7);[m
+[36m@@ -97,7 +97,7 @@[m [mvoid program1()[m
+ {[m
+ [m
+     char aux[100];[m
+[31m-    int  opt, program;[m
+[32m+[m[32m    int  opt,program;[m[41m[m
+ [m
+     do[m
+     {[m
+[36m@@ -178,7 +178,7 @@[m [mvoid program1()[m
+ [m
+                 // Mostrar las cadenas concatenadas[m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Cadenas concatenadas: %s", aux);[m
+[36m@@ -186,7 +186,7 @@[m [mvoid program1()[m
+ [m
+                 // Mostrar las cadenas concatenadas invertidas[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 strrev(aux);[m
+[36m@@ -320,7 +320,7 @@[m [mvoid program2()[m
+                 break;[m
+ [m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Apellidos de la segunda persona concatenado con "[m
+[36m@@ -340,7 +340,7 @@[m [mvoid program2()[m
+                 printf("\n\n\t Concatenado: %s", aux);[m
+                 break;[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Primeros nombres de las personas concatenados e "[m
+[36m@@ -481,7 +481,7 @@[m [mvoid program3()[m
+                 break;[m
+ [m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Apellidos de la primera persona concatenados con "[m
+[36m@@ -501,7 +501,7 @@[m [mvoid program3()[m
+                 printf("\n\n\t Concatenado: %s", aux);[m
+                 break;[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Segundos nombres de las personas concatenados e "[m
+[36m@@ -543,7 +543,7 @@[m [mvoid program4()[m
+         printProgram();[m
+         printf("\n Ingrese los nombres y apellidos de dos personas\n");[m
+         printf("\n\t\t1: Ingrese su(s) nombre(s) y apellido(s): ");[m
+[31m-        fgets(, 400, stdin);[m
+[32m+[m[32m        fgets(word, 400, stdin);[m[41m[m
+         printf("\n\t\t2: Ingrese su(s) nombre(s) y  apellido(s): ");[m
+         fgets(word2, 400, stdin);[m
+ [m
+[36m@@ -632,18 +632,19 @@[m [mvoid program4()[m
+                 break;[m
+ [m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Apellido menor de la primera persona concatenado "[m
+                        "con los apellidos de la segunda persona\n");[m
+                 printf("\n\n\t Primera persona: %s", copyPerson1);[m
+                 printf("\n\n\t Segunda persona: %s\n", copyPerson2);[m
+[31m-                concatenarDosApellidos(firstLastName1, firstLastName2);[m
+[32m+[m[32m                concatenarDosApellidos(firstLastName1, firstLastName2, secondLastName1,[m[41m[m
+[32m+[m[32m                            secondLastName2);[m[41m[m
+                 printf("\n\n");[m
+                 break;[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Segundos apellidos de las personas concatenados e "[m
+[36m@@ -754,7 +755,7 @@[m [mvoid program5()[m
+ [m
+                 // Mostrar las cadenas concatenadas[m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Vocales contenidas en la primera cadena ");[m
+[36m@@ -764,7 +765,7 @@[m [mvoid program5()[m
+ [m
+                 // Mostrar las cadenas concatenadas invertidas[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Vocales en la primera Cadena concatenada "[m
+[36m@@ -861,7 +862,7 @@[m [mvoid program6()[m
+ [m
+                 // Mostrar las cadenas concatenadas[m
+             case 4:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf("\n\t Consonantes contenidas en la primera cadena ");[m
+[36m@@ -871,7 +872,7 @@[m [mvoid program6()[m
+ [m
+                 // Mostrar las cadenas concatenadas invertidas[m
+             case 5:[m
+[31m-                printf("\n Cargando...") system("clear");[m
+[32m+[m[32m                printf("\n Cargando..."); system("clear");[m[41m[m
+                 printUser();[m
+                 printProgram();[m
+                 printf([m
+[1mdiff --git a/Cadenas/Funciones.c b/Cadenas/Funciones.c[m
+[1mindex 4309ddf..1268e40 100644[m
+[1m--- a/Cadenas/Funciones.c[m
+[1m+++ b/Cadenas/Funciones.c[m
+[36m@@ -4,7 +4,7 @@[m
+ #include <string.h>[m
+ /*#include <windows.h> merwebo maldito windows*/[m
+ [m
+[31m-int  contador = 0, i;[m
+[32m+[m[32mint  contador = 0, i,opt;[m[41m[m
+ char init1[100], init2[100];[m
+ char user[] = {"Burga"}, password[] = {"sexo"};[m
+ char firstName1[400], firstLastName1[400], secondName1[400],[m
+[36m@@ -68,20 +68,22 @@[m [mvoid printUser() { printf("\n Usuario: %s", init1); }[m
+ bool session()[m
+ {[m
+ [m
+[32m+[m[41m[m
+[32m+[m[32m    char copy[100],copy2[100];[m[41m[m
+     do[m
+     {[m
+         system("clear");[m
+         printf("\n\t\t\t\t INICIAR SESION ");[m
+         printf("\n\n\n \t\t\t\t Usuario: ");[m
+[31m-        fgets(init1, 10, stdin);[m
+[32m+[m[32m        fgets(init1, 100, stdin); strcpy(copy,strtok(init1,"\n"));[m[41m[m
+         printf("\n\t\t\t\t Clave: ");[m
+[31m-        fgets(init2, 10, stdin);[m
+[32m+[m[32m        fgets(init2, 100, stdin);strcpy(copy2,strtok(init2,"\n"));[m[41m[m
+ [m
+         printf("\n Validando datos...");[m
+ [m
+         // Comparar los datos ingresados con los datos almacenados[m
+         // Si son diferentes se cancela el inicio de sesion[m
+[31m-        if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0) &&[m
+[32m+[m[32m        if ((strcmp(copy, user) != 0 && strcmp(copy2, password) != 0) &&[m[41m[m
+             contador < 3)[m
+         {[m
+ [m
+[36m@@ -95,7 +97,7 @@[m [mbool session()[m
+ [m
+             contador++;[m
+         }[m
+[31m-        else if ((strcmp(init1, user) != 0) && contador < 3)[m
+[32m+[m[32m        else if ((strcmp(copy, user) != 0) && contador < 3)[m[41m[m
+         {[m
+ [m
+             if (contador < 3)[m
+[36m@@ -106,7 +108,7 @@[m [mbool session()[m
+             }[m
+             contador++;[m
+         }[m
+[31m-        else if ((strcmp(init2, password) != 0) && contador < 3)[m
+[32m+[m[32m        else if ((strcmp(copy2, password) != 0) && contador < 3)[m[41m[m
+         {[m
+ [m
+             if (contador < 3)[m
+[36m@@ -117,7 +119,7 @@[m [mbool session()[m
+             }[m
+             contador++;[m
+         }[m
+[31m-    } while ((strcmp(init1, user) != 0 || strcmp(init2, password) != 0) &&[m
+[32m+[m[32m    } while ((strcmp(copy, user) != 0 || strcmp(copy2, password) != 0) &&[m[41m[m
+              contador < 3);[m
+ [m
+     if (contador > 2)[m
+[36m@@ -542,29 +544,29 @@[m [mvoid apellidosIguales(char x[100], char y[100], char z[100], char v[100])[m
+ [m
+ // Concatenar los 2 apellidos de la segunda persona con el apellido menor de la[m
+ // primera persona[m
+[31m-void concatenarDosApellidos()[m
+[32m+[m[32mvoid concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100])[m[41m[m
+ {[m
+ [m
+     char aux[100];[m
+ [m
+[31m-    if (strcmp(firstLastName1, secondLastName1) < 0)[m
+[32m+[m[32m    if (strcmp(x, y) < 0)[m[41m[m
+     {[m
+ [m
+[31m-        strcpy(aux, firstLastName1);[m
+[32m+[m[32m        strcpy(aux, x);[m[41m[m
+         strcat(aux, " ");[m
+[31m-        strcat(aux, firstLastName2);[m
+[32m+[m[32m        strcat(aux, z);[m[41m[m
+         strcat(aux, " ");[m
+[31m-        strcat(aux, secondLastName2);[m
+[32m+[m[32m        strcat(aux, v);[m[41m[m
+ [m
+         printf("\n\t Concatenado: %s", aux);[m
+     }[m
+     else[m
+     {[m
+[31m-        strcpy(aux, secondLastName1);[m
+[32m+[m[32m        strcpy(aux, y);[m[41m[m
+         strcat(aux, " ");[m
+[31m-        strcat(aux, firstLastName2);[m
+[32m+[m[32m        strcat(aux, z);[m[41m[m
+         strcat(aux, " ");[m
+[31m-        strcat(aux, secondLastName2);[m
+[32m+[m[32m        strcat(aux, v);[m[41m[m
+ [m
+         printf("\n\t Concatenado: %s", aux);[m
+     }[m
