@@ -10,9 +10,6 @@ int  validInt();
 bool hasAChar(char* strStart, char* strEnd);
 bool wantToRepeat();
 
-void highOrLow();
-void highOrLowLastNames();
-void highOrLowNames();
 void printUser();
 void minToMaxV(char[100]); // hacia falta colocar el argumento
 void MaxToMinV(char[100]);
