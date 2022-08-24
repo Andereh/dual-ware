@@ -35,7 +35,7 @@ void twoVocalWords(char x[100]);
 void consonantsInString(char x[100]);
 void vocalesAsteriscos(char x[100]);
 void bigger(char x[100],char y[100]);
-void minor(char x[100], char y[100]);
+void lower(char x[100], char y[100]);
 
 // Programas
 

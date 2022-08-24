@@ -127,7 +127,7 @@ void bigger(char x[100],char y[100])
 
 }
 
-void minor(char x[100], char y[100])
+void lower(char x[100], char y[100])
 
 {
     if(strcmp(x,y) == 0)
