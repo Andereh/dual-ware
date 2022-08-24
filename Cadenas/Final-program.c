@@ -155,7 +155,7 @@ void program1()
                 printProgram();
                 printf("\n\t Cadena mayor y menor alfabeticament\n");
                 printf("\n\t Cadena mayor: "); bigger(word,word2);
-                printf("\n\t Cadena menor: "); minor(word,word2);
+                printf("\n\t Cadena menor: "); lower(word,word2);
                 break;
 
             case 2:
@@ -285,7 +285,7 @@ void program2()
                 printf("\n\t Persona con el primer apellido mayor alfabeticamente\n");
                 printf("\n\t Primer apellido mayor: "); bigger(firstLastName1,firstLastName2);
                 printf("\n\n\t Persona con el segundo nombre menor alfabeticamente\n");
-                printf("\n\t Segundo nombre menor: \0"); minor(secondName1,secondName2);
+                printf("\n\t Segundo nombre menor: "); lower(secondName1,secondName2);
                 //highOrLowNames(secondName1, secondName2);
                 break;
 
