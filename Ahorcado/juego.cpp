@@ -1,7 +1,6 @@
 #include "juego.h"
 #include <cstdlib>
 
-
 using namespace std;
 
 string images[7] = {

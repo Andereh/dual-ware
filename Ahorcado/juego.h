@@ -18,7 +18,7 @@ private:
 	void init();
 
 	string warnings;
-	string words[3] = {"carpincho", "capibara"};
+	string words[4] = {"carpincho", "capibara", "patilla", "sarten"};
 	string actualWord;
 	string unknownWord;
 	string lettersUse;
