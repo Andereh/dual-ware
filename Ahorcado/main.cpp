@@ -3,28 +3,44 @@
 
 using namespace std;
 
+bool wantToContinue()
+{
+	string message[] = {"Sabes? Me gusta pasar tiempo contigo", 
+						"Ehhhh casi la adivinas, no te rindas carajo"};
+	cout << "\n\n";
+
+	return false;
+}
+
+
 int main(int argc, char *argv[])
 {
-	Juego juego;
+	Tablero tablero;
 	std::string str;
 
-	while (!juego.theGameIsOver()) 
+	do {
+
+	while (!tablero.theGameIsOver()) 
 	{
-		juego.showGame();
-		juego.displayWarnings();
+		tablero.showGame();
+		tablero.displayWarnings();
 
 		cout << " Intente una letra: \033[3m"; // setteamos la fuente italica
 		cin >> str;
 		cout << "\033[0m"; // la quitamos xD
-						   //
-		juego.attempLetter(str);
+
+		tablero.attempLetter(str);
 	}
 
-	if (juego.theGameIsOver() == 1)
+	system("clear");
+
+	tablero.showGame();
+	if (tablero.theGameIsOver() == 1)
 		cout << " Cooonchale vale pero este muchacho sabe mas que pescao frito\n";
 	else 
 		cout << " Verga hermano, tenias que metele mas ganas\n";
 
+	} while (wantToContinue();)
 	return 0;
 }
 

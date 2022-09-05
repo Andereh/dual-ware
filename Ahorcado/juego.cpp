@@ -67,14 +67,27 @@ string images[7] = {
 " ========="
 };
 
-Juego::Juego() {
+Player::Player(string _name) 
+{
+	name = _name;
+	wins = 0;
+	streak = 0;
+}
+
+bool Player::wantToContinue()
+{}
+
+
+Tablero::Tablero() 
+{
 	init();
 	lettersUse = " ";
 }
 
-void Juego::init()
+void Tablero::init()
 {
-	int randVal = rand() % words->size();
+	srand(time(NULL));
+	int randVal = rand() % 4;
 	actualWord = words[randVal];
 	lives = 7;
 
@@ -87,13 +100,15 @@ void Juego::init()
 }
 
 
-void Juego::showGame()
+void Tablero::showGame()
 {
 	system("clear");
 	cout << " Vidas: ";
 
 	if (lives <= 3)
 		cout << "\033[1;5;31m" << lives << "\033[0m\n" ; // rojo
+	else if (lives <= 5)
+		cout << "\033[1;33m" << lives << "\033[0m\n" ; // rojo
 	else
 		cout << "\033[1;32m" << lives << "\033[0m\n" ; // verde
 
@@ -101,7 +116,7 @@ void Juego::showGame()
 	cout << " " << unknownWord << '\n';
 }
 
-void Juego::displayWarnings()
+void Tablero::displayWarnings()
 {
 	if (warnings == "")
 		cout << "\n";
@@ -109,7 +124,7 @@ void Juego::displayWarnings()
 	warnings = "";
 }
 
-void Juego::attempLetter(string str)
+void Tablero::attempLetter(string str)
 {
 	if (str.size() > 1) 
 	{
@@ -156,7 +171,7 @@ void Juego::attempLetter(string str)
 		lives--;
 }
 
-int Juego::theGameIsOver()
+int Tablero::theGameIsOver()
 {
 	if (actualWord == unknownWord)
 		return 1; // si acertaste la palabra
