@@ -1,46 +1,69 @@
+#include <cstdio>
 #include <iostream>
 #include "juego.h"
 
 using namespace std;
 
-bool wantToContinue()
-{
-	string message[] = {"Sabes? Me gusta pasar tiempo contigo", 
-						"Ehhhh casi la adivinas, no te rindas carajo"};
-	cout << "\n\n";
-
-	return false;
-}
-
 
 int main(int argc, char *argv[])
 {
 	Tablero tablero;
-	std::string str;
+	Player player;
+	string userName;
+	string letter;
 
-	do {
-
-	while (!tablero.theGameIsOver()) 
-	{
-		tablero.showGame();
-		tablero.displayWarnings();
-
-		cout << " Intente una letra: \033[3m"; // setteamos la fuente italica
-		cin >> str;
-		cout << "\033[0m"; // la quitamos xD
-
-		tablero.attempLetter(str);
-	}
 
 	system("clear");
+	cout << "Antes de comenzar deberias darme tu nombre\n";
+	cout << "Tu nombre es: ";
+	cin >> userName;
 
-	tablero.showGame();
-	if (tablero.theGameIsOver() == 1)
-		cout << " Cooonchale vale pero este muchacho sabe mas que pescao frito\n";
-	else 
-		cout << " Verga hermano, tenias que metele mas ganas\n";
+	player.setName(userName);
 
-	} while (wantToContinue();)
+	do 
+	{
+
+		tablero.start();
+		while (!tablero.theGameIsOver()) // main loop
+		{
+			system("clear");
+			cout << " Vamos " << player.getName() << " tu puedes\n\n";
+			tablero.showGame();
+			tablero.displayWarnings();
+
+			cout << " Intente una letra: \033[3m"; // setteamos la fuente italica
+			cin >> letter;
+			cout << "\033[0m"; // la quitamos xD
+
+			tablero.attempLetter(letter);
+		}
+
+		system("clear");
+
+
+
+		if (tablero.theGameIsOver() == 1)
+		{
+			player.addVictory();
+			cout << " Lo sabia " << player.getName() << " SABIA QUE GANARIAS\n\n";
+		}
+		else 
+		{
+			player.resetStreak();
+			cout << " COMO QUE PERDISTE!? PATAN!\n\n";
+		}
+
+
+		tablero.showGame();
+
+		cout << "\n Partidas jugadas: " << player.getGamesPlayed() << "\n";
+		cout << "\n Victorias: " << player.getWins();
+		cout << "\n Racha actual: " << player.getStreak();
+		cout << "\n Win rate: " << player.getWins() / (float)player.getGamesPlayed() * 100 << "%\n";
+
+	} while (player.wantToContinue());
+
+	cout << " Has terminado el juego con " << player.getWins() << " victorias\n";
 	return 0;
 }
 
