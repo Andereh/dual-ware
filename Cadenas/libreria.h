@@ -11,7 +11,7 @@ bool hasAChar(char* strStart, char* strEnd);
 bool wantToRepeat();
 
 void printUser();
-void minToMaxV(char[100]); // hacia falta colocar el argumento
+void minToMaxV(char[100]); 
 void MaxToMinV(char[100]);
 void minToMax(char[100]);
 void MaxToMin(char[100]);
@@ -33,6 +33,12 @@ void consonantsInString(char x[100]);
 void vocalesAsteriscos(char x[100]);
 void bigger(char x[100],char y[100]);
 void lower(char x[100], char y[100]);
+bool noChar(char x[100]);
+void numberRepeat(char x[100]);
+void numberInOtherString(char x[100], char y[100]);
+void numberDifferent(char x[100]);
+void printInvert(char x[100]);
+void minToMaxString(char x[100]);
 
 // Programas
 
@@ -42,5 +48,6 @@ void program3();
 void program4();
 void program5();
 void program6();
+void program7();
 
 #endif

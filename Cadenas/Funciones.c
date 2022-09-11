@@ -77,8 +77,6 @@ bool session()
         printf("\n\t\t\t\t Clave: ");
         fgets(init2, 100, stdin); 
 
-        printf("\n Validando datos...");
-
         // Comparar los datos ingresados con los datos almacenados
         // Si son diferentes se cancela el inicio de sesion
         if ((strcmp(init1, user) != 0 && strcmp(init2, password) != 0))
@@ -109,12 +107,12 @@ bool session()
 }
 
 
-
+//Mostrar la cadena mayor
 void bigger(char x[100],char y[100])
 {
     if(strcmp(x,y) == 0)
     {
-        printf("\n\t Ambos son iguales alfabeticamente");
+        printf(" Ambos son iguales alfabeticamente");
     }
     else if (strcmp(x,y) > 0)
     {   
@@ -127,12 +125,13 @@ void bigger(char x[100],char y[100])
 
 }
 
+//Mostrar la cadena menor
 void lower(char x[100], char y[100])
 
 {
     if(strcmp(x,y) == 0)
     {
-        printf("\n\t Ambos son iguales alfabeticamente");
+        printf("Ambos son iguales alfabeticamente");
     }
     else if (strcmp(x,y) > 0)
     {   
@@ -194,7 +193,7 @@ void minToMax(char x[100])
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i < strlen(aux) - 1; i++)
+    for (i = 0; i < strlen(aux) - 1 ; i++)
     {
         switch (aux[i])
         {
@@ -205,10 +204,10 @@ void minToMax(char x[100])
         case 'u':
             break;
         default:
-            aux[i] -= 32;
+            if (aux[i] >= 97 && aux[i] <= 122) aux[i] -= 32;
         }
     }
-    printf("%s\n", aux);
+    printf("%s", aux);
 }
 
 // de mayusculas a minisculas solo vocales
@@ -252,7 +251,7 @@ void MaxToMin(char x[100]) // revisada y aprobada
         case 'u':
             break;
         default:
-            aux[i] -= 32;
+            if (aux[i] >= 65 && aux[i] <= 90) aux[i] += 32;
         }
     }
     printf("%s\n", aux);
@@ -263,6 +262,8 @@ void MaxToMin(char x[100]) // revisada y aprobada
 void mostrarNombreMayusculas(char x[100], char y[100], char z[100], char v[100])
 {
 
+
+    char aux[100];
     // x Primer nombre de persona 1
     // y primer nombre de persona 2
     // z segundo nombre persona 1
@@ -270,14 +271,15 @@ void mostrarNombreMayusculas(char x[100], char y[100], char z[100], char v[100])
 
     if (strcmp(z, v) > 0)
     {
-
-        printf("\n\t Nombre: %s \n\n", x);
+        
+        printf("\n\t Nombre: "); minToMaxString(x);
     }
     else if (strcmp(z, v) < 0)
     {
 
-        printf("\n\t Nombre: %s \n\n", y);
+        printf("\n\t Nombre: "); minToMaxString(y);
     }
+
     else
     {
         printf("\n\t Sus segundos nombres son iguales alfabeticamente \n");
@@ -715,13 +717,12 @@ void twoVocalWords(char x[100])
 {
 
     int   a = 0, e = 0, I = 0, o = 0, u = 0;
-    int   suma        = 0;
+    int   suma        = 0, contador = 0 ;
     char  limitador[] = {" "};
     char* token       = strtok(x, limitador);
 
     if (token != NULL)
     {
-        printf("\n\n\t Palabras: ");
         while (token != NULL)
         {
 
@@ -751,6 +752,8 @@ void twoVocalWords(char x[100])
             if (suma == 2)
             {
                 printf(" %s ", token);
+                contador++;
+
             }
             token = strtok(NULL, limitador);
             a     = 0;
@@ -761,6 +764,8 @@ void twoVocalWords(char x[100])
             suma  = 0;
         }
     }
+
+    if (contador == 0) printf("No hay palabras con dos vocales\n");
 }
 
 // Mostrar las consonantes en una cadena
@@ -775,7 +780,8 @@ void consonantsInString(char x[100])
         case 'e':
         case 'i':
         case 'o':
-        case 'u':
+        case 'u': break;
+        default: 
             printf("%c", x[i]);
         }
     }
@@ -793,12 +799,212 @@ void vocalesAsteriscos(char x[100])
         switch (y[i])
         {
             case 'a':
+                y[i] = '*';
+                     break;
             case 'e':
+                y[i] = '*';
+                     break;
             case 'i':
+                y[i] = '*';
+                     break;
             case 'o':
-            case 'u': vocal++;
+                y[i] = '*';
+                     break;
+            case 'u': 
+                y[i] = '*';
+                     break;
         }
 
-        printf("%s ",y);
+        
     }
+    printf("%s ",y);
+}
+
+bool noChar(char x[100]){
+
+    int contador = 0;
+
+    for (i = 0; i < strlen(x);i++){
+        if (x[i] < 48 || x[i] > 57) contador++;
+    }
+
+    if(contador >= 1 ) return true;
+    else return false;
+}
+
+void numberRepeat(char x[100]){
+
+    char y[100];
+    int one = 0, two = 0, three = 0, four = 0;
+    int five = 0, six = 0, seven = 0, eight = 0;
+    int nine = 0, zero = 0, suma = 0;
+    strcpy(y,x);
+
+    for( i = 0; i < strlen(y); i++)
+    {
+
+        switch (y[i])
+        {
+
+            case '1':   one++;  break;
+            case '2':   two++;  break;
+            case '3': three++;  break;
+            case '4':  four++;  break;
+            case '5':  five++;  break;
+            case '6':   six++;  break;
+            case '7': seven++;  break;
+            case '8': eight++;  break;
+            case '9':  nine++;  break;
+            case '0':  zero++;  
+        }
+
+        if (one >= 2 && y[i] == '1') printf("%c",y[i]);
+        else if (  two >= 2 && y[i] == '2') printf("%c",y[i]);
+        else if (three >= 2 && y[i] == '3') printf("%c",y[i]);
+        else if ( four >= 2 && y[i] == '4') printf("%c",y[i]);
+        else if ( five >= 2 && y[i] == '5') printf("%c",y[i]);
+        else if (  six >= 2 && y[i] == '6') printf("%c",y[i]);
+        else if (seven >= 2 && y[i] == '7') printf("%c",y[i]);
+        else if (eight >= 2 && y[i] == '8') printf("%c",y[i]);
+        else if ( nine >= 2 && y[i] == '9') printf("%c",y[i]);
+        else if ( zero >= 2 && y[i] == '0') printf("%c",y[i]);
+        else suma++; //si iguala la cantidad de numeros es porque no hubo repetidos
+    }
+
+    if (suma == strlen(y)) printf("No hay numeros repetidos");
+
+}
+
+void numberInOtherString(char x[100], char y[100]){
+
+    char aux;
+    int one = 0, two = 0, three = 0, four = 0;
+    int five = 0, six = 0, seven = 0, eight = 0;
+    int nine = 0, zero = 0, suma = 0;
+    int j;
+
+    for (i = 0; i < strlen(x); i++){
+        aux = x[i];
+
+        for (j = 0; j < strlen(y); j++){
+
+            if (aux == y[j]) {
+
+                if (one < 1 && y[i] == '1'){
+
+                    printf("%c ",aux);one++;
+
+                } else if (  two < 1 && y[j] == '2'){
+
+                    printf("%c ",aux); two++;
+
+                } else if (three < 1 && y[j] == '3'){
+
+                    printf("%c ",aux); three++;
+
+                } else if ( four < 1 && y[j] == '4'){
+
+                    printf("%c ",aux); four++;
+
+                } else if ( five < 1 && y[j] == '5'){
+
+                    printf("%c ",aux); five++;
+
+                } else if (  six < 1 && y[j] == '6'){
+
+                    printf("%c ",aux); six++;
+
+                } else if (seven < 1 && y[j] == '7'){
+
+                    printf("%c ",aux); seven++;
+
+                } else if (eight < 1 && y[j] == '8'){
+
+                    printf("%c ",aux); eight++;
+
+                } else if ( nine < 1 && y[j] == '9'){
+
+                    printf("%c ",aux); nine++;
+
+                } else if ( zero < 1 && y[j] == '0'){
+
+                    printf("%c ",aux); zero++;
+
+                }
+            }
+        }
+    }
+}
+
+void numberDifferent(char x[100]){
+
+    char y[100];
+    int one = 0, two = 0, three = 0, four = 0;
+    int five = 0, six = 0, seven = 0, eight = 0;
+    int nine = 0, zero = 0, suma = 0;
+    strcpy(y,x);
+
+    for( i = 0; i < strlen(y); i++)
+    {
+
+        switch (y[i])
+        {
+
+            case '1':   one++;  break;
+            case '2':   two++;  break;
+            case '3': three++;  break;
+            case '4':  four++;  break;
+            case '5':  five++;  break;
+            case '6':   six++;  break;
+            case '7': seven++;  break;
+            case '8': eight++;  break;
+            case '9':  nine++;  break;
+            case '0':  zero++;  
+        }
+
+        
+    }
+
+        if (  one == 1) printf("1 ");
+        if (  two == 1) printf("2 ");
+        if (three == 1) printf("3 ");
+        if ( four == 1) printf("4 ");
+        if ( five == 1) printf("5 ");
+        if (  six == 1) printf("6 ");
+        if (seven == 1) printf("7 ");
+        if (eight == 1) printf("8 ");
+        if ( nine == 1) printf("9 ");
+        if ( zero == 1) printf("0 ");
+        
+        if ( 
+
+            (one != 1 && two != 1 && three != 1) && 
+            (four != 1 && five != 1 &&  six != 1) && 
+            (seven != 1 && eight != 1 && nine != 1) && 
+            (zero != 1) 
+
+            )
+            {
+                printf("No hay numeros diferentes");
+            } 
+}
+
+void printInvert(char x[100]){
+
+    for (i = strlen(x) - 1; i >= 0; i--){
+        printf("%c",x[i]);
+    }
+
+}
+
+void minToMaxString(char x[100]) {
+
+    char aux[100];
+
+    strcpy(aux,x);
+
+    for (i = 0; i < strlen(aux); i++)
+        if (aux[i] >= 97 && aux[i] <= 122) aux[i] -= 32;
+
+    printf("%s",aux );
 }

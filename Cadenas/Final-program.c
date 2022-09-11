@@ -23,7 +23,8 @@ int main(int argc, char const* argv[])
     {
         system("clear");
         printf("\n\n Se ha equivocado mas de 3 veces. Se ha deshabilitado el "
-               "inicio de sesion");
+               "inicio de sesion\n\n");
+        system("pause");
     }
     else
     {
@@ -75,7 +76,7 @@ int main(int argc, char const* argv[])
                 break;
 
             case 7:
-                program1();
+                program7();
             }
 
             // Si ingresa cualquier numero menor que 8 (excepto 1-2)
@@ -110,10 +111,9 @@ void program1()
         printf("\n\t\tIngrese otra frase: ");
         fgets(word2, 400, stdin);
 
-        // Concatenar las cadenas (sera usado mas adelante)
-        strcpy(aux, word2);
-        strcat(aux, " ");
-        strcat(aux, word);
+                strtok(word,"\n");
+                strtok(word2,"\n");
+        
         do
         {
             system("clear");
@@ -143,6 +143,7 @@ void program1()
                 system("clear");
                 printUser();
                 printProgram();
+
             } while (opt < 1 || opt > 5);
 
             switch (opt)
@@ -153,7 +154,7 @@ void program1()
                 system("clear");
                 printUser();
                 printProgram();
-                printf("\n\t Cadena mayor y menor alfabeticament\n");
+                printf("\n\t Cadena mayor y menor alfabeticamente\n");
                 printf("\n\t Cadena mayor: "); bigger(word,word2);
                 printf("\n\t Cadena menor: "); lower(word,word2);
                 break;
@@ -185,6 +186,11 @@ void program1()
                 system("clear");
                 printUser();
                 printProgram();
+
+                strcpy(aux, word2);
+                strcat(aux, " ");
+                strcat(aux, word);
+
                 printf("\n\t Cadenas concatenadas: %s", aux);
                 break;
 
@@ -195,7 +201,13 @@ void program1()
                 system("clear");
                 printUser();
                 printProgram();
-                printf("\n\t Cadena concatenada invertida: %s", aux);
+                strtok(word,"\n");
+                strtok(word2,"\n");
+                strcpy(aux, word2);
+                strcat(aux, " ");
+                strcat(aux, word);
+                printf("\n\t Cadena concatenada invertida: ");
+                printInvert(aux);
             }
 
         } while (wantToRepeat());
@@ -211,6 +223,7 @@ void program2()
     // Se usaran para copiar los nombres completos
     // Puesto que luego seran separados
     char copyPerson1[100], copyPerson2[100];
+
     char firstName1[400], firstLastName1[400], secondName1[400],
         secondLastName1[400];
     char firstName2[400], firstLastName2[400], secondName2[400],
@@ -221,11 +234,16 @@ void program2()
         system("clear");
         printUser();
         printProgram();
-        printf("\n Ingrese los nombres y apellidos de dos personas\n");
+        printf("\n Ingrese los nombres y apellidos de dos personas\n\n");
+        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                "      De no ser asi no funcionara''\n\n");
         printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
         printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
+
+                strtok(word,"\n");
+                strtok(word2,"\n");
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
@@ -360,9 +378,7 @@ void program2()
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s", copyPerson2);
                 printf("\n\n\t Concatenado: ");
-
-                for (int i = strlen(aux) - 1; i >= 0; i--)
-                    printf("%c", aux[i]);
+                printInvert(aux);
             }
 
         } while (wantToRepeat());
@@ -389,10 +405,15 @@ void program3()
         printUser();
         printProgram();
         printf("\n Ingrese los nombres y apellidos de dos personas\n");
+        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                   "      De no ser asi no funcionara''\n\n");
         printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
         printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
+
+                strtok(word,"\n");
+                strtok(word2,"\n");
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
@@ -447,9 +468,8 @@ void program3()
                 system("clear");
                 printUser();
                 printProgram();
-                printf("\n\t  Mayor alfabeticamente\n\n");
-                printf("\n\t Primer nombre de ambas personas: "); bigger(firstName1, firstName2);
-                printf("\n\n\t Segundo nombre de ambas personas: "); bigger(secondName1, secondName2);
+                printf("\n\t Primer nombre mayor: "); bigger(firstName1, firstName2);
+                printf("\n\n\t Segundo nombre menor: "); lower(secondName1, secondName2);
                 break;
 
             case 2:
@@ -524,7 +544,8 @@ void program3()
 
                 printf("\n\n\t Primera persona: %s", copyPerson1);
                 printf("\n\n\t Segunda persona: %s", copyPerson2);
-                printf("\n\n\t Concatenado: %s", aux);
+                printf("\n\n\t Concatenado: ");
+                printInvert(aux);
             }
 
         } while (wantToRepeat());
@@ -551,10 +572,15 @@ void program4()
         printUser();
         printProgram();
         printf("\n Ingrese los nombres y apellidos de dos personas\n");
+        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                   "      De no ser asi no funcionara''\n\n");
         printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
         fgets(word, 400, stdin);
         printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
         fgets(word2, 400, stdin);
+
+                strtok(word,"\n");
+                strtok(word2,"\n");
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
@@ -699,6 +725,9 @@ void program5()
         printf("\n\t\tIngrese otra frase: ");
         fgets(word2, 400, stdin);
 
+                strtok(word,"\n");
+                strtok(word2,"\n");
+
         do
         {
             system("clear");
@@ -716,7 +745,7 @@ void program5()
                 printf("\n\t 3: Numero de palabras con vocales repetidas en la "
                        "primera cadena");
                 printf("\n\t 4: Vocales contenidas en la primera cadena");
-                printf("\n\t 5: Vocales en la primera Cadena concatenada "
+                printf("\n\t 5: Vocales en la primera cadena concatenada "
                        "invertida");
                 printf("\n\n\t Ingresar: ");
                 opt = validInt();
@@ -789,7 +818,7 @@ void program5()
                 printUser();
                 printProgram();
                 printf("\n\t Vocales en la primera Cadena concatenada "
-                       "invertida: \n\tvocales: ");
+                       "invertida: \n\t vocales: ");
                 vocalRever(word);printf("\n\n");
             }
 
@@ -814,6 +843,13 @@ void program6()
         fgets(word, 400, stdin);
         printf("\n\t\tIngrese otra frase: ");
         fgets(word2, 400, stdin);
+
+                strtok(word,"\n");
+                strtok(word2,"\n");
+
+        //quitar salto de linea
+        strtok(word,"\n");
+        strtok(word2,"\n");
 
         do
         {
@@ -852,15 +888,15 @@ void program6()
             {
             case 1:
 
-                printf("\n\t Palabras que empiezan con una vocal\n\n");
+                printf("\n\t Numero de palabras que empiezan con una vocal\n\n");
                 suma = WordStartsWithVowel(word) + WordStartsWithVowel(word2);
                 printf("\n\t Numero: %d", suma);
                 break;
 
             case 2:
 
-                printf("\n\t Palabras con 2 vocales en la segunda cadena: ");
-                twoVocalWords(word2);
+                printf("\n\t Palabras con 2 vocales en la segunda cadena\n");
+                printf("\n\t Palabras: "); twoVocalWords(word2); printf("\n\n");
                 break;
 
             case 3:
@@ -875,7 +911,7 @@ void program6()
                 printf("\n Cargando..."); system("clear");
                 printUser();
                 printProgram();
-                printf("\n\t Consonantes contenidas en la primera cadena ");
+                printf("\n\t Consonantes contenidas en la primera cadena \n");
                 printf("\n\t Consonantes: ");
                 consonantsInString(word);
                 break;
@@ -886,11 +922,119 @@ void program6()
                 printf("\n Cargando..."); system("clear");
                 printUser();
                 printProgram();
-                printf(
-                    "\n\t Vocales convertidas en asteriscos: \n\n\tVocales: ");
+                printf("\n\t Vocales convertidas en asteriscos: ");
                 vocalesAsteriscos(word);
                 printf(" ");
                 vocalesAsteriscos(word2);
+            }
+
+        } while (wantToRepeat());
+
+    } while (opt == 3);
+}
+
+void program7()
+{
+
+    char aux[100];
+    int  suma = 0;
+    bool letter = false;
+
+    do
+    {
+        
+        do{
+
+            system("clear");
+            printUser();
+            printProgram();
+            letter = false;
+            printf("\n\n\t\tIngrese una cantidad numerica entera: ");
+            fgets(word, 400, stdin); strtok(word,"\n");
+            printf("\n\t\tIngrese otra catidad numerica entera: ");
+            fgets(word2, 400, stdin); strtok(word2,"\n");
+
+            if(noChar(word) || noChar(word2)){
+                printf("\n\n\t Solo puedes ingresar numeros enteros\n\n");
+                letter = true;
+                system("pause");
+            } 
+        }while(letter);
+        
+
+        do
+        {
+            system("clear");
+            printUser();
+            printProgram();
+
+            do
+            {
+
+                printf("\n\n\t Ha ingresado 2 cadenas de caracteres decida que "
+                       "hacer\n");
+                printf("\n\t 1: Cadena mayor y menor");
+                printf("\n\t 2: Numeros que se repiten en la primera cadena");
+                printf("\n\t 3: Primera cadena concatenada con la segunda");
+                printf("\n\t 4: Numeros distintos en la segunda cadena");
+                printf("\n\t 5: Numeros en la primera cadena contenidos en la segunda ");
+                printf("\n\n\t Ingresar: ");
+                opt = validInt();
+
+                if (opt < 1 || opt > 5)
+                {
+                    printf(
+                        "\n Solo hay opciones entre 1-5 intenta de nuevo\n\n");
+                    system("pause");
+                }
+
+            } while (opt < 1 || opt > 5);
+            printf("\n\nCargando...");
+            system("clear");
+            printUser();
+            printProgram();
+
+            switch (opt)
+            {
+            case 1:
+
+                printf("\n\t Cadena mayor y menor\n\n");
+                printf("\n\t Cadena mayor: "); bigger(word,word2);
+                printf("\n\t Cadena menor: "); lower(word,word2);
+                break;
+
+            case 2:
+                printf("\n\t Cadena: %s\n",word);
+                printf("\n\t Numeros que se repiten en la primera cadena: ");
+                numberRepeat(word); printf("\n\n");
+                break;
+
+            case 3:
+
+                printf("\n\t Primera cadena concatenada con la segunda: ");
+                strcpy(aux,word);strcat(aux," ");strcat(aux,word2);
+                printf("%s\n\n",aux);
+                break;
+                // Mostrar las cadenas concatenadas
+            case 4:
+
+                printf("\n Cargando..."); system("clear");
+                printUser();
+                printProgram();
+                printf("\n\t Numeros distintos en la segunda cadena: ");
+                numberDifferent(word2);
+                break;
+
+                // Mostrar las cadenas concatenadas invertidas
+            case 5:
+            
+                printf("\n Cargando..."); system("clear");
+                printUser();
+                printProgram();
+                printf("\n\t Primera cadena: %s\n",word);
+                printf("\n\t segunda cadena: %s\n",word2);
+                printf("\n\t Numeros en la primera cadena contenidos en la segunda: ");
+                numberInOtherString(word,word2);printf("\n\n");
             }
 
         } while (wantToRepeat());
