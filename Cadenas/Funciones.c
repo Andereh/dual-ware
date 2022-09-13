@@ -6,7 +6,7 @@
 
 int  contador = 0, i,opt;
 char init1[100], init2[100];
-char user[] = {"Burga\n"}, password[] = {"sexo\n"};
+char user[] = {"Admin\n"}, password[] = {"1234\n"};
 char firstName1[400], firstLastName1[400], secondName1[400],
     secondLastName1[400];
 char firstName2[400], firstLastName2[400], secondName2[400],
