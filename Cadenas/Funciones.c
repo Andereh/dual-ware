@@ -193,7 +193,7 @@ void minToMax(char x[100])
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i < strlen(aux) - 1 ; i++)
+    for (i = 0; i < strlen(aux)  ; i++)
     {
         switch (aux[i])
         {
@@ -217,7 +217,7 @@ void MaxToMinV(char x[100])
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i < strlen(aux) - 1; i++)
+    for (i = 0; i < strlen(aux) ; i++)
     {
         switch (aux[i])
         {
@@ -239,7 +239,7 @@ void MaxToMin(char x[100]) // revisada y aprobada
     char aux[100];
     strcpy(aux, x);
 
-    for (i = 0; i < strlen(aux) - 1; i++)
+    for (i = 0; i < strlen(aux) ; i++)
     {
 
         switch (aux[i])
@@ -298,25 +298,17 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     // z segundo apellido persona 1
     // v segundo apellido de persona 2
 
-    char letter[2], helper1[100], helper2[100], l[1];
+    char letter, helper1[100], helper2[100], letter2;
 
     if (strcmp(x, y) > 0)
     {
+        strcpy(helper1,x);
+        strcpy(helper2,z);
 
-        // almacenar la primera letra del primer apellido
-        letter[0] = x[0];
-        l[0]      = x[0];
-        // almacenar la primera letra del segundo apellido
-        letter[1] = z[0];
-        strcpy(helper1, strtok(x, l));
-        // strupr
-        // separar el apellido de la primera letra
-        // ejemplo Jose ==> ose
-        strcpy(helper1, strtok(x, l));
-        l[0] = z[0];
-        strcpy(helper2, strtok(z, l));
-        printf("\n\t Apellidos: %c%s %c%s\n\n", letter[0], helper1, letter[1],
-               helper2);
+        if (helper1[0] >= 97 && helper1[0] <= 122) helper1[0] -= 32;
+        if (helper2[0] >= 97 && helper2[0] <= 122) helper2[0] -= 32; 
+        
+        printf("\n\t Apellidos: %s %s\n\n",helper1,helper2);
     }
     else if (strcmp(x, y) == 0)
     {
@@ -326,18 +318,13 @@ void firstLetterUP(char x[100], char y[100], char z[100], char v[100])
     }
     else
     {
-        // almacenar la primera letra del primer apellido
-        letter[0] = y[0];
-        l[0]      = y[0];
-        // almacenar la primera letra del segundo apellido
-        letter[1] = v[0];
-        // separar el apellido de la primera letra
-        // ejemplo Jose ==> ose
-        strcpy(helper1, strtok(y, l));
-        l[0] = v[0];
-        strcpy(helper2, strtok(v, l));
-        printf("\n\t Apellidos: %c%s %c%s\n\n", letter[0], helper1, letter[1],
-               helper2);
+        strcpy(helper1,y);
+        strcpy(helper2,v);
+
+        if (helper1[0] >= 97 && helper1[0] <= 122) helper1[0] -= 32;
+        if (helper2[0] >= 97 && helper2[0] <= 122) helper2[0] -= 32; 
+        
+        printf("\n\t Apellidos: %s %s\n\n",helper1,helper2);
     }
 }
 

@@ -11,6 +11,7 @@
 char word[400], word2[400];
 int opt, program;
 
+
 // funciones de uso recurrente
 void printProgram() { printf("\n Programa %d\n\n\n", program); }
 
@@ -219,7 +220,8 @@ void program2()
 {
 
     char aux[100];
-    int   program;
+    char helpWord[100],helpWord2[100];
+    int   program, again = 0;
     // Se usaran para copiar los nombres completos
     // Puesto que luego seran separados
     char copyPerson1[100], copyPerson2[100];
@@ -231,19 +233,42 @@ void program2()
 
     do
     {
-        system("clear");
-        printUser();
-        printProgram();
-        printf("\n Ingrese los nombres y apellidos de dos personas\n\n");
-        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
-                "      De no ser asi no funcionara''\n\n");
-        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
-        fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
-        fgets(word2, 400, stdin);
+        
+        do{
 
+            system("clear");
+            printUser();
+            printProgram();
+            printf("\n Ingrese los nombres y apellidos de dos personas\n\n");
+            printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                    "          De no ser asi no funcionara''\n\n");
+            again = 0;
+
+            printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
+            fgets(word, 400, stdin);
+            printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
+            fgets(word2, 400, stdin);
+
+                //Quitar salto de linea
                 strtok(word,"\n");
                 strtok(word2,"\n");
+
+                //Copiar palabras para luego comparar
+                strcpy(helpWord,word);
+                strcpy(helpWord2,word2);
+
+            //Comparar que tenga 2 nombres y 2 apellidos (4 Palabras)    
+            if(numberOfWords(helpWord) != 4 || numberOfWords(helpWord2) != 4)
+            {
+                printf("\n Solo funcionara si la persona tiene dos nombres y dos apellidos\n");
+                printf("\n Intentalo de nuevo\n\n");
+                again = 1;
+                system("pause");
+            }
+
+        }while(again == 1);
+
+                
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
@@ -390,7 +415,8 @@ void program3()
 {
 
     char aux[100];
-    int  program;
+    int  program,again;
+    char helpWord[100],helpWord2[100];
     // Se usaran para copiar los nombres completos
     // Puesto que luego seran separados
     char copyPerson1[100], copyPerson2[100];
@@ -401,19 +427,39 @@ void program3()
 
     do
     {
-        system("clear");
-        printUser();
-        printProgram();
-        printf("\n Ingrese los nombres y apellidos de dos personas\n");
-        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
-                   "      De no ser asi no funcionara''\n\n");
-        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
-        fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
-        fgets(word2, 400, stdin);
+        do{
 
+            system("clear");
+            printUser();
+            printProgram();
+            printf("\n Ingrese los nombres y apellidos de dos personas\n\n");
+            printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                    "          De no ser asi no funcionara''\n\n");
+            again = 0;
+
+            printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
+            fgets(word, 400, stdin);
+            printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
+            fgets(word2, 400, stdin);
+
+                //Quitar salto de linea
                 strtok(word,"\n");
                 strtok(word2,"\n");
+
+                //Copiar palabras para luego comparar
+                strcpy(helpWord,word);
+                strcpy(helpWord2,word2);
+
+            //Comparar que tenga 2 nombres y 2 apellidos (4 Palabras)    
+            if(numberOfWords(helpWord) != 4 || numberOfWords(helpWord2) != 4)
+            {
+                printf("\n Solo funcionara si la persona tiene dos nombres y dos apellidos\n");
+                printf("\n Intentalo de nuevo\n\n");
+                again = 1;
+                system("pause");
+            }
+
+        }while(again == 1);
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
@@ -557,7 +603,8 @@ void program4()
 {
 
     char aux[100];
-    int   program;
+    int   program,again;
+    char helpWord[100],helpWord2[100];
     // Se usaran para copiar los nombres completos
     // Puesto que luego seran separados
     char copyPerson1[100], copyPerson2[100];
@@ -568,19 +615,39 @@ void program4()
 
     do
     {
-        system("clear");
-        printUser();
-        printProgram();
-        printf("\n Ingrese los nombres y apellidos de dos personas\n");
-        printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
-                   "      De no ser asi no funcionara''\n\n");
-        printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
-        fgets(word, 400, stdin);
-        printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
-        fgets(word2, 400, stdin);
+        do{
 
+            system("clear");
+            printUser();
+            printProgram();
+            printf("\n Ingrese los nombres y apellidos de dos personas\n\n");
+            printf("\n NOTA ''La persona debe tener dos nombres y dos apellidos\n "
+                    "          De no ser asi no funcionara''\n\n");
+            again = 0;
+
+            printf("\n\t\t1: Ingrese sus nombres y apellidos: ");
+            fgets(word, 400, stdin);
+            printf("\n\t\t2: Ingrese sus nombres y  apellidos: ");
+            fgets(word2, 400, stdin);
+
+                //Quitar salto de linea
                 strtok(word,"\n");
                 strtok(word2,"\n");
+
+                //Copiar palabras para luego comparar
+                strcpy(helpWord,word);
+                strcpy(helpWord2,word2);
+
+            //Comparar que tenga 2 nombres y 2 apellidos (4 Palabras)    
+            if(numberOfWords(helpWord) != 4 || numberOfWords(helpWord2) != 4)
+            {
+                printf("\n Solo funcionara si la persona tiene dos nombres y dos apellidos\n");
+                printf("\n Intentalo de nuevo\n\n");
+                again = 1;
+                system("pause");
+            }
+
+        }while(again == 1);
 
         // Copiar los nombres completos ya que luego seran separados
         strcpy(copyPerson1, word);
