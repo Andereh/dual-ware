@@ -388,12 +388,12 @@ void concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100])
 
     char aux[100];
 
-    if (strcmp(x, y) < 0)
+    if (strcmp(x, z) < 0)
     {
 
         strcpy(aux, x);
         strcat(aux, " ");
-        strcat(aux, z);
+        strcat(aux, y);
         strcat(aux, " ");
         strcat(aux, v);
 
@@ -401,9 +401,9 @@ void concatenarDosApellidos(char x[100], char y[100], char z[100], char v[100])
     }
     else
     {
-        strcpy(aux, y);
+        strcpy(aux, z);
         strcat(aux, " ");
-        strcat(aux, z);
+        strcat(aux, y);
         strcat(aux, " ");
         strcat(aux, v);
 
