@@ -24,6 +24,7 @@ bool hasAChar(char *strStart, char *strEnd);
 void win();
 void reset();
 bool allLose();
+void minuscula(char x[100]);
 
 int main(){
 
@@ -131,7 +132,7 @@ bool continuar(){
 	do{
 		printf("\n De nuevo? |si|no|");
 		printf("\n Ingresar: ");fgets(init,100,stdin); 
-		strcpy(init,strtok(init,"\n"));strlwr(init);	
+		strcpy(init,strtok(init,"\n"));minuscula(init);	
 		if(strcmp(init,si) != 0 && strcmp(init,no) != 0) {
 			printf("\n Solo hay dos opciones (si || no). Intenta de nuevo\n\n");
 			system("pause");
@@ -231,4 +232,12 @@ int validInt() // Te retorna un int.
 	}
 
 	return (int)strtol(str, NULL, 10);
+}
+
+
+void minuscula(char x[100]){
+
+
+	for (i = 0; i<strlen(x);i++)
+		if (x[i] >= 65 && x[i] <= 90) x[i] += 32;
 }
