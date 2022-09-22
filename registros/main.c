@@ -19,7 +19,8 @@ struct Alumno
 
 void space_and_print(char str[], int len)
 {
-	str[strlen(str) - 1] = '\0';
+	str[strlen(str) - 1] = '\0'; // cambiamos el ultimo caracter por el nulo
+								 // esto no afecta la variable original
 	printf("%s", str);
 	int spaces = len - strlen(str);
 
@@ -42,23 +43,29 @@ void print_alumno(struct Alumno al)
 
 int main(int argc, char *argv[])
 {
-	int n_alums = 10;
-	char line[120];
-	struct Alumno alumnos[n_alums];
+	int n_alums = 10; // numero de alumnos maximos
+	char line[120]; // aqui se guardan las lineas que se van leyendo
 
-	FILE* data_base = fopen("./pseudo_data_base.txt", "r");
+	struct Alumno alumnos[n_alums]; // arreglo de alumnos
+
+	FILE* data_base = fopen("./pseudo_data_base.txt", "r"); 
+	// abrimos el falsa base de datos
 
 	for (int i = 0; i < n_alums; i++) {
 		do {
-			strcpy(alumnos[i].name, 
-					fgets(line, 120, data_base));
-
+			fgets(line, 120, data_base); 
 		} while (strcmp(line, "\n") == 0);
-			if (line[0] == '*')
+
+			if (line[0] == '*') // si encuentra esto significa que estamos en el final del archivo
 				return 0;
 
+		strcpy(alumnos[i].name, 
+				line); // se supone que si salio del bucle es porque la linea no estaba vacia
+
+
+		// se copian porque la asignacion directa no es valida en C
 		strcpy(alumnos[i].ci, 
-				fgets(line, 120, data_base));
+				fgets(line, 120, data_base)); // ahora si escuentra un espacio nos jodemos
 		strcpy(alumnos[i].year_of_birth, 
 				fgets(line, 120, data_base));
 		alumnos[i].id = i + 1;
@@ -70,7 +77,6 @@ int main(int argc, char *argv[])
 		//printf("\tNombre: %s", alumnos[i].name);
 		//printf("\tCedula: %s", alumnos[i].ci);
 		//printf("\tAgnio:  %s\n\n", alumnos[i].year_of_birth);
-
 
 
 	}
