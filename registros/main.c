@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 
 
 struct Alumno 
@@ -31,7 +33,6 @@ void space_and_print(char str[], int len)
 		printf(" ");
 	}
 
-
 }
 
 void print_alumno(struct Alumno al)
@@ -44,58 +45,62 @@ void print_alumno(struct Alumno al)
 
 }
 
-void search_by_ci()
+
+void search(char mode)
 {
-	char cedula[10];
-	printf("\n Ingrese la cedula a buscar: ");
-	fgets(cedula, 10, stdin);
-
-
-	for (int i = 0; i < actual_alumns_number; ++i) 
-	{
-		if (strcmp(alumnos[i].ci, cedula) == 0)
-		{
-			print_alumno(alumnos[i]);
-			break;
-		}
-	}
-	printf("\n\nNo encontrado\n");
-}
-
-
-void search_by_name()
-{
-	char search[64];
-	char opcion[10];
+	char user_request[64];
+	char to_search[64];
 	char name_substr[64];
-	do {
+	char opcion[10];
+	char phase[10] = "";
 
-		printf("\n Ingrese el nombre a buscar: ");
-		fgets(search, 64, stdin);
-		search[strcspn(search, "\n")] = '\0';
+	bool found_at_leat_one_al;
+
+	if (mode == 'n')
+		strcpy(phase, "el nombre");
+	else if (mode == 'c')
+		strcpy(phase, "la cedula");
+
+
+	do {
+		found_at_leat_one_al = false;
+
+		printf("\n Ingrese %s a buscar: ", phase);
+		fgets(user_request, 64, stdin);
+		user_request[strcspn(user_request, "\n")] = '\0';
 		// strcspn regresa el indice del caracter que se pasa por parametro
 
 
+		system("clear");
+		printf("\n Busqueda: '%s'\n", user_request);
 
 		for (int i = 0; i < actual_alumns_number; ++i) 
 		{
+			if (mode == 'n')
+				strcpy(to_search, alumnos[i].name);
+			else if (mode == 'c')
+				strcpy(to_search, alumnos[i].ci);
+
 			// extraemos cuantos caracteres sea la longitud de la busqueda
 			// y los asignamos a 'name_substr'
-			strncpy(name_substr, alumnos[i].name, strlen(search));
+			strncpy(name_substr, to_search, strlen(user_request));
 
 			// strcasecmp no toma en cuenta las mayusculas
-			if (strcasecmp(name_substr, search) == 0)
+			if (strcasecmp(name_substr, user_request) == 0)
+			{
 				print_alumno(alumnos[i]);
+				found_at_leat_one_al = true;
+			}
 		}
 
-		printf("\nBusqueda: '%s'\n", search);
-		printf("Alunmo nose '%s'\n", alumnos[1].name);
 
-		printf("Seguir buscando? (Si == s): ");
+		if (!found_at_leat_one_al) 
+			printf(" No se encontro nada con esos valores\n");
+
+		printf("\n Seguir buscando? (Si == s): ");
 		fgets(opcion, 10, stdin);
 	} while (opcion[0] == 's');
 
-	printf("\n\nNo encontrado\n");
 }
 
 
@@ -161,10 +166,8 @@ int main(int argc, char *argv[])
 
 		switch (opcion[0]) {
 			case 'c':
-				search_by_ci();
-				break;
 			case 'n':
-				search_by_name();
+				search(opcion[0]);
 		}
 
 	} while (opcion[0] != 's');
