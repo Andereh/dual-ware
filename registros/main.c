@@ -9,6 +9,7 @@ struct Alumno
 	char ci[10];
 	char year_of_birth[4]; // agno de nacimiento
 	int id;
+	char sex[2];
 	struct Trimester {
 		float notes[4];
 
@@ -21,12 +22,12 @@ struct Alumno alumnos[10]; // arreglo de alumnos
 
 void space_and_print(char str[], int len)
 {
-	str[strlen(str) - 1] = '\0'; // cambiamos el ultimo caracter por el nulo
+	// str[strlen(str) - 1] = '\0'; // cambiamos el ultimo caracter por el nulo
 								 // esto no afecta la variable original
 	printf("%s", str);
 	int spaces = len - strlen(str);
 
-	while (spaces--) {
+	while (spaces-- > 0) {
 		printf(" ");
 	}
 
@@ -39,6 +40,7 @@ void print_alumno(struct Alumno al)
 	space_and_print(al.name, 20); printf("| ");
 	space_and_print(al.ci, 9); printf("| ");
 	space_and_print(al.year_of_birth, 5);
+	space_and_print(al.sex, 3);
 
 }
 
@@ -63,25 +65,30 @@ void search_by_ci()
 
 void search_by_name()
 {
-	char name[64];
+	char search[64];
 	char opcion[10];
+	char name_substr[64];
 	do {
 
 		printf("\n Ingrese el nombre a buscar: ");
-		fgets(name, 64, stdin);
+		fgets(search, 64, stdin);
+		search[strcspn(search, "\n")] = '\0';
+		// strcspn regresa el indice del caracter que se pasa por parametro
 
-		name[strlen(name) - 1] = '\0';
+
 
 		for (int i = 0; i < actual_alumns_number; ++i) 
 		{
-			if (strcmp(alumnos[i].name, name) == 0)
-			{
+			// extraemos cuantos caracteres sea la longitud de la busqueda
+			// y los asignamos a 'name_substr'
+			strncpy(name_substr, alumnos[i].name, strlen(search));
+
+			// strcasecmp no toma en cuenta las mayusculas
+			if (strcasecmp(name_substr, search) == 0)
 				print_alumno(alumnos[i]);
-				break;
-			}
 		}
 
-		printf("Busqueda: '%s'\n", name);
+		printf("\nBusqueda: '%s'\n", search);
 		printf("Alunmo nose '%s'\n", alumnos[1].name);
 
 		printf("Seguir buscando? (Si == s): ");
@@ -118,11 +125,16 @@ int main(int argc, char *argv[])
 				fgets(line, 128, data_base)); // ahora si escuentra un espacio nos jodemos
 		strcpy(alumnos[i].year_of_birth, 
 				fgets(line, 128, data_base));
+		strcpy(alumnos[i].sex, 
+				fgets(line, 128, data_base));
 		alumnos[i].id = i + 1;
 
+
+		// donde encuentre un salto de linea lo elimina
 		alumnos[i].name[strcspn(alumnos[i].name, "\n")] = '\0';
 		alumnos[i].ci[strcspn(alumnos[i].ci, "\n")] = '\0';
 		alumnos[i].year_of_birth[strcspn(alumnos[i].year_of_birth, "\n")] = '\0';
+		alumnos[i].sex[strcspn(alumnos[i].sex, "\n")] = '\0';
 
 		actual_alumns_number++;
 
