@@ -48,13 +48,16 @@ void print_alumno(struct Alumno al)
 //Es para mostrar las notas
 void infoExtend()
 {	
-	char opcion[10];
+	char opcion[10],guardarN[10];// guardarN sirve para preguntarle al usuario si quiere
+								 // Si quiere guardas las notas del alumno elegido
 	int ID;
+
 	printf("\n\n Desea ver mas informacion sobre uno de los alumnos? (Si == s): ");
 	fgets(opcion, 10, stdin);
 
 	if (opcion[0] == 's')
 	{
+		
 		printf("\n Elija el ID correspondiente al alumno.\n"
 			" ( El ID es el numero a la izquierda del alumno )\n\n");
 		
@@ -68,7 +71,10 @@ void infoExtend()
 
 		}while(ID < idExtend[0] || ID > idExtend[posFinal]);
 
-		system("clear");
+		printf("\n\n Desea guardar las notas de %s (Si == s): ",alumnos[ID-1].name);
+		scanf("%s",&guardarN);
+
+		if (guardarN[0] == 's') guardarNotas(alumnos[ID-1]);
 
 		printf("\n\t Informacion detalla \n\n");
 		print_alumno(alumnos[ID-1]);
@@ -147,25 +153,46 @@ void search(char mode)
 
 }
 
-//lo comento pq es solo un boceto
-/*void guardarNotas(struct Alumno al) 
+//Si, guarda las notas :3
+//Es solo una prueba probablemente no sea igual al final
+void guardarNotas(struct Alumno al) 
 {
 
 	char text[100];
-
+	char line[128];
 
 	printf("\n Notas de: %s", al.name);
+
+	FILE *notes_baseData = fopen("./notas.txt","a+");
+
+	fputs(al.name,notes_baseData);
+	fputs("\n\n",notes_baseData);
 
 	for (int i = 0; i < 3; i++)
 	{
 		printf("\n\n\t Trimeste %d\n\n",i+1);
 		for (int j = 0; j < 4; j++)
 		{
-			printf("\n Evaluacion %d: ",j+1);
-			scanf("%f",&al.trimesters[i].notes[j]);
+			
+			//la notas van de 1-100
+			do{
+				printf("\n Evaluacion %d: ",j+1);
+				scanf("%f",&al.trimesters[i].notes[j]);
+			}while(al.trimesters[i].notes[j] < 1 || al.trimesters[i].notes[j] > 100 );
+
+			//gcvt() convierte un float a cadena, 6 es es tamañno maximo de cadena
+			// text donde sera guardada
+			gcvt(al.trimesters[i].notes[j],6,text);
+			fputs(text,notes_baseData);
+			fputc('\n',notes_baseData);
 		}
+
+		fputc('\n',notes_baseData);
 	}
-}*/
+
+	fclose(notes_baseData);
+	//fputc('*',notes_baseData);
+}
 
 int main(int argc, char *argv[])
 {
