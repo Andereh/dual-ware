@@ -18,7 +18,7 @@ struct Alumno
 	} trimesters[3];
 };
 
-int actual_alumns_number = 0;
+int actual_alumns_number = 0,posFinal,idExtend[10];
 struct Alumno alumnos[10]; // arreglo de alumnos
 
 
@@ -45,6 +45,42 @@ void print_alumno(struct Alumno al)
 
 }
 
+//Es para mostrar las notas
+void infoExtend()
+{	
+	char opcion[10];
+	int ID;
+	printf("\n\n Desea ver mas informacion sobre uno de los alumnos? (Si == s): ");
+	fgets(opcion, 10, stdin);
+
+	if (opcion[0] == 's')
+	{
+		printf("\n Elija el ID correspondiente al alumno.\n"
+			" ( El ID es el numero a la izquierda del alumno )\n\n");
+		
+
+		do{
+			printf(" Ingresar ID: "); scanf("%d",&ID);
+
+			//idExtend almacena los ID de las personas que aparezcan en la busqueda
+			if(ID < idExtend[0] || ID > idExtend[posFinal])
+			printf("\n El ID ingresado no corresponde a ningun alumno en la busqueda\n\n");
+
+		}while(ID < idExtend[0] || ID > idExtend[posFinal]);
+
+		system("clear");
+
+		printf("\n\t Informacion detalla \n\n");
+		print_alumno(alumnos[ID-1]);
+
+		printf("\n\n Notas: \n\n");
+
+		//aun faltaria mostrar las notas
+		printf("\tTrimetre 1\tTrimestre 2\tTrimestre 3\n\n");
+
+		system("pause");
+	}
+}
 
 void search(char mode)
 {
@@ -53,7 +89,7 @@ void search(char mode)
 	char name_substr[64];
 	char opcion[10];
 	char phase[10] = "";
-
+	int pos = 0;
 	bool found_at_leat_one_al;
 
 	if (mode == 'n')
@@ -90,12 +126,20 @@ void search(char mode)
 			{
 				print_alumno(alumnos[i]);
 				found_at_leat_one_al = true;
+
+				// Guardamos los id de los alumnos encontrados 
+			    // para luego usarlos
+				idExtend[pos] = alumnos[i].id;
+				posFinal = pos;//Es para saber cuantos id se guardaron
+				pos++;
 			}
 		}
 
 
 		if (!found_at_leat_one_al) 
 			printf(" No se encontro nada con esos valores\n");
+		else
+			infoExtend();
 
 		printf("\n Seguir buscando? (Si == s): ");
 		fgets(opcion, 10, stdin);
@@ -103,6 +147,25 @@ void search(char mode)
 
 }
 
+//lo comento pq es solo un boceto
+/*void guardarNotas(struct Alumno al) 
+{
+
+	char text[100];
+
+
+	printf("\n Notas de: %s", al.name);
+
+	for (int i = 0; i < 3; i++)
+	{
+		printf("\n\n\t Trimeste %d\n\n",i+1);
+		for (int j = 0; j < 4; j++)
+		{
+			printf("\n Evaluacion %d: ",j+1);
+			scanf("%f",&al.trimesters[i].notes[j]);
+		}
+	}
+}*/
 
 int main(int argc, char *argv[])
 {
