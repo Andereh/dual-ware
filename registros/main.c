@@ -49,10 +49,10 @@ void save_scores(struct Alumno al)
 {
 
 	char score_str[100];
-	char line[128];
+	char line[128],line_showNotes[128];
 	char opcion[64];
 
-	printf("\n Notas de: %s", al.name);
+	printf("\n Promedio de: %s\n", al.name);
 
 	char dir_name[64] = "";
 	char folder[] = "./calificaciones/";
@@ -68,11 +68,11 @@ void save_scores(struct Alumno al)
 
 	if (ddbb_scores == NULL)
 	{
-		printf(" \n%s aun no aun no tiene calificaciones\n", al.name);
+		printf(" \n%s Aun no aun no tiene calificaciones\n\n", al.name);
 		printf(" Te gustaria agregarlas? (Si == s): ");
 		scanf("%s", opcion);
 
-		printf("Dir name: %s\n", dir_name);
+		printf("\n\nDir name: %s\n", dir_name);
 
 		// reasignamos ddbb_scores
 		// freopen(dir_name, "w+", ddbb_scores);
@@ -97,7 +97,7 @@ void save_scores(struct Alumno al)
 				} while(score < 0 || score > 100 );
 
 				// gcvt() convierte un float a cadena, 6 es es tamañno maximo de cadena
-				// text donde sera guardada
+				// score_str donde sera guardada
 				gcvt(score, 6, score_str);
 				fputs(score_str, ddbb_scores);
 				fputc('\n', ddbb_scores);
@@ -114,6 +114,7 @@ void save_scores(struct Alumno al)
 	{
 
 		int n_trimetres = 1;
+		float promTotal = 0;
 		while (n_trimetres <= 3) {
 			float prom = 0;
 			
@@ -121,15 +122,41 @@ void save_scores(struct Alumno al)
 			{
 				fgets(line, 120, ddbb_scores); 
 				prom += atoi(line) * 0.25;
+				promTotal += prom;
 			}
 
-			printf("\n Promedio en el trimestre %d: %f", n_trimetres, prom);
+			printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres, prom);
 
 			n_trimetres++;
 		}
+		printf("\n\n\t Promedio total:             %.2f",promTotal);
 		getchar();
 		fclose(ddbb_scores);
 		
+		n_trimetres = 1;//lo reseteo pq lo necesito :3
+
+		//Mostrar todas sus notas
+
+		FILE *show_notes = fopen(dir_name,"r");
+
+		printf("\n\n\n Notas de %s: ",al.name);
+
+		while (n_trimetres <= 3) {
+			float prom = 0;
+
+			printf("\n\n\t Notas en el trimestre %d: \n", n_trimetres);
+
+			for (int i = 0; i < 4; ++i) 
+			{
+				fgets(line_showNotes, 120, show_notes);
+				//se mostraban los numeros con un '.' asi que se lo quito
+				strtok(line_showNotes,".");
+				printf("\n\t\tEvaluacion %d: %s",i+1,line_showNotes);
+			}
+
+			n_trimetres++;
+		}
+		fclose(show_notes);
 	}
 
 	// fputc('*',notes_baseData);
@@ -161,17 +188,14 @@ void infoExtend()
 
 		} while(ID < idExtend[0] || ID > idExtend[posFinal]);
 
+		system("clear");
+
+		printf("\n\t\t Informacion detalla de %s\n\n",alumnos[ID-1].name);
 
 		save_scores(alumnos[ID-1]);
 
-		printf("\n\t Informacion detalla \n\n");
-		print_alumno(alumnos[ID-1]);
-
-		printf("\n\n Notas: \n\n");
-
-		//aun faltaria mostrar las notas
-		printf("\tTrimetre 1\tTrimestre 2\tTrimestre 3\n\n");
-
+		//print_alumno(alumnos[ID-1]);
+		printf("\n\n\n");
 		system("pause");
 	}
 }

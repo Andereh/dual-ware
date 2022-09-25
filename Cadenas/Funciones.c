@@ -806,7 +806,7 @@ void vocalesAsteriscos(char x[100])
     }
     printf("%s ",y);
 }
-
+//Solo permite ingresar numeros enteros en una cadena de caracteres
 bool noChar(char x[100]){
 
     int contador = 0;
@@ -819,6 +819,7 @@ bool noChar(char x[100]){
     else return false;
 }
 
+//mostrar numeros repetidos
 void numberRepeat(char x[100]){
 
     char y[100];
@@ -862,6 +863,7 @@ void numberRepeat(char x[100]){
 
 }
 
+//Numeros iguales en otra cadena
 void numberInOtherString(char x[100], char y[100]){
 
     char aux;
@@ -923,6 +925,7 @@ void numberInOtherString(char x[100], char y[100]){
     }
 }
 
+//Numeros diferentes 
 void numberDifferent(char x[100]){
 
     char y[100];
@@ -976,6 +979,7 @@ void numberDifferent(char x[100]){
             } 
 }
 
+//mostrar un arreglo al reves
 void printInvert(char x[100]){
 
     for (i = strlen(x) - 1; i >= 0; i--){
@@ -984,6 +988,7 @@ void printInvert(char x[100]){
 
 }
 
+//Pasar de minusculas a mayusculas una cadena completa
 void minToMaxString(char x[100]) {
 
     char aux[100];
