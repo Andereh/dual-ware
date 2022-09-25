@@ -45,11 +45,101 @@ void print_alumno(struct Alumno al)
 
 }
 
+void save_scores(struct Alumno al) 
+{
+
+	char score_str[100];
+	char line[128];
+	char opcion[64];
+
+	printf("\n Notas de: %s", al.name);
+
+	char dir_name[64] = "";
+	char folder[] = "./calificaciones/";
+	char extension[] = ".txt";
+	// al.name[strspn(al.name, "l")] = '-'; // cambiamos los espacios por guiones
+										 // esto no cambia la base de datos
+	strcat(dir_name, folder);
+	strcat(dir_name, al.name);
+	strcat(dir_name, extension);
+	// resultado: ./<algun-nombre>.txt
+
+	FILE *ddbb_scores = fopen(dir_name, "r");
+
+	if (ddbb_scores == NULL)
+	{
+		printf(" \n%s aun no aun no tiene calificaciones\n", al.name);
+		printf(" Te gustaria agregarlas? (Si == s): ");
+		scanf("%s", opcion);
+
+		printf("Dir name: %s\n", dir_name);
+
+		// reasignamos ddbb_scores
+		// freopen(dir_name, "w+", ddbb_scores);
+		FILE *ddbb_scores = fopen(dir_name, "w+");
+
+		if (opcion[0] != 's')
+			return;
+
+		for (int i = 0; i < 3; i++)
+		{
+			printf("\n\n\t Trimeste %d\n\n",i+1);
+
+			for (int j = 0; j < 4; j++)
+			{
+				
+				// la notas van de 1-100
+				// pd: aja y si saque 0
+				float score;
+				do {
+					printf(" Evaluacion %d: ",j+1);
+					scanf("%f",&score);
+				} while(score < 0 || score > 100 );
+
+				// gcvt() convierte un float a cadena, 6 es es tamañno maximo de cadena
+				// text donde sera guardada
+				gcvt(score, 6, score_str);
+				fputs(score_str, ddbb_scores);
+				fputc('\n', ddbb_scores);
+				al.trimesters[i].notes[j] = score;
+
+			}
+			// fputc('~',ddbb_scores);
+
+		}
+		fputc('*',ddbb_scores);
+		fclose(ddbb_scores);
+	}
+	else 
+	{
+
+		int n_trimetres = 1;
+		while (n_trimetres <= 3) {
+			float prom = 0;
+			
+			for (int i = 0; i < 4; ++i) 
+			{
+				fgets(line, 120, ddbb_scores); 
+				prom += atoi(line) * 0.25;
+			}
+
+			printf("\n Promedio en el trimestre %d: %f", n_trimetres, prom);
+
+			n_trimetres++;
+		}
+		getchar();
+		fclose(ddbb_scores);
+		
+	}
+
+	// fputc('*',notes_baseData);
+}
+
 //Es para mostrar las notas
 void infoExtend()
 {	
-	char opcion[10],guardarN[10];// guardarN sirve para preguntarle al usuario si quiere
-								 // Si quiere guardas las notas del alumno elegido
+	char opcion[10], guardarN[10];// guardarN sirve para preguntarle al usuario si quiere
+								  // guardar las notas del alumno elegido
 	int ID;
 
 	printf("\n\n Desea ver mas informacion sobre uno de los alumnos? (Si == s): ");
@@ -62,19 +152,17 @@ void infoExtend()
 			" ( El ID es el numero a la izquierda del alumno )\n\n");
 		
 
-		do{
+		do {
 			printf(" Ingresar ID: "); scanf("%d",&ID);
 
 			//idExtend almacena los ID de las personas que aparezcan en la busqueda
 			if(ID < idExtend[0] || ID > idExtend[posFinal])
 			printf("\n El ID ingresado no corresponde a ningun alumno en la busqueda\n\n");
 
-		}while(ID < idExtend[0] || ID > idExtend[posFinal]);
+		} while(ID < idExtend[0] || ID > idExtend[posFinal]);
 
-		printf("\n\n Desea guardar las notas de %s (Si == s): ",alumnos[ID-1].name);
-		scanf("%s",&guardarN);
 
-		if (guardarN[0] == 's') guardarNotas(alumnos[ID-1]);
+		save_scores(alumnos[ID-1]);
 
 		printf("\n\t Informacion detalla \n\n");
 		print_alumno(alumnos[ID-1]);
@@ -96,7 +184,7 @@ void search(char mode)
 	char opcion[10];
 	char phase[10] = "";
 	int pos = 0;
-	bool found_at_leat_one_al;
+	bool found_at_least_one_al;
 
 	if (mode == 'n')
 		strcpy(phase, "el nombre");
@@ -105,7 +193,7 @@ void search(char mode)
 
 
 	do {
-		found_at_leat_one_al = false;
+		found_at_least_one_al = false;
 
 		printf("\n Ingrese %s a buscar: ", phase);
 		fgets(user_request, 64, stdin);
@@ -131,7 +219,7 @@ void search(char mode)
 			if (strcasecmp(name_substr, user_request) == 0)
 			{
 				print_alumno(alumnos[i]);
-				found_at_leat_one_al = true;
+				found_at_least_one_al = true;
 
 				// Guardamos los id de los alumnos encontrados 
 			    // para luego usarlos
@@ -142,7 +230,7 @@ void search(char mode)
 		}
 
 
-		if (!found_at_leat_one_al) 
+		if (!found_at_least_one_al) 
 			printf(" No se encontro nada con esos valores\n");
 		else
 			infoExtend();
@@ -155,44 +243,6 @@ void search(char mode)
 
 //Si, guarda las notas :3
 //Es solo una prueba probablemente no sea igual al final
-void guardarNotas(struct Alumno al) 
-{
-
-	char text[100];
-	char line[128];
-
-	printf("\n Notas de: %s", al.name);
-
-	FILE *notes_baseData = fopen("./notas.txt","a+");
-
-	fputs(al.name,notes_baseData);
-	fputs("\n\n",notes_baseData);
-
-	for (int i = 0; i < 3; i++)
-	{
-		printf("\n\n\t Trimeste %d\n\n",i+1);
-		for (int j = 0; j < 4; j++)
-		{
-			
-			//la notas van de 1-100
-			do{
-				printf("\n Evaluacion %d: ",j+1);
-				scanf("%f",&al.trimesters[i].notes[j]);
-			}while(al.trimesters[i].notes[j] < 1 || al.trimesters[i].notes[j] > 100 );
-
-			//gcvt() convierte un float a cadena, 6 es es tamañno maximo de cadena
-			// text donde sera guardada
-			gcvt(al.trimesters[i].notes[j],6,text);
-			fputs(text,notes_baseData);
-			fputc('\n',notes_baseData);
-		}
-
-		fputc('\n',notes_baseData);
-	}
-
-	fclose(notes_baseData);
-	//fputc('*',notes_baseData);
-}
 
 int main(int argc, char *argv[])
 {
