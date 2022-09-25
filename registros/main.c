@@ -149,14 +149,14 @@ void save_scores(struct Alumno al)
 		while (n_trimetres <= 3) {
 			float prom = 0;
 
-			printf("\n\n\t Notas en el trimestre %d: \n", n_trimetres);
+			printf("\n\n\t Notas en el trimestre %d: \n\n", n_trimetres);
 
 			for (int i = 0; i < 4; ++i) 
 			{
 				fgets(line_showNotes, 120, show_notes);
 				//se mostraban los numeros con un '.' asi que se lo quito
 				strtok(line_showNotes,".");
-				printf("\n\t\tEvaluacion %d: %s",i+1,line_showNotes);
+				printf("\t\tEvaluacion %d: %s",i+1,line_showNotes);
 			}
 
 			n_trimetres++;
