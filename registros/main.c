@@ -123,26 +123,19 @@ void save_scores(struct Alumno al)
 			{
 				fgets(line, 120, ddbb_scores); 
 				prom += atoi(line) * 0.25;
-				
 			}
 			promTotal += prom; 
-
 			printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres, prom);
-
 			n_trimetres++;
 		}
 		
 		promTotal /= 3;
 
 		printf("\n\n\t Promedio total:             %.2f",promTotal);
-		getchar();
-		fclose(ddbb_scores);
-		
 		n_trimetres = 1;//lo reseteo pq lo necesito :3
 
 		//Mostrar todas sus notas
 
-		FILE *show_notes = fopen(dir_name,"r");
 
 		printf("\n\n\n Notas de %s: ",al.name);
 
@@ -153,15 +146,15 @@ void save_scores(struct Alumno al)
 
 			for (int i = 0; i < 4; ++i) 
 			{
-				fgets(line_showNotes, 120, show_notes);
+				fgets(line, 120, ddbb_scores);
 				//se mostraban los numeros con un '.' asi que se lo quito
-				strtok(line_showNotes,".");
-				printf("\t\tEvaluacion %d: %s",i+1,line_showNotes);
+				strtok(line,".");
+				printf("\t\tEvaluacion %d: %s",i+1,line);
 			}
 
 			n_trimetres++;
 		}
-		fclose(show_notes);
+		fclose(ddbb_scores);
 	}
 
 	// fputc('*',notes_baseData);
