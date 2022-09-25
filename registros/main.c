@@ -52,7 +52,7 @@ void save_scores(struct Alumno al)
 	char line[128],line_showNotes[128];
 	char opcion[64];
 
-	printf("\n Promedio de: %s\n", al.name);
+	printf("\n Promedio de %s: \n", al.name);
 
 	char dir_name[64] = "";
 	char folder[] = "./calificaciones/";
