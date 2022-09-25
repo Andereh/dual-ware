@@ -51,9 +51,6 @@ void save_scores(struct Alumno al)
 	char score_str[100];
 	char line[128],line_showNotes[128];
 	char opcion[64];
-
-	printf("\n Promedio de %s: \n", al.name);
-
 	char dir_name[64] = "";
 	char folder[] = "./calificaciones/";
 	char extension[] = ".txt";
@@ -68,18 +65,20 @@ void save_scores(struct Alumno al)
 
 	if (ddbb_scores == NULL)
 	{
-		printf(" \n%s Aun no aun no tiene calificaciones\n\n", al.name);
+		printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);
 		printf(" Te gustaria agregarlas? (Si == s): ");
 		scanf("%s", opcion);
 
-		printf("\n\nDir name: %s\n", dir_name);
-
-		// reasignamos ddbb_scores
 		// freopen(dir_name, "w+", ddbb_scores);
-		FILE *ddbb_scores = fopen(dir_name, "w+");
-
+		
 		if (opcion[0] != 's')
 			return;
+
+		printf("\n\n Dir name: %s\n", dir_name);
+
+		printf("\n Ingrese las notas de %s",al.name);
+		// reasignamos ddbb_scores
+		FILE *ddbb_scores = fopen(dir_name, "w+");
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -113,6 +112,8 @@ void save_scores(struct Alumno al)
 	else 
 	{
 
+		printf("\n Promedio de %s: \n", al.name);
+
 		int n_trimetres = 1;
 		float promTotal = 0;
 		while (n_trimetres <= 3) {
@@ -122,13 +123,17 @@ void save_scores(struct Alumno al)
 			{
 				fgets(line, 120, ddbb_scores); 
 				prom += atoi(line) * 0.25;
-				promTotal += prom;
+				
 			}
+			promTotal += prom; 
 
 			printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres, prom);
 
 			n_trimetres++;
 		}
+		
+		promTotal /= 3;
+
 		printf("\n\n\t Promedio total:             %.2f",promTotal);
 		getchar();
 		fclose(ddbb_scores);
