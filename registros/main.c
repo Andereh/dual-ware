@@ -12,9 +12,9 @@ struct Alumno
 	char year_of_birth[4]; // agno de nacimiento
 	int id;
 	char sex[2];
+
 	struct Trimester {
 		float notes[4];
-
 	} trimesters[3];
 };
 
@@ -116,52 +116,53 @@ void save_scores(struct Alumno al)
 
 		int n_trimetres = 1;
 		float promTotal = 0;
-		while (n_trimetres <= 3) {
-			float prom = 0;
+		/*while (n_trimetres <= 3) {                                                */
+		/*    float prom = 0;                                                       */
 			
-			for (int i = 0; i < 4; ++i) 
-			{
-				fgets(line, 120, ddbb_scores); 
-				prom += atoi(line) * 0.25;
+		/*    for (int i = 0; i < 4; ++i)                                           */
+		/*    {                                                                     */
+		/*        fgets(line, 120, ddbb_scores);                                    */
+		/*        prom += atoi(line) * 0.25;                                        */
 				
-			}
-			promTotal += prom; 
+		/*    }                                                                     */
+		/*    promTotal += prom;                                                    */
 
-			printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres, prom);
+		/*    printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres, prom);*/
 
-			n_trimetres++;
-		}
+		/*    n_trimetres++;                                                        */
+		/*}                                                                         */
 		
-		promTotal /= 3;
+		/*promTotal /= 3;                                                           */
 
-		printf("\n\n\t Promedio total:             %.2f",promTotal);
-		getchar();
-		fclose(ddbb_scores);
+		/*printf("\n\n\t Promedio total:             %.2f", promTotal);*/
+		getchar();                                                   
 		
 		n_trimetres = 1;//lo reseteo pq lo necesito :3
 
 		//Mostrar todas sus notas
 
-		FILE *show_notes = fopen(dir_name,"r");
 
-		printf("\n\n\n Notas de %s: ",al.name);
+		printf("\n\n\n Notas de %s: ", al.name);
 
 		while (n_trimetres <= 3) {
 			float prom = 0;
 
-			printf("\n\n\t Notas en el trimestre %d: \n", n_trimetres);
+			printf("\n\n\t Notas en el trimestre %d: \n\n", n_trimetres);
 
 			for (int i = 0; i < 4; ++i) 
 			{
-				fgets(line_showNotes, 120, show_notes);
+				fgets(line, 120, ddbb_scores);
+				int score = atoi(line);
 				//se mostraban los numeros con un '.' asi que se lo quito
-				strtok(line_showNotes,".");
-				printf("\n\t\tEvaluacion %d: %s",i+1,line_showNotes);
+				// strtok(line, ".");
+				printf("\t\tEvaluacion %d: %d\n", i + 1, score);
+				prom += score * 0.25f; // 25%
 			}
 
+			printf("\n\tPromedio: %.2f\n", prom);
 			n_trimetres++;
 		}
-		fclose(show_notes);
+		fclose(ddbb_scores);
 	}
 
 	// fputc('*',notes_baseData);
