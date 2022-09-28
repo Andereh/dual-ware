@@ -1,0 +1,8 @@
+Mejor que compiles desde consola
+me canse de tanto subir y bajar por el archivo
+
+A lo mejor creo un archivo para cada funcion pa
+
+Para compilar haces: gcc main.c src/*.c
+
+Buena noche pa, descansa maldito desgraciado <3

@@ -1,69 +1,33 @@
+#include "src/routines.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 
-struct Alumno
-{
-    char name[64];
-    char ci[10];
-    char year_of_birth[4]; // agno de nacimiento
-    int  id;
-    char sex[2];
-
-    struct Trimester
-    {
-        float notes[4];
-    } trimesters[3];
-};
-
-int           actual_alumns_number = 0, posFinal, idExtend[10];
-struct Alumno alumnos[10]; // arreglo de alumnos
+int    actual_alumns_number = 0, posFinal, idExtend[10];
+Alumno alumnos[10]; // arreglo de alumnos
 
 
-void space_and_print(char str[], int len)
-{
-    // str[strlen(str) - 1] = '\0'; // cambiamos el ultimo caracter por el nulo
-    // esto no afecta la variable original
-    printf("%s", str);
-    int spaces = len - strlen(str);
-
-    while (spaces-- > 0)
-    {
-        printf(" ");
-    }
-}
-
-void print_alumno(struct Alumno al)
-{
-    printf("\n #%d | ", al.id);
-    space_and_print(al.name, 20);
-    printf("| ");
-    space_and_print(al.ci, 9);
-    printf("| ");
-    space_and_print(al.year_of_birth, 5);
-    space_and_print(al.sex, 3);
-}
-
-void save_scores(struct Alumno al)
+void save_scores(Alumno al)
 {
 
     char score_str[100];
     char line[128], line_showNotes[128];
     char opcion[64];
+
     char dir_name[64] = "";
     char folder[]     = "./calificaciones/";
     char extension[]  = ".txt";
-    // al.name[strspn(al.name, "l")] = '-'; // cambiamos los espacios por
-    // guiones esto no cambia la base de datos
+
     strcat(dir_name, folder);
     strcat(dir_name, al.name);
     strcat(dir_name, extension);
-    // resultado: ./<algun-nombre>.txt
+    // resultado: ./calificaciones/<algun-nombre>.txt
 
     FILE *ddbb_scores = fopen(dir_name, "r");
 
+    getchar(); // para limpiar el buffer nada mas
     if (ddbb_scores == NULL)
     {
         printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);
@@ -75,8 +39,6 @@ void save_scores(struct Alumno al)
         if (opcion[0] != 's')
             return;
 
-        printf("\n\n Dir name: %s\n", dir_name);
-
         printf("\n Ingrese las notas de %s", al.name);
         // reasignamos ddbb_scores
         FILE *ddbb_scores = fopen(dir_name, "w+");
@@ -87,9 +49,6 @@ void save_scores(struct Alumno al)
 
             for (int j = 0; j < 4; j++)
             {
-
-                // la notas van de 1-100
-                // pd: aja y si saque 0
                 float score;
                 do
                 {
@@ -99,73 +58,72 @@ void save_scores(struct Alumno al)
 
                 // gcvt() convierte un float a cadena, 6 es es tamañno maximo de
                 // cadena score_str donde sera guardada
-                gcvt(score, 6, score_str);
+                // esta funcion no existe en la compu de la uni
+
+                /* ---> */ gcvt(score, 6, score_str);
+
                 fputs(score_str, ddbb_scores);
                 fputc('\n', ddbb_scores);
                 al.trimesters[i].notes[j] = score;
             }
-            // fputc('~',ddbb_scores);
         }
         fputc('*', ddbb_scores);
         fclose(ddbb_scores);
+        return;
     }
-    else
+
+    int   n_trimetres = 1;
+    float promTotal   = 0;
+
+    n_trimetres = 1; // lo reseteo pq lo necesito :3
+
+    printf("\n\n\n Notas de %s:\n\n", al.name);
+    printf("\t\033[30;47m Trimestre");
+
+    for (int i = 0; i < 4; ++i)
     {
-
-        printf("\n Promedio de %s: \n", al.name);
-
-        int   n_trimetres = 1;
-        float promTotal   = 0;
-        /*while (n_trimetres <= 3) { */
-        /*    float prom = 0; */
-
-        /*    for (int i = 0; i < 4; ++i) */
-        /*    { */
-        /*        fgets(line, 120, ddbb_scores); */
-        /*        prom += atoi(line) * 0.25; */
-
-        /*    } */
-        /*    promTotal += prom; */
-
-        /*    printf("\n\n\t Promedio en el trimestre %d: %.2f", n_trimetres,
-         * prom);*/
-
-        /*    n_trimetres++; */
-        /*} */
-
-        /*promTotal /= 3; */
-
-        /*printf("\n\n\t Promedio total:             %.2f", promTotal);*/
-        getchar();
-
-        n_trimetres = 1; // lo reseteo pq lo necesito :3
-
-        // Mostrar todas sus notas
-
-
-        printf("\n\n\n Notas de %s: ", al.name);
-
-        while (n_trimetres <= 3)
-        {
-            float prom = 0;
-
-            printf("\n\n\t Notas en el trimestre %d: \n\n", n_trimetres);
-
-            for (int i = 0; i < 4; ++i)
-            {
-                fgets(line, 120, ddbb_scores);
-                int score = atoi(line);
-                // se mostraban los numeros con un '.' asi que se lo quito
-                // strtok(line, ".");
-                printf("\t\tEvaluacion %d: %d\n", i + 1, score);
-                prom += score * 0.25f; // 25%
-            }
-
-            printf("\n\tPromedio: %.2f\n", prom);
-            n_trimetres++;
-        }
-        fclose(ddbb_scores);
+        printf(" | ");
+        space_and_printr("25%", 3);
     }
+
+    printf(" | Prom  \n\033[0m");
+
+    while (n_trimetres <= 3)
+    {
+        float prom = 0;
+
+        printf("\t");
+        space_and_printr("", strlen("Trimestre") - 1);
+        printf("#%d", n_trimetres);
+        printf(" | ");
+        // printf("\t #%d | ", n_trimetres);
+
+        for (int i = 0; i < 4; ++i)
+        {
+            fgets(line, 120, ddbb_scores);
+            line[strcspn(line, "\n")] = '\0';
+
+            int score = atoi(line);
+            // se mostraban los numeros con un '.' asi que se lo quito
+            // strtok(line, ".");
+
+            space_and_printr(line, 3);
+            printf(" | ");
+            prom += score * 0.25f; // 25%
+        }
+
+        if (prom >= 75.0)
+            printf("\033[32;1m"); // verde
+        else if (prom >= 60.0)
+            printf("\033[93;1m"); // amarillo
+        else
+            printf("\033[31;1m"); // rojo
+
+        printf("%.2f\n", prom);
+        printf("\033[0m");
+        n_trimetres++;
+    }
+    fclose(ddbb_scores);
 
     // fputc('*',notes_baseData);
 }
@@ -262,6 +220,7 @@ void search(char mode)
 
                 // Guardamos los id de los alumnos encontrados
                 // para luego usarlos
+                // pues usalos njd
                 idExtend[pos] = alumnos[i].id;
                 posFinal      = pos; // Es para saber cuantos id se guardaron
                 pos++;
@@ -279,14 +238,10 @@ void search(char mode)
     } while (opcion[0] == 's');
 }
 
-// Si, guarda las notas :3
-// Es solo una prueba probablemente no sea igual al final
-
-int main(int argc, char *argv[])
+void load_ddbb()
 {
     int  max_alums = 10; // numero de alumnos maximos
     char line[128];      // aqui se guardan las lineas que se van leyendo
-    char opcion[32];
 
     FILE *data_base = fopen("./pseudo_data_base.txt", "r");
     // abrimos el falsa base de datos
@@ -324,17 +279,22 @@ int main(int argc, char *argv[])
         alumnos[i].sex[strcspn(alumnos[i].sex, "\n")] = '\0';
 
         actual_alumns_number++;
-
-        // printf(" Alumno %d:\n\n", i + 1);
-        // printf("\tNombre: %s", alumnos[i].name);
-        // printf("\tCedula: %s", alumnos[i].ci);
-        // printf("\tAgnio:  %s\n\n", alumnos[i].year_of_birth);
     }
+}
+// Si, guarda las notas :3
+// Es solo una prueba probablemente no sea igual al final
+
+int main(int argc, char *argv[])
+{
+
+    char opcion[32];
+
+    load_ddbb();
 
     do
     {
-
         system("clear");
+
         for (int i = 0; i < actual_alumns_number; ++i)
             print_alumno(alumnos[i]);
 
@@ -354,7 +314,7 @@ int main(int argc, char *argv[])
 
     } while (opcion[0] != 's');
 
-    printf("Gracias por visitar\n");
+    printf(" Gracias por visitar\n");
     return 0;
 }
 
