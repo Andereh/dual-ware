@@ -1,23 +1,18 @@
-#ifndef ROUTINES_H
 #define ROUTINES_H
+#include "alumno.h"
+#include "utils.h"
 
-typedef struct
-{
-    char name[64];
-    char ci[10];
-    char year_of_birth[4]; // agno de nacimiento
-    int  id;
-    char sex[2];
-
-    struct Trimester
-    {
-        float notes[4];
-    } trimesters[3];
-
-} Alumno;
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void print_alumno(Alumno al);
 void space_and_printl(char[], int);
 void space_and_printr(char[], int);
-
-#endif
+void save_scores(Alumno al);
+void infoExtend();
+void load_ddbb();
+void search(char);
+void show_all_alumns(Alumno[], int);
+void settings();
