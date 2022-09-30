@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     do
     {
         system("clear");
-        show_all_alumns(alumnos, 2);
+        show_all_alumns(alumnos);
 
         printf("\n\n\tBuscar por cedula  -> c");
         printf("\n\tBuscar por nombre  -> n");

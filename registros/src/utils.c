@@ -1,9 +1,19 @@
 #include "utils.h"
 #include "alumno.h"
 
-void show_all_alumns(Alumno al[], int alumns_number)
+extern int actual_alumns_number;
+
+void erase_enter(char *str)
 {
-    for (int i = 0; i < alumns_number; ++i)
+    while (*str != '\n')
+        str++;
+
+    *str = '\0';
+}
+
+void show_all_alumns(Alumno al[])
+{
+    for (int i = 0; i < actual_alumns_number; ++i)
         print_alumno(al[i]);
 }
 

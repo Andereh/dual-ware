@@ -1,4 +1,5 @@
 #include "routines.h"
+#include <stdio.h>
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
 
@@ -240,15 +241,22 @@ void load_ddbb()
     FILE *data_base = fopen("./pseudo_data_base.txt", "r");
     // abrimos el falsa base de datos
 
+    if (data_base == NULL)
+    {
+        printf("Problemas al abrir la base de datos\n");
+        exit(0);
+    }
+
     for (int i = 0; i < max_alums; i++)
     {
         do
         {
             fgets(line, 120, data_base);
         } while (strcmp(line, "\n") == 0);
+        printf("Ye2\n");
 
-        if (line[0] == '*') // si encuentra esto significa que estamos en el
-                            // final del archivo
+        if (feof(data_base)) // si encuentra esto significa que estamos en el
+                             // final del archivo
             break;
 
         strcpy(alumnos[i].name,
@@ -274,5 +282,7 @@ void load_ddbb()
 
         actual_alumns_number++;
     }
+
+    fclose(data_base);
 }
 

@@ -14,5 +14,4 @@ void save_scores(Alumno al);
 void infoExtend();
 void load_ddbb();
 void search(char);
-void show_all_alumns(Alumno[], int);
 void settings();
