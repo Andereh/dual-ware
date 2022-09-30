@@ -11,7 +11,7 @@ int actual_year = 2022;
 void add_user()
 {
     FILE *ddbb;
-    ddbb = fopen("./../pseudo_data_base.txt", "a");
+    ddbb = fopen("./pseudo_data_base.txt", "a");
 
     if (ddbb == NULL)
     {
@@ -49,14 +49,14 @@ void add_user()
     /*Fecha de nacimiento*/
 
     printf(" Año de nacimiento: ");
-    fgets(temp.year_of_birth, 5, stdin);
+    fgets(temp.year_of_birth, 6, stdin);
 
     while (strtol(temp.year_of_birth, NULL, 10) > actual_year)
     {
         printf("\n Debido a que las maquinas del tiempo aun no se inventan las "
                "personas no pueden nacer en el futuro\n"
                " Año de nacimiento: ");
-        fgets(temp.year_of_birth, 5, stdin);
+        fgets(temp.year_of_birth, 6, stdin);
     }
 
     /*Campo sexo*/
@@ -88,12 +88,19 @@ void add_user()
         erase_enter(temp.sex);
     }
 
-    fprintf(ddbb, "%s\n", temp.name);
-    fputs(temp.ci, ddbb);
-    fputs(temp.year_of_birth, ddbb);
-    fputs(temp.sex, ddbb);
+    if (temp.name[0] >= 'a' && temp.name[0] <= 'z')
+        temp.name[0] -= 32;
 
-    fputs("\n\n", ddbb);
+    fprintf(ddbb, "%s", temp.name);
+    fprintf(ddbb, "%s", temp.ci);
+    fprintf(ddbb, "%s", temp.year_of_birth);
+    fprintf(ddbb, "%s\n\n", temp.sex);
+
+    /*fputs(temp.ci, ddbb);           */
+    /*fputs(temp.year_of_birth, ddbb);*/
+    /*fputs(temp.sex, ddbb);          */
+
+    /*fputs("\n\n", ddbb);*/
     fclose(ddbb);
     load_ddbb();
 }

@@ -1,4 +1,6 @@
 #include "routines.h"
+#include "alumno.h"
+#include "utils.h"
 #include <stdio.h>
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
@@ -238,6 +240,8 @@ void load_ddbb()
     int  max_alums = 10; // numero de alumnos maximos
     char line[128];      // aqui se guardan las lineas que se van leyendo
 
+    actual_alumns_number = 0;
+
     FILE *data_base = fopen("./pseudo_data_base.txt", "r");
     // abrimos el falsa base de datos
 
@@ -252,12 +256,10 @@ void load_ddbb()
         do
         {
             fgets(line, 120, data_base);
+            if (feof(data_base)) // si encuentra esto significa que estamos en el final del archivo
+                return;
         } while (strcmp(line, "\n") == 0);
-        printf("Ye2\n");
 
-        if (feof(data_base)) // si encuentra esto significa que estamos en el
-                             // final del archivo
-            break;
 
         strcpy(alumnos[i].name,
                line); // se supone que si salio del bucle es porque la linea no
@@ -274,11 +276,10 @@ void load_ddbb()
 
 
         // donde encuentre un salto de linea lo elimina
-        alumnos[i].name[strcspn(alumnos[i].name, "\n")] = '\0';
-        alumnos[i].ci[strcspn(alumnos[i].ci, "\n")]     = '\0';
-        alumnos[i].year_of_birth[strcspn(alumnos[i].year_of_birth, "\n")] =
-            '\0';
-        alumnos[i].sex[strcspn(alumnos[i].sex, "\n")] = '\0';
+        erase_enter(alumnos[i].name);
+        erase_enter(alumnos[i].ci);
+        erase_enter(alumnos[i].year_of_birth);
+        erase_enter(alumnos[i].sex);
 
         actual_alumns_number++;
     }

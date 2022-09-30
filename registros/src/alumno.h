@@ -5,7 +5,7 @@ typedef struct
 {
     char name[64];
     char ci[10];
-    char year_of_birth[5]; // agno de nacimiento
+    char year_of_birth[6]; // agno de nacimiento
     int  id;
     char sex[3];
 
