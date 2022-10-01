@@ -2,10 +2,13 @@
 #include "alumno.h"
 #include "utils.h"
 #include <stdio.h>
+#include <sys/types.h>
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
 
 Alumno alumnos[10]; // arreglo de alumnos
+
+void save_scores_id(int id) { save_scores(alumnos[id]); }
 
 void save_scores(Alumno al)
 {
@@ -25,7 +28,9 @@ void save_scores(Alumno al)
 
     FILE *ddbb_scores = fopen(dir_name, "r");
 
-    getchar(); // para limpiar el buffer nada mas
+    /*char c;                                    */
+    /*while ((c = getchar()) != '\n' && c != EOF)*/
+    /*    ;                                      */
     if (ddbb_scores == NULL)
     {
         printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);
@@ -52,11 +57,12 @@ void save_scores(Alumno al)
                 {
                     printf(" Evaluacion %d: ", j + 1);
                     scanf("%f", &score);
+                    getchar();
                 } while (score < 0 || score > 100);
 
-                // gcvt() convierte un float a cadena, 6 es es tamañno maximo de
-                // cadena score_str donde sera guardada
-                // esta funcion no existe en la compu de la uni
+                // gcvt() convierte un float a cadena, 6 es es tamañno
+                // maximo de cadena score_str donde sera guardada esta
+                // funcion no existe en la compu de la uni
 
                 /* ---> */ gcvt(score, 6, score_str);
 
@@ -65,7 +71,7 @@ void save_scores(Alumno al)
                 al.trimesters[i].notes[j] = score;
             }
         }
-        fputc('*', ddbb_scores);
+
         fclose(ddbb_scores);
         return;
     }
@@ -99,8 +105,7 @@ void save_scores(Alumno al)
         for (int i = 0; i < 4; ++i)
         {
             fgets(line, 120, ddbb_scores);
-            line[strcspn(line, "\n")] = '\0';
-
+            erase_enter(line);
             int score = atoi(line);
             // se mostraban los numeros con un '.' asi que se lo quito
             // strtok(line, ".");
@@ -184,7 +189,6 @@ void search(char mode)
     else if (mode == 'c')
         strcpy(phase, "la cedula");
 
-
     do
     {
         found_at_least_one_al = false;
@@ -231,7 +235,7 @@ void search(char mode)
             infoExtend();
 
         printf("\n Seguir buscando? (Si == s): ");
-        fgets(opcion, 10, stdin);
+        scanf("%s", opcion);
     } while (opcion[0] == 's');
 }
 
@@ -243,6 +247,7 @@ void load_ddbb()
     actual_alumns_number = 0;
 
     FILE *data_base = fopen("./pseudo_data_base.txt", "r");
+    printf("Load\n");
     // abrimos el falsa base de datos
 
     if (data_base == NULL)
@@ -256,20 +261,20 @@ void load_ddbb()
         do
         {
             fgets(line, 120, data_base);
-            if (feof(data_base)) // si encuentra esto significa que estamos en el final del archivo
+            if (feof(data_base)) // si encuentra esto significa que estamos en
+                                 // el final del archivo
                 return;
         } while (strcmp(line, "\n") == 0);
 
 
+        strcpy(alumnos[i].ci, line); // se supone que si salio del bucle es
+                                     // porque la linea no estaba vacia
         strcpy(alumnos[i].name,
-               line); // se supone que si salio del bucle es porque la linea no
-                      // estaba vacia
+               fgets(line, 128,
+                     data_base)); // ahora si escuentra un espacio nos jodemos
 
 
         // se copian porque la asignacion directa no es valida en C
-        strcpy(alumnos[i].ci,
-               fgets(line, 128,
-                     data_base)); // ahora si escuentra un espacio nos jodemos
         strcpy(alumnos[i].year_of_birth, fgets(line, 128, data_base));
         strcpy(alumnos[i].sex, fgets(line, 128, data_base));
         alumnos[i].id = i + 1;

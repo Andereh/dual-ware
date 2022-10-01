@@ -11,6 +11,7 @@ void print_alumno(Alumno al);
 void space_and_printl(char[], int);
 void space_and_printr(char[], int);
 void save_scores(Alumno al);
+void save_scores_id(int);
 void infoExtend();
 void load_ddbb();
 void search(char);

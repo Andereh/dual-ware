@@ -1,14 +1,17 @@
 #include "utils.h"
 #include "alumno.h"
+#include <stdio.h>
 
 extern int actual_alumns_number;
 
 void erase_enter(char *str)
 {
-    while (*str != '\n')
+    while (*(str) != '\0')
+    {
+        if (*str == '\n')
+            *str = '\0';
         str++;
-
-    *str = '\0';
+    }
 }
 
 void show_all_alumns(Alumno al[])
@@ -37,11 +40,18 @@ void space_and_printr(char str[], int len) // hacia la derecha
 
 void print_alumno(Alumno al)
 {
-    printf("\n #%d | ", al.id);
+    char nums_str[3];
+    printf("\n #");
+    sprintf(nums_str, "%d", al.id);
+    space_and_printr(nums_str, 2);
+    printf(" | ");
+
     space_and_printl(al.name, 20);
     printf("| ");
+
     space_and_printr(al.ci, 9);
     printf(" | ");
+
     space_and_printl(al.year_of_birth, 5);
     space_and_printl(al.sex, 3);
 }

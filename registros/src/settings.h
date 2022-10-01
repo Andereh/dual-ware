@@ -5,5 +5,6 @@
 #include <string.h>
 
 void add_user();
+void remove_user(int);
 void settings();
 
