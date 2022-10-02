@@ -6,3 +6,10 @@ A lo mejor creo un archivo para cada funcion pa
 Para compilar haces: gcc main.c src/*.c
 
 Buena noche pa, descansa maldito desgraciado <3
+
+
+NOTA PA RONALD
+
+BUENA NOCHE MAMAÑEMA :3
+
+Decime otro metodo de busqueda que se yo XD

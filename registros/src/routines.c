@@ -6,6 +6,10 @@
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
 
+//lo declaro global pq no funcinaba en la funcion search()
+int yearOld = 0, actualYear = 2022;
+char str_id[2],str_yearOld[5],aux[64];
+
 Alumno alumnos[10]; // arreglo de alumnos
 
 void save_scores_id(int id) { save_scores(alumnos[id]); }
@@ -52,7 +56,7 @@ void save_scores(Alumno al)
 
             for (int j = 0; j < 4; j++)
             {
-                float score;
+                int score;
                 do
                 {
                     printf(" Evaluacion %d: ", j + 1);
@@ -60,11 +64,12 @@ void save_scores(Alumno al)
                     getchar();
                 } while (score < 0 || score > 100);
 
-                // gcvt() convierte un float a cadena, 6 es es tamañno
-                // maximo de cadena score_str donde sera guardada esta
-                // funcion no existe en la compu de la uni
+                /*
+                    Pase el valor a entero y
+                    Cambie gcvt() por sprintf() 
+                */
 
-                /* ---> */ gcvt(score, 6, score_str);
+                /* ---> */ sprintf(score_str,"%d",score);
 
                 fputs(score_str, ddbb_scores);
                 fputc('\n', ddbb_scores);
@@ -181,22 +186,30 @@ void search(char mode)
     char name_substr[64];
     char opcion[10];
     char phase[10] = "";
-    int  pos       = 0;
+    int  pos = 0;
     bool found_at_least_one_al;
 
     if (mode == 'n')
         strcpy(phase, "el nombre");
     else if (mode == 'c')
         strcpy(phase, "la cedula");
+     else if (mode == 'i')
+        strcpy(phase, "el ID");
+     else if (mode == 'y')
+        strcpy(phase, "la edad");
 
     do
     {
         found_at_least_one_al = false;
-
+        fflush(stdin);
         printf("\n Ingrese %s a buscar: ", phase);
         fgets(user_request, 64, stdin);
         user_request[strcspn(user_request, "\n")] = '\0';
         // strcspn regresa el indice del caracter que se pasa por parametro
+
+        if (mode == 'y')
+            strcpy(aux,user_request);//guardamos el valor ingresado
+                                    // para despues darselo de vuelta
 
 
         system("clear");
@@ -204,10 +217,35 @@ void search(char mode)
 
         for (int i = 0; i < actual_alumns_number; ++i)
         {
+
+
             if (mode == 'n')
+            {
                 strcpy(to_search, alumnos[i].name);
+            }
             else if (mode == 'c')
+            {
                 strcpy(to_search, alumnos[i].ci);
+            }
+            else if (mode == 'y')
+            {
+                yearOld = atoi(user_request);//pasamos la edad entero
+
+                yearOld = actualYear - yearOld;//restamos el año actual con la edad
+
+                sprintf(str_yearOld, "%d", yearOld);//pasamos a cadena de nuevo :V
+
+                strcpy(user_request, str_yearOld);//Guardamos el año para comparar
+
+                strcpy(to_search, alumnos[i].year_of_birth);
+
+            }
+            else if (mode == 'i')
+            {
+                //pasar el id a cadena
+                sprintf(str_id, "%d", alumnos[i].id);
+                strcpy(to_search, str_id);
+            }
 
             // extraemos cuantos caracteres sea la longitud de la busqueda
             // y los asignamos a 'name_substr'
@@ -226,6 +264,9 @@ void search(char mode)
                 posFinal      = pos; // Es para saber cuantos id se guardaron
                 pos++;
             }
+
+            if (mode == 'y')
+                strcpy(user_request,aux);//reasignamos el valor de user_request
         }
 
 
@@ -267,9 +308,9 @@ void load_ddbb()
         } while (strcmp(line, "\n") == 0);
 
 
-        strcpy(alumnos[i].ci, line); // se supone que si salio del bucle es
+        strcpy(alumnos[i].name, line); // se supone que si salio del bucle es
                                      // porque la linea no estaba vacia
-        strcpy(alumnos[i].name,
+        strcpy(alumnos[i].ci,
                fgets(line, 128,
                      data_base)); // ahora si escuentra un espacio nos jodemos
 

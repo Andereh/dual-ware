@@ -24,8 +24,10 @@ int main(int argc, char *argv[])
         system("clear");
         show_all_alumns(alumnos);
 
-        printf("\n\n\tBuscar por cedula  -> c");
+        printf("\n\n\tBuscar por ID  -> i");
+        printf("\n\tBuscar por cedula  -> c");
         printf("\n\tBuscar por nombre  -> n");
+        printf("\n\tBuscar por año de nacimiento  -> y");
         printf("\n\tConfiguraciones -> f");
         printf("\n\tSalir -> s");
 
@@ -36,6 +38,8 @@ int main(int argc, char *argv[])
         {
         case 'c':
         case 'n':
+        case 'y':
+        case 'i':
             search(opcion[0]);
             break;
         case 'f':

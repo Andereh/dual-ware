@@ -14,7 +14,7 @@ extern Alumno alumnos[];
 
 void add_user()
 {
-    char opcion[10];
+     char opcion[10];
 
     FILE *ddbb;
     ddbb = fopen("./pseudo_data_base.txt", "a");
@@ -127,15 +127,15 @@ void add_user()
         if (temp.name[0] >= 'a' && temp.name[0] <= 'z')
             temp.name[0] -= 32;
 
-        fprintf(ddbb, "%s\n", temp.ci);
         fprintf(ddbb, "%s", temp.name);
+        fprintf(ddbb, "%s\n", temp.ci);
         fprintf(ddbb, "%s", temp.year_of_birth);
         fprintf(ddbb, "%s\n\n", temp.sex);
 
         fclose(ddbb);
 
         load_ddbb();
-        actual_alumns_number++;
+        //actual_alumns_number++;
         save_scores_id(actual_alumns_number - 1);
 
 
