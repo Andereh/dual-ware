@@ -2,6 +2,7 @@
 #include "alumno.h"
 #include "utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 
@@ -26,6 +27,8 @@ void save_scores(Alumno al)
     char folder[]     = "./calificaciones/";
     char extension[]  = ".txt";
 
+    char temp[10];
+
     strcat(dir_name, folder);
     strcat(dir_name, al.name);
     strcat(dir_name, extension);
@@ -40,7 +43,7 @@ void save_scores(Alumno al)
     {
         printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);
         printf(" Te gustaria agregarlas? (Si == s): ");
-        scanf("%s", opcion);
+        fgets(opcion, 10, stdin);
 
         // freopen(dir_name, "w+", ddbb_scores);
 
@@ -61,8 +64,8 @@ void save_scores(Alumno al)
                 do
                 {
                     printf(" Evaluacion %d: ", j + 1);
-                    scanf("%d", &score);
-                    getchar();
+                    fgets(temp, 10, stdin);
+                    score = atoi(temp);
                 } while (score < 0 || score > 100);
 
                 /*
@@ -133,7 +136,6 @@ void save_scores(Alumno al)
         n_trimetres++;
     }
     fclose(ddbb_scores);
-    getchar();
 
     // fputc('*',notes_baseData);
 }
@@ -158,6 +160,8 @@ void infoExtend(int alumnos_ids[], int num_of_ids)
         bool is_in_list = false;
         do
         {
+            system("clear");
+
             if (num_of_ids == 1)
             {
                 ID = alumnos_ids[0];
@@ -165,10 +169,15 @@ void infoExtend(int alumnos_ids[], int num_of_ids)
             }
             else
             {
-                printf("\n Elija el ID correspondiente al alumno.\n"
+                printf("\n\n");
+                for (int i = 0; i < num_of_ids; ++i)
+                    print_alumno(alumnos[alumnos_ids[i] - 1]);
+
+                printf("\n\n\n Elija el ID correspondiente al alumno.\n"
                        " ( El ID es el numero a la izquierda del alumno )\n\n");
                 printf(" Ingresar ID: ");
                 scanf("%d", &ID);
+                getchar();
             }
 
             // idExtend almacena los ID de las personas que aparezcan en la
@@ -191,7 +200,6 @@ void infoExtend(int alumnos_ids[], int num_of_ids)
 
         // print_alumno(alumnos[ID-1]);
         printf("\n\n\n");
-        system("pause");
     }
 }
 
@@ -328,9 +336,9 @@ void load_ddbb()
         } while (strcmp(line, "\n") == 0);
 
 
-        strcpy(alumnos[i].name, line); // se supone que si salio del bucle es
-                                       // porque la linea no estaba vacia
-        strcpy(alumnos[i].ci,
+        strcpy(alumnos[i].ci, line); // se supone que si salio del bucle es
+                                     // porque la linea no estaba vacia
+        strcpy(alumnos[i].name,
                fgets(line, 128,
                      data_base)); // ahora si escuentra un espacio nos jodemos
 

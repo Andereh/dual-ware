@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "alumno.h"
+#include <stdbool.h>
 #include <stdio.h>
 
 extern int actual_alumns_number;
@@ -16,8 +17,18 @@ void erase_enter(char *str)
 
 void show_all_alumns(Alumno al[])
 {
+    char dir_name[128];
     for (int i = 0; i < actual_alumns_number; ++i)
+    {
         print_alumno(al[i]);
+
+
+        sprintf(dir_name, "./calificaciones/%s.txt", al[i].name);
+        FILE *check = fopen(dir_name, "r");
+
+        if (check == NULL)
+            printf("\033[33m*\033[0m");
+    }
 }
 
 void space_and_printl(char str[], int len) // hacia la izquierda
@@ -56,3 +67,13 @@ void print_alumno(Alumno al)
     space_and_printl(al.sex, 3);
 }
 
+bool has_a_enter(char str[])
+{
+    while (*str != '\0')
+    {
+        if (*str == '\n')
+            return true;
+        str++;
+    }
+    return false;
+}

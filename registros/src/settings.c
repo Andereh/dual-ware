@@ -14,7 +14,7 @@ extern Alumno alumnos[];
 
 void add_user()
 {
-     char opcion[10];
+    char opcion[10];
 
     FILE *ddbb;
     ddbb = fopen("./pseudo_data_base.txt", "a");
@@ -127,15 +127,15 @@ void add_user()
         if (temp.name[0] >= 'a' && temp.name[0] <= 'z')
             temp.name[0] -= 32;
 
-        fprintf(ddbb, "%s", temp.name);
         fprintf(ddbb, "%s\n", temp.ci);
+        fprintf(ddbb, "%s", temp.name);
         fprintf(ddbb, "%s", temp.year_of_birth);
         fprintf(ddbb, "%s\n\n", temp.sex);
 
         fclose(ddbb);
 
         load_ddbb();
-        //actual_alumns_number++;
+        // actual_alumns_number++;
         save_scores_id(actual_alumns_number - 1);
 
 
@@ -147,7 +147,7 @@ void add_user()
 void remove_user(int user_id)
 {
     FILE *ddbb      = fopen("./pseudo_data_base.txt", "r");
-    FILE *temp_file = fopen("./calificaciones/temp.txt", "w+");
+    FILE *temp_file = fopen("./calificaciones/temp.txt", "w");
     char  line[120];
 
     if (ddbb == NULL)
@@ -165,16 +165,28 @@ void remove_user(int user_id)
             for (int i = 0; i < 3; ++i)
                 fgets(line, 120, ddbb);
         else
-            fprintf(temp_file, "%s\n", line);
+        {
+            if (has_a_enter(line))
+                fprintf(temp_file, "%s", line);
+            else
+                fprintf(temp_file, "%s\n", line);
+        }
     }
+    fclose(ddbb);
+    fclose(temp_file);
 
     ddbb      = fopen("./pseudo_data_base.txt", "w");
     temp_file = fopen("./calificaciones/temp.txt", "r");
 
+    rewind(temp_file);
     while (!feof(temp_file))
     {
         fgets(line, 120, temp_file);
-        fprintf(ddbb, "%s", line);
+
+        if (has_a_enter(line))
+            fprintf(ddbb, "%s", line);
+        else
+            fprintf(ddbb, "%s\n", line);
     }
     char dir[128];
     sprintf(dir, "./calificaciones/%s.txt", alumnos[user_id].name);
@@ -266,7 +278,7 @@ void settings()
             if (user_text[0] != 's' && user_text[0] != 'S')
                 return;
 
-            remove_user(alumn_id);
+            remove_user(alumn_id - 1);
             load_ddbb();
         }
         }

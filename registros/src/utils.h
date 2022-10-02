@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include "alumno.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,5 +12,6 @@ void print_alumno(Alumno al);
 void space_and_printl(char[], int);
 void space_and_printr(char[], int);
 void show_all_alumns(Alumno[]);
+bool has_a_enter(char[]);
 
 #endif /* ifndef UTILS_H */
