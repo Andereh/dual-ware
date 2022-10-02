@@ -10,7 +10,7 @@ double f(double x)
 	float media = 0, sigma = 1;
 
 	double euler_exponent = -(1 / 2.0) * (powl(x - media, 2) / sigma);
-
+	double M_E;
 	double left_part = 1 / (sqrtl(2 * M_PI) * sigma);
 	double right_part = powl(M_E, euler_exponent);
 

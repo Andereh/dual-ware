@@ -7,10 +7,7 @@
 
 extern Alumno alumnos[]; // la sacamos de routines.c
 
-// Es para mostrar las notas
 
-// Si, guarda las notas :3
-// Es solo una prueba probablemente no sea igual al final
 
 int main(int argc, char *argv[])
 {
