@@ -2,13 +2,14 @@
 #include "alumno.h"
 #include "utils.h"
 #include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
 
-//lo declaro global pq no funcinaba en la funcion search()
-int yearOld = 0, actualYear = 2022;
-char str_id[2],str_yearOld[5],aux[64];
+// lo declaro global pq no funcinaba en la funcion search()
+int  yearOld = 0, actualYear = 2022;
+char str_id[2], str_yearOld[5], aux[64];
 
 Alumno alumnos[10]; // arreglo de alumnos
 
@@ -60,16 +61,16 @@ void save_scores(Alumno al)
                 do
                 {
                     printf(" Evaluacion %d: ", j + 1);
-                    scanf("%f", &score);
+                    scanf("%d", &score);
                     getchar();
                 } while (score < 0 || score > 100);
 
                 /*
                     Pase el valor a entero y
-                    Cambie gcvt() por sprintf() 
+                    Cambie gcvt() por sprintf()
                 */
 
-                /* ---> */ sprintf(score_str,"%d",score);
+                /* ---> */ sprintf(score_str, "%d", score);
 
                 fputs(score_str, ddbb_scores);
                 fputc('\n', ddbb_scores);
@@ -132,16 +133,19 @@ void save_scores(Alumno al)
         n_trimetres++;
     }
     fclose(ddbb_scores);
+    getchar();
 
     // fputc('*',notes_baseData);
 }
 
-void infoExtend()
+
+void infoExtend(int alumnos_ids[], int num_of_ids)
 {
     char opcion[10],
         guardarN[10]; // guardarN sirve para preguntarle al usuario si quiere
                       // guardar las notas del alumno elegido
     int ID;
+
 
     printf(
         "\n\n Desea ver mas informacion sobre uno de los alumnos? (Si == s): ");
@@ -150,22 +154,34 @@ void infoExtend()
     if (opcion[0] == 's')
     {
 
-        printf("\n Elija el ID correspondiente al alumno.\n"
-               " ( El ID es el numero a la izquierda del alumno )\n\n");
 
-
+        bool is_in_list = false;
         do
         {
-            printf(" Ingresar ID: ");
-            scanf("%d", &ID);
+            if (num_of_ids == 1)
+            {
+                ID = alumnos_ids[0];
+                break;
+            }
+            else
+            {
+                printf("\n Elija el ID correspondiente al alumno.\n"
+                       " ( El ID es el numero a la izquierda del alumno )\n\n");
+                printf(" Ingresar ID: ");
+                scanf("%d", &ID);
+            }
 
             // idExtend almacena los ID de las personas que aparezcan en la
             // busqueda
-            if (ID < idExtend[0] || ID > idExtend[posFinal])
-                printf("\n El ID ingresado no corresponde a ningun alumno en "
-                       "la busqueda\n\n");
+            for (int i = 0; i < num_of_ids; ++i)
+                if (ID == alumnos_ids[i])
+                    is_in_list = true;
 
-        } while (ID < idExtend[0] || ID > idExtend[posFinal]);
+            if (!is_in_list)
+                printf(" Respecto a la busqueda. No hay ningun alumno con ese "
+                       "ID\n");
+
+        } while (!is_in_list);
 
         system("clear");
 
@@ -183,33 +199,35 @@ void search(char mode)
 {
     char user_request[64];
     char to_search[64];
-    char name_substr[64];
+    char search_substr[64];
     char opcion[10];
     char phase[10] = "";
-    int  pos = 0;
-    bool found_at_least_one_al;
+    int  pos       = 0;
+    int  num_of_founded_ids;
 
     if (mode == 'n')
         strcpy(phase, "el nombre");
     else if (mode == 'c')
         strcpy(phase, "la cedula");
-     else if (mode == 'i')
+    else if (mode == 'i')
         strcpy(phase, "el ID");
-     else if (mode == 'y')
+    else if (mode == 'y')
         strcpy(phase, "la edad");
 
     do
     {
-        found_at_least_one_al = false;
+        int founded_ids[actual_alumns_number];
+        num_of_founded_ids = 0;
+
         fflush(stdin);
+
         printf("\n Ingrese %s a buscar: ", phase);
         fgets(user_request, 64, stdin);
-        user_request[strcspn(user_request, "\n")] = '\0';
-        // strcspn regresa el indice del caracter que se pasa por parametro
+        erase_enter(user_request);
 
         if (mode == 'y')
-            strcpy(aux,user_request);//guardamos el valor ingresado
-                                    // para despues darselo de vuelta
+            strcpy(aux, user_request); // guardamos el valor ingresado
+                                       // para despues darselo de vuelta
 
 
         system("clear");
@@ -220,42 +238,41 @@ void search(char mode)
 
 
             if (mode == 'n')
-            {
                 strcpy(to_search, alumnos[i].name);
-            }
             else if (mode == 'c')
-            {
                 strcpy(to_search, alumnos[i].ci);
-            }
             else if (mode == 'y')
             {
-                yearOld = atoi(user_request);//pasamos la edad entero
+                yearOld = atoi(user_request); // pasamos la edad entero
 
-                yearOld = actualYear - yearOld;//restamos el año actual con la edad
+                yearOld =
+                    actualYear - yearOld; // restamos el año actual con la edad
 
-                sprintf(str_yearOld, "%d", yearOld);//pasamos a cadena de nuevo :V
+                sprintf(str_yearOld, "%d",
+                        yearOld); // pasamos a cadena de nuevo :V
 
-                strcpy(user_request, str_yearOld);//Guardamos el año para comparar
+                strcpy(user_request,
+                       str_yearOld); // Guardamos el año para comparar
 
                 strcpy(to_search, alumnos[i].year_of_birth);
-
             }
             else if (mode == 'i')
             {
-                //pasar el id a cadena
+                // pasar el id a cadena
                 sprintf(str_id, "%d", alumnos[i].id);
                 strcpy(to_search, str_id);
             }
 
             // extraemos cuantos caracteres sea la longitud de la busqueda
             // y los asignamos a 'name_substr'
-            strncpy(name_substr, to_search, strlen(user_request));
+            strncpy(search_substr, to_search, strlen(user_request));
+            search_substr[strlen(user_request)] = '\0';
+            // Casualmente esta funcion no coloca el \0 al final de la cadena
 
             // strcasecmp no toma en cuenta las mayusculas
-            if (strcasecmp(name_substr, user_request) == 0)
+            if (strcasecmp(search_substr, user_request) == 0)
             {
                 print_alumno(alumnos[i]);
-                found_at_least_one_al = true;
 
                 // Guardamos los id de los alumnos encontrados
                 // para luego usarlos
@@ -263,20 +280,23 @@ void search(char mode)
                 idExtend[pos] = alumnos[i].id;
                 posFinal      = pos; // Es para saber cuantos id se guardaron
                 pos++;
+                founded_ids[num_of_founded_ids] = alumnos[i].id;
+                num_of_founded_ids++;
             }
 
             if (mode == 'y')
-                strcpy(user_request,aux);//reasignamos el valor de user_request
+                strcpy(user_request,
+                       aux); // reasignamos el valor de user_request
         }
 
 
-        if (!found_at_least_one_al)
+        if (num_of_founded_ids == 0)
             printf(" No se encontro nada con esos valores\n");
         else
-            infoExtend();
+            infoExtend(founded_ids, num_of_founded_ids);
 
         printf("\n Seguir buscando? (Si == s): ");
-        scanf("%s", opcion);
+        fgets(opcion, 10, stdin);
     } while (opcion[0] == 's');
 }
 
@@ -309,7 +329,7 @@ void load_ddbb()
 
 
         strcpy(alumnos[i].name, line); // se supone que si salio del bucle es
-                                     // porque la linea no estaba vacia
+                                       // porque la linea no estaba vacia
         strcpy(alumnos[i].ci,
                fgets(line, 128,
                      data_base)); // ahora si escuentra un espacio nos jodemos
