@@ -116,8 +116,6 @@ void save_scores(Alumno al)
             fgets(line, 120, ddbb_scores);
             erase_enter(line);
             int score = atoi(line);
-            // se mostraban los numeros con un '.' asi que se lo quito
-            // strtok(line, ".");
 
             space_and_printr(line, 3);
             printf(" | ");
@@ -180,8 +178,7 @@ void infoExtend(int alumnos_ids[], int num_of_ids)
                 getchar();
             }
 
-            // idExtend almacena los ID de las personas que aparezcan en la
-            // busqueda
+            
             for (int i = 0; i < num_of_ids; ++i)
                 if (ID == alumnos_ids[i])
                     is_in_list = true;

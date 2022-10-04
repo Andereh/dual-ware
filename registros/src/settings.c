@@ -16,21 +16,28 @@ void add_user()
 {
     char opcion[10];
 
-    FILE *ddbb;
-    ddbb = fopen("./pseudo_data_base.txt", "a");
+    
 
 
-    if (ddbb == NULL)
-    {
-        printf("Problemas al abrir la base de datos\n");
-        exit(0);
-    }
-
+   
 
     Alumno temp;
 
     do
     {
+
+        //Lo puse dentro del while pq cuando se repitia no guardaba mas usuarios :3
+
+        FILE *ddbb;
+        ddbb = fopen("./pseudo_data_base.txt", "a");
+
+         if (ddbb == NULL)
+        {
+            printf("Problemas al abrir la base de datos\n");
+            exit(0);
+        }
+
+
         system("clear");
 
 
@@ -51,11 +58,22 @@ void add_user()
         printf(" Cedula: ");
         fgets(temp.ci, 10, stdin);
 
-        while (strlen(temp.ci) == 1) // siempre se guarda el enter
+        while (strlen(temp.ci) == 1 || strlen(temp.ci) > 9) // siempre se guarda el enter
         {
-            printf("\n Este campo no puede estar vacio\n"
+
+            if (strlen(temp.ci) == 1)
+            {
+                printf("\n Este campo no puede estar vacio\n"
                    " Cedula: ");
-            fgets(temp.ci, 10, stdin);
+                fgets(temp.ci, 10, stdin);
+            }
+
+            if (strlen(temp.ci) > 9)
+            {
+                printf("\n EPAMAMAGUVO solo alfkajdfd 8");
+                fgets(temp.ci, 10, stdin);
+            }
+            
         }
 
         bool has_repeated;
