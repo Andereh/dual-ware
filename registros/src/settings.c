@@ -62,10 +62,10 @@ void add_user()
         /*Campo cedula*/
         
 
-        printf(" Cedula (Si es extranjero ingrese su N\167 pasaporte): ");
+        printf(" \nCedula (Si es extranjero ingrese su N\167 pasaporte): ");
         fgets(temp.ci, 10, stdin);
 
-        while (strlen(temp.ci) == 1 || only_numbers(temp.ci) ) // siempre se guarda el enter
+        while (strlen(temp.ci) == 1 || only_numbers(temp.ci) || strlen(temp.ci) > 9) // siempre se guarda el enter
         {
 
             if (strlen(temp.ci) == 1)
@@ -86,6 +86,7 @@ void add_user()
                 printf("\n No puede tener mas de 8 digitos. Intenta de nuevo: ");
                 fgets(temp.ci,10,stdin);
             }
+
         }
 
         bool has_repeated;
@@ -160,7 +161,7 @@ void add_user()
             temp.name[0] -= 32;
 
         fprintf(ddbb, "%s\n", temp.ci);
-        fprintf(ddbb, "%s", temp.name);
+        fprintf(ddbb, "%s\n", temp.name);
         fprintf(ddbb, "%s", temp.year_of_birth);
         fprintf(ddbb, "%s\n\n", temp.sex);
 
