@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
     {
         system("clear");
         show_all_alumns(alumnos);
-
+        printf("\n\n\t\t Busqueda ");
         printf("\n\n\tBuscar por ID  -> i");
         printf("\n\tBuscar por cedula  -> c");
         printf("\n\tBuscar por nombre  -> n");
-        printf("\n\tBuscar por año de nacimiento  -> y");
+        printf("\n\tBuscar por edad  -> y");
         printf("\n\tConfiguraciones -> f");
         printf("\n\tSalir -> s");
 

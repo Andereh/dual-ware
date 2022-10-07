@@ -16,11 +16,6 @@ void add_user()
 {
     char opcion[10];
 
-    
-
-
-   
-
     Alumno temp;
 
     do
@@ -46,34 +41,51 @@ void add_user()
         printf(" Nombre: ");
         fgets(temp.name, 120, stdin);
 
-        while (strlen(temp.name) < 4)
+        while (strlen(temp.name) < 4 || only_characters(temp.name))
         {
-            printf("\n El nombre debe tener al menos 4 caracteres\n");
-            printf(" Nombre: ");
-            fgets(temp.name, 64, stdin);
+
+            if (strlen(temp.name) < 4)
+            {
+                printf("\n El nombre debe tener al menos 4 caracteres\n");
+                printf(" Nombre: ");
+                fgets(temp.name, 64, stdin);
+            }
+            
+
+            if (only_characters(temp.name))
+            {
+                printf("\n Estamos seguros que ningun nombre contiene un numero.\n Nombre: ");
+                fgets(temp.name,64,stdin);
+            }
         }
 
         /*Campo cedula*/
+        
 
-        printf(" Cedula: ");
+        printf(" Cedula (Si es extranjero ingrese su N\167 pasaporte): ");
         fgets(temp.ci, 10, stdin);
 
-        while (strlen(temp.ci) == 1 || strlen(temp.ci) > 9) // siempre se guarda el enter
+        while (strlen(temp.ci) == 1 || only_numbers(temp.ci) ) // siempre se guarda el enter
         {
 
             if (strlen(temp.ci) == 1)
             {
                 printf("\n Este campo no puede estar vacio\n"
-                   " Cedula: ");
+                   ". Intenta de nuevo: ");
                 fgets(temp.ci, 10, stdin);
             }
-
-            if (strlen(temp.ci) > 9)
+            //para que solo ingrese numeros (una cedula en venezuela con letras lol :u)
+            if (only_numbers(temp.ci))
             {
-                printf("\n EPAMAMAGUVO solo alfkajdfd 8");
+                printf("\n Solamente puede contener numeros. Intenta de nuevo: ");
                 fgets(temp.ci, 10, stdin);
             }
             
+            if (strlen(temp.ci) > 9)
+            {
+                printf("\n No puede tener mas de 8 digitos. Intenta de nuevo: ");
+                fgets(temp.ci,10,stdin);
+            }
         }
 
         bool has_repeated;
@@ -103,6 +115,8 @@ void add_user()
             }
 
         } while (has_repeated);
+
+        fflush(stdin);//limpiar el buffer
 
         /*Fecha de nacimiento*/
 
@@ -251,6 +265,7 @@ void settings()
 
         printf("\n\n\t1. Agregar un nuevo alumno\n");
         printf("\t2. Eliminar un nuevo alumno\n");
+        printf("\n\tSalir == s");
         printf("\n\n Opcion: ");
         fgets(opcion, 32, stdin);
 

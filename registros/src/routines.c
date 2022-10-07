@@ -39,6 +39,7 @@ void save_scores(Alumno al)
     /*char c;                                    */
     /*while ((c = getchar()) != '\n' && c != EOF)*/
     /*    ;                                      */
+    
     if (ddbb_scores == NULL)
     {
         printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);

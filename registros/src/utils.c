@@ -60,7 +60,7 @@ void print_alumno(Alumno al)
     space_and_printl(al.name, 20);
     printf("| ");
 
-    space_and_printr(al.ci, 9);
+    space_and_printr(al.ci, 12);
     printf(" | ");
 
     space_and_printl(al.year_of_birth, 5);
@@ -76,4 +76,35 @@ bool has_a_enter(char str[])
         str++;
     }
     return false;
+}
+
+bool only_numbers(char str[])
+{
+
+    erase_enter(str);
+
+    for (int i = 0; i<strlen(str); i++)
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return true;
+    }
+
+    return false;
+
+}
+
+
+bool only_characters(char str[])
+{
+
+    erase_enter(str);
+
+    for (int i = 0; i<strlen(str); i++)
+    {
+        if (str[i] >= '0' || str[i] <= '9')
+            return true;
+    }
+
+    return false;
+
 }
