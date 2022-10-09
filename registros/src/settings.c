@@ -35,7 +35,7 @@ void add_user()
 
         system("clear");
 
-
+        printf("\n\t Agregar nuevo alumno \n\n\n");
         /*Campo nombre*/
 
         printf(" Nombre: ");
@@ -62,7 +62,7 @@ void add_user()
         /*Campo cedula*/
         
 
-        printf(" \nCedula (Si es extranjero ingrese su N\167 pasaporte): ");
+        printf(" \nCedula: ");
         fgets(temp.ci, 10, stdin);
 
         while (strlen(temp.ci) == 1 || only_numbers(temp.ci) || strlen(temp.ci) > 9) // siempre se guarda el enter
@@ -299,14 +299,14 @@ void settings()
                 alumn_id = atoi(user_text);
             }
 
-            printf("\n Estas seguro que quieres eliminar a '%s' del sistema?: ",
+            printf("\n\n Estas seguro que quieres eliminar a '%s' del sistema?: ",
                    alumnos[alumn_id - 1].name);
             fgets(user_text, 10, stdin);
 
             if (user_text[0] != 's' && user_text[0] != 'S')
                 return;
 
-            printf(" Totalmente seguro?: ");
+            printf(" \nTotalmente seguro?: ");
             fgets(user_text, 10, stdin);
 
             if (user_text[0] != 's' && user_text[0] != 'S')

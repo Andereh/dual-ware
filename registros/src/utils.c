@@ -101,8 +101,9 @@ bool only_characters(char str[])
 
     for (int i = 0; i<strlen(str); i++)
     {
-        if (str[i] < 'A' || str[i] > 'z' && str[i] != ' ')
-            return true;
+        if (str[i] < 'A' || str[i] > 'z')
+            if (str[i] != ' ')
+                return true;
     }
 
     return false;

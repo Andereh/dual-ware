@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#include <stdlib.h>
 
 int actual_alumns_number = 0, posFinal, idExtend[10];
 
@@ -13,6 +14,68 @@ int  yearOld = 0, actualYear = 2022;
 char str_id[2], str_yearOld[5], aux[64];
 
 Alumno alumnos[10]; // arreglo de alumnos
+
+
+
+void show_all_scores()
+{
+    for (int i = 0; i < actual_alumns_number; i++)
+    {
+        system("clear");
+        save_scores(alumnos[i]);
+        printf("\n\nPresione una tecla para ver el siguiente Alumno ");
+        getchar();
+    }
+}
+
+void show_all_promedy(Alumno al)
+{
+
+    char dir_name[64] = "";
+    char folder[]     = "./calificaciones/";
+    char extension[]  = ".txt";
+    char line[120];
+
+    float prom[] = {0,0,0},aux;
+    strcat(dir_name, folder);
+    strcat(dir_name, al.name);
+    strcat(dir_name, extension);
+
+    FILE *ddbb_scores = fopen(dir_name,"r");
+
+    if (ddbb_scores == NULL)
+    {
+        printf("\n Problemas al abrir el archivo.\n");
+        printf("\n Puede que el alumno no tenga notas registradas\n\n");
+        system("pause");
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        for(int j = 1; j <= 4; j++)
+        {
+            fgets(line,120,ddbb_scores);
+            aux = atoi(line);
+            prom[i] += aux;    
+        }
+        prom[i] /= 4;    
+    }
+
+    printf(" ");
+    space_and_printl(al.name, 15);
+    printf(" | ");
+    space_and_printl("Promedio", 11);
+
+    for (int i = 0; i < 3; ++i)
+    {
+        char intenger[10];
+        printf(" | ");
+        sprintf(intenger,"%.2f",prom[i]);
+        space_and_printr(intenger, 6);
+    }
+
+    printf(" | \n");
+}
 
 void save_scores_id(int id) { save_scores(alumnos[id]); }
 
@@ -211,6 +274,7 @@ void search(char mode)
     int  pos       = 0;
     int  num_of_founded_ids;
 
+
     if (mode == 'n')
         strcpy(phase, "el nombre");
     else if (mode == 'c')
@@ -306,7 +370,7 @@ void search(char mode)
     } while (opcion[0] == 's');
 }
 
-void load_ddbb()
+int load_ddbb()
 {
     int  max_alums = 10; // numero de alumnos maximos
     char line[128];      // aqui se guardan las lineas que se van leyendo
@@ -330,7 +394,7 @@ void load_ddbb()
             fgets(line, 120, data_base);
             if (feof(data_base)) // si encuentra esto significa que estamos en
                                  // el final del archivo
-                return;
+                return actual_alumns_number;
         } while (strcmp(line, "\n") == 0);
 
 
@@ -357,5 +421,7 @@ void load_ddbb()
     }
 
     fclose(data_base);
+
+    return actual_alumns_number;
 }
 
