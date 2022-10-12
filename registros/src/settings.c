@@ -54,15 +54,15 @@ void add_user()
 
             if (only_characters(temp.name))
             {
-                printf("\n Estamos seguros que ningun nombre contiene un numero.\n Nombre: ");
+                printf("\n Estamos seguros que ningun nombre contiene ese caracter.\n Nombre: ");
                 fgets(temp.name,64,stdin);
             }
         }
 
         /*Campo cedula*/
-        
+        fflush(stdin);//para limpiar el buffer
 
-        printf(" \nCedula: ");
+        printf(" \n Cedula: ");
         fgets(temp.ci, 10, stdin);
 
         while (strlen(temp.ci) == 1 || only_numbers(temp.ci) || strlen(temp.ci) > 9) // siempre se guarda el enter
@@ -73,21 +73,26 @@ void add_user()
                 printf("\n Este campo no puede estar vacio\n"
                    ". Intenta de nuevo: ");
                 fgets(temp.ci, 10, stdin);
+                fflush(stdin);//para limpiar el buffer
             }
             //para que solo ingrese numeros (una cedula en venezuela con letras lol :u)
             if (only_numbers(temp.ci))
             {
                 printf("\n Solamente puede contener numeros. Intenta de nuevo: ");
                 fgets(temp.ci, 10, stdin);
+                fflush(stdin);//para limpiar el buffer
             }
             
             if (strlen(temp.ci) > 9)
             {
                 printf("\n No puede tener mas de 8 digitos. Intenta de nuevo: ");
                 fgets(temp.ci,10,stdin);
+                fflush(stdin);//para limpiar el buffer
             }
 
         }
+
+        fflush(stdin);//para limpiar el buffer
 
         bool has_repeated;
         do
@@ -108,6 +113,7 @@ void add_user()
                         printf("\n Este campo no puede estar vacio\n"
                                " Cedula: ");
                         fgets(temp.ci, 10, stdin);
+                        fflush(stdin);//para limpiar el buffer
                     }
                     i = 0;
 
@@ -121,7 +127,7 @@ void add_user()
 
         /*Fecha de nacimiento*/
 
-        printf(" Año de nacimiento: ");
+        printf("\n Anio de nacimiento: ");
         fgets(temp.year_of_birth, 6, stdin);
 
         while (strtol(temp.year_of_birth, NULL, 10) > actual_year)
@@ -135,7 +141,7 @@ void add_user()
 
         /*Campo sexo*/
 
-        printf("\n\t( Masculino = m / Femenino = f )\n\tSexo: ");
+        printf("\n ( Masculino = m / Femenino = f )\n\n Sexo: ");
         fgets(temp.sex, 3, stdin);
 
         if (temp.sex[0] >= 'a' && temp.sex[0] <= 'z')

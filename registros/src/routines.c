@@ -13,19 +13,40 @@ int actual_alumns_number = 0, posFinal, idExtend[10];
 int  yearOld = 0, actualYear = 2022;
 char str_id[2], str_yearOld[5], aux[64];
 
-Alumno alumnos[10]; // arreglo de alumnos
+Alumno alumnos[20]; // arreglo de alumnos
 
 
 
 void show_all_scores()
 {
+
+    int limit = 1,pag = 0;
+
     for (int i = 0; i < actual_alumns_number; i++)
     {
-        system("clear");
-        save_scores(alumnos[i]);
-        printf("\n\nPresione una tecla para ver el siguiente Alumno ");
-        getchar();
+        save_scores(alumnos[i]);//Se mostraran solo dos alumnos en cada pagina
+
+        if (i == limit)
+        {
+            limit += 2;//Sumamos 2 a su valor para mostrar los siguientes 2 alumnos
+            pag++;//aumentamos el numero de pagina
+            printf("\n\n\t\t\t\t\t\t Pagina %d",pag);
+            printf("\n\n Presione cualquier caracter para ver la siguiente pagina... ");
+            getchar();
+            system("cls");
+        }
+
+        //Mostrar ultima pagina
+        if (i == actual_alumns_number-1)
+        {
+            pag++;//aumentamos el numero de pagina
+            printf("\n\n\t\t\t\t\t\t Pagina %d",pag);
+
+        }
     }
+
+    printf("\n\n");
+    system("pause");
 }
 
 void show_all_promedy(Alumno al)
@@ -35,6 +56,7 @@ void show_all_promedy(Alumno al)
     char folder[]     = "./calificaciones/";
     char extension[]  = ".txt";
     char line[120];
+    char option[10];
 
     float prom[] = {0,0,0},aux;
     strcat(dir_name, folder);
@@ -45,9 +67,8 @@ void show_all_promedy(Alumno al)
 
     if (ddbb_scores == NULL)
     {
-        printf("\n Problemas al abrir el archivo.\n");
-        printf("\n Puede que el alumno no tenga notas registradas\n\n");
-        system("pause");
+        save_scores(al);
+        return;
     }
 
     for (int i = 0; i < 3; i++)
@@ -99,13 +120,9 @@ void save_scores(Alumno al)
 
     FILE *ddbb_scores = fopen(dir_name, "r");
 
-    /*char c;                                    */
-    /*while ((c = getchar()) != '\n' && c != EOF)*/
-    /*    ;                                      */
-    
     if (ddbb_scores == NULL)
     {
-        printf(" \n %s Aun no aun no tiene calificaciones\n\n", al.name);
+        printf(" \n %s Aun no tiene calificaciones\n\n", al.name);
         printf(" Te gustaria agregarlas? (Si == s): ");
         fgets(opcion, 10, stdin);
 
@@ -132,10 +149,6 @@ void save_scores(Alumno al)
                     score = atoi(temp);
                 } while (score < 0 || score > 100);
 
-                /*
-                    Pase el valor a entero y
-                    Cambie gcvt() por sprintf()
-                */
 
                 /* ---> */ sprintf(score_str, "%d", score);
 
@@ -155,15 +168,15 @@ void save_scores(Alumno al)
     n_trimetres = 1; // lo reseteo pq lo necesito :3
 
     printf("\n\n\n Notas de %s:\n\n", al.name);
-    printf("\t\033[30;47m Trimestre");
+    printf("\t\033 Trimestre");
 
     for (int i = 0; i < 4; ++i)
     {
-        printf(" | ");
-        space_and_printr("25%", 3);
+        printf("| ");
+        space_and_printr("25%", 4);
     }
 
-    printf(" | Prom  \n\033[0m");
+    printf("| Promedio  \n");
 
     while (n_trimetres <= 3)
     {
@@ -186,15 +199,15 @@ void save_scores(Alumno al)
             prom += score * 0.25f; // 25%
         }
 
-        if (prom >= 75.0)
+        /*if (prom >= 75.0)
             printf("\033[32;1m"); // verde
         else if (prom >= 60.0)
             printf("\033[93;1m"); // amarillo
         else
-            printf("\033[31;1m"); // rojo
+            printf("\033[31;1m"); // rojo*/
 
         printf("%.2f\n", prom);
-        printf("\033[0m");
+        //printf("\");
         n_trimetres++;
     }
     fclose(ddbb_scores);
